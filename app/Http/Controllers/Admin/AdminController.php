@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MasterAdmin;
+use App\models\State_co;
 
 class AdminController extends Controller
 {
@@ -22,6 +23,12 @@ class AdminController extends Controller
         if($request->profile_type == "national") {
             $adminList = MasterAdmin::where([['username', '=', $username], ['password', '=', $password]])->first();
             $_SESSION['tenant'] = $adminList;
+            $_SESSION['tenant']['type'] = "national";
+        }
+        if($request->profile_type == "state") {
+            $adminList =State_co ::where([['username', '=', $username], ['password', '=', $password]])->first();
+            $_SESSION['tenant'] = $adminList;
+            $_SESSION['tenant']['type'] = "state";
         }
 
         if(!empty($adminList)) {

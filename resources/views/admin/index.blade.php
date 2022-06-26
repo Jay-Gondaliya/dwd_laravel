@@ -94,6 +94,7 @@
                success: function(response) {
                     if (response.code == 200) {
                         $(".error").html('');
+                        window.location.href = "{{ route('dashboard') }}";
                     } else {
                         $("#admin_all").html('');
                         $('#admin_all').addClass('alert alert-danger mx-5');

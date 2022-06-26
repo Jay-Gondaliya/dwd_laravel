@@ -10,10 +10,10 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $data['state_co'] = 10;
-        $data['lga_co'] = 20;
-        $data['ward_co'] = 30;
-        $data['cell_co'] = 40;
+        $state_co= 10;
+        $lga_co= 20;
+        $ward_co= 30;
+        $cell_co= 40;
 
         $title = "Admin List";
         return view('admin.index', compact('data', 'title'));
@@ -40,21 +40,29 @@ class AdminController extends Controller
 
     public function forgotPassword()
     {
-        return view('admin.forgot-password');
+        $title = "Forgot Password";
+        return view('admin.forgot-password', compact('title'));
     }
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $state_co= 10;
+        $lga_co= 20;
+        $ward_co= 30;
+        $cell_co= 40;
+        $title = "Dashboard";
+        return view('admin.dashboard', compact('title', 'state_co', 'lga_co', 'ward_co', 'cell_co'));
     }
 
     public function supervisorsDashboard()
     {
-        return view('admin.supervisors-dashboard');
+        $title = "Supervisors Dashboard";
+        return view('admin.supervisors-dashboard', compact('title'));
     }
 
     public function managersDashboard()
     {
-        return view('admin.managers-dashboard');
+        $title = "Managers Dashboard";
+        return view('admin.managers-dashboard', compact('title'));
     }
 }

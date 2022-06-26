@@ -26,7 +26,13 @@
 	<body class="app sidebar-mini">
 		<div class="page">
 			<div class="page-main">
-				
+				@include('admin.layouts.sidebar')
+				<div class="app-content main-content">
+        			<div class="side-app">
+						@include('admin.layouts.header')
+						@yield('content')
+					</div>
+				</div>
 				<footer class="footer">
 					<div class="container">
 						<div class="row align-items-center flex-row-reverse">

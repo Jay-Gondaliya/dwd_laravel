@@ -1,0 +1,25 @@
+@media only screen and (max-width:1024px)
+{
+}
+
+@media only screen and (max-width:991px)
+{
+	ul.display-inline li:first-child
+	{
+		width:100%;
+	}
+	.mobile_p_10
+	{
+		padding:10px !important;
+	}
+	.ul.display-inline li input
+	{
+		margin-bottom:10px;
+	}
+	
+}
+
+@media only screen and (max-width:600px)
+{
+	
+}

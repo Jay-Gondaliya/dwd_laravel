@@ -1,0 +1,76 @@
+a.resend_otp {
+    float: right;
+    padding-top: 8px;
+}
+td.action_icon a {
+    padding-right: 20px;
+    font-size: 14px;
+}
+table tr td
+{
+	font-size:14px;
+}
+table tr th
+{
+	font-size:14px !important;
+	font-weight:600 !important;
+}
+ul.display-inline li {
+    display: inline-block;
+}
+ul.display-inline li span.between-textbox {
+    padding:0 20px;
+}
+ul.display-inline li:first-child {
+    width: 12%;
+}
+.show-result-box
+{
+	border:1px solid #ddd;
+	border-radius:10px;
+	display:none;
+}
+ul.new_inline_radio li
+{
+	display:inline-block;
+	padding-right:20px;
+}
+a.login_link
+{
+	color:#fff;
+}
+a.login_link:hover
+{
+	color:#fff;
+}
+.state_item
+{
+	display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.ml_30
+{
+	margin-left:30px;
+}
+.tabs-menu ul li a
+{
+	margin:0;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	border-bottom-left-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.dt-buttons.btn-group button {
+    margin-right: 5px;
+}
+.all_buttons_datatable ul li {
+    display: inline-block;
+}

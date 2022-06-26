@@ -10,13 +10,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $state_co= 10;
-        $lga_co= 20;
-        $ward_co= 30;
-        $cell_co= 40;
-
         $title = "Admin List";
-        return view('admin.index', compact('data', 'title'));
+        return view('admin.index', compact('title'));
     }
 
     public function checkLogin(Request $request)

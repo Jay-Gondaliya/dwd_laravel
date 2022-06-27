@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MasterAdmin;
 use App\models\State_co;
+use App\Imports\BulkImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -66,5 +68,19 @@ class AdminController extends Controller
     {
         $title = "Managers Dashboard";
         return view('admin.managers-dashboard', compact('title'));
+    }
+
+    public function voterAdd()
+    {
+        $title = "Voter";
+        return view('admin.file_import', compact('title'));
+    }
+
+    public function fileUpload(Request $request) 
+    {
+        Excel::import(new BulkImport, $request->file('file_data'));
+        $response['code'] = "200";
+        echo json_encode($response);
+		die();
     }
 }

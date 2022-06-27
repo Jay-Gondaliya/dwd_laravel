@@ -18,6 +18,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::any('/checkLogin', 'AdminController@checkLogin')->name('checkLogin');
     Route::any('/forgot-password', 'AdminController@forgotPassword')->name('forgot-password');
     Route::any('/dashboard', 'AdminController@dashboard')->name('dashboard');
+    Route::any('/voter-add', 'AdminController@voterAdd')->name('voter_add');
+    Route::any('/fileUpload', 'AdminController@fileUpload')->name('fileUpload');
     Route::any('/supervisors-dashboard', 'AdminController@supervisorsDashboard')->name('supervisors-dashboard');
     Route::any('/managers-dashboard', 'AdminController@managersDashboard')->name('managers-dashboard');
 });

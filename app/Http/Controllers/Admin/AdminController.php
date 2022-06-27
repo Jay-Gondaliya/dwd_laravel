@@ -22,11 +22,6 @@ class AdminController extends Controller
         $username = $request->username;
         $password = md5($request->password);
         
-        if($request->profile_type == "national") {
-            $adminList = MasterAdmin::where([['username', '=', $username], ['password', '=', $password]])->first();
-            $_SESSION['tenant'] = $adminList;
-            $_SESSION['tenant']['type'] = "national";
-        }
         if($request->profile_type == "state") {
             $adminList =State_co ::where([['username', '=', $username], ['password', '=', $password]])->first();
             $_SESSION['tenant'] = $adminList;

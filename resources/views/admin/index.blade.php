@@ -26,7 +26,6 @@
                                                 <div class="col-md-12">
                                                     <select class="form-control select2" name="profile_type" id="profile_type">
                                                         <option>Select your profile</option>
-                                                        <option value="national">National Coordinator</option>
                                                         <option value="state">State Coordinator</option>
                                                         <option value="local">Local Government Area Coordinator</option>
                                                         <option value="ward">Ward Coordinator</option>

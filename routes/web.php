@@ -24,4 +24,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::any('/fileUpload', 'AdminController@fileUpload')->name('fileUpload');
     Route::any('/supervisors-dashboard', 'AdminController@supervisorsDashboard')->name('supervisors-dashboard');
     Route::any('/managers-dashboard', 'AdminController@managersDashboard')->name('managers-dashboard');
+
+    Route::any('/voters-analysis', 'AdminController@votersAnalysis')->name('voters-analysis');
+    Route::any('/supervisor-field-volunteers-team', 'AdminController@supervisorVolunteersTeam')->name('supervisorVolunteersTeam');
+    Route::any('/reports-graphs', 'AdminController@reportsGraphs')->name('reports-graphs');
+    Route::any('/managers-team', 'AdminController@managersTeam')->name('managersTeam');
+    Route::any('/managers-supervisor-team', 'AdminController@managersSupervisorTeam')->name('managersSupervisorTeam');
 });

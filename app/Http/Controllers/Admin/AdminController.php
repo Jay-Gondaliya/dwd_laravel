@@ -104,4 +104,34 @@ class AdminController extends Controller
 		echo json_encode($response);
 		die();
     }
+
+    public function votersAnalysis()
+    {
+        $title = "Voters Analysis";
+        return view('admin.voters-analysis', compact('title'));
+    }
+
+    public function supervisorVolunteersTeam()
+    {
+        $title = "Supervisor Volunteers Team";
+        return view('admin.supervisor-volunteers-team', compact('title'));
+    }
+
+    public function reportsGraphs()
+    {
+        $title = "Reports Graphs";
+        return view('admin.reports-graphs', compact('title'));
+    }
+
+    public function managersTeam()
+    {
+        $title = "Managers Team";
+        return view('admin.managers-team', compact('title'));
+    }
+
+    public function managersSupervisorTeam()
+    {
+        $title = "Managers Team";
+        return view('admin.managers-supervisor-team', compact('title'));
+    }
 }

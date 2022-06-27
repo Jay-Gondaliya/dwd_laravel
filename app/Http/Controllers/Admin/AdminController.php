@@ -83,4 +83,30 @@ class AdminController extends Controller
         echo json_encode($response);
 		die();
     }
+
+    public function adminIndex()
+    {
+        $title = "Admin Login";
+        return view('admin.login', compact('title'));
+    }
+
+    public function adminCheckLogin(Request $request)
+    {
+        $username = $request->username;
+        $password = md5($request->password);
+
+        $adminList = MasterAdmin::where([['username', '=', $username], ['password', '=', $password]])->first();
+        $_SESSION['tenant'] = $adminList;
+        $_SESSION['tenant']['type'] = "national";
+        
+        if(!empty($adminList)) {
+            $response['code'] = "200";
+            $response['message'] = "Login successfully!";
+        } else {
+            $response['code'] = "400";
+            $response['message'] = "Incorrect Username or Password!";
+        }
+		echo json_encode($response);
+		die();
+    }
 }

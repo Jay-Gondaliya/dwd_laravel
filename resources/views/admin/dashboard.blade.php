@@ -66,5 +66,19 @@
             </div>
         </a>
     </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
+        <a href="{{route('voters-analysis')}}">
+            <div class="card overflow-hidden dash1-card border-0 dash4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="mb-2 mt-1 number-font carn2 font-weight-bold">Voter</h4>
+                            <h4 class="mb-2 number-font carn1 font-weight-bold"><?= $voterCount ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
 @endsection

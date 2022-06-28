@@ -50,8 +50,9 @@ class AdminController extends Controller
         $lga_co = 20;
         $ward_co = 30;
         $cell_co = 40;
+        $voterCount = Voter::count();
         $title = "Dashboard";
-        return view('admin.dashboard', compact('title', 'state_co', 'lga_co', 'ward_co', 'cell_co'));
+        return view('admin.dashboard', compact('title', 'state_co', 'lga_co', 'ward_co', 'cell_co', 'voterCount'));
     }
 
     public function supervisorsDashboard()

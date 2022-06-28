@@ -27,6 +27,7 @@ class BulkImport implements ToModel,WithHeadingRow
         $add->state=$row['state'];
         $add->lga=$row['lga'];
         $add->ward=$row['ward'];
+        $add->cell=$row['cell'];
         $add->address=$row['address'];
         $add->fb=$row['fb'];
         $add->insta=$row['insta'];

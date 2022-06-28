@@ -30,4 +30,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::any('/reports-graphs', 'AdminController@reportsGraphs')->name('reports-graphs');
     Route::any('/managers-team', 'AdminController@managersTeam')->name('managersTeam');
     Route::any('/managers-supervisor-team', 'AdminController@managersSupervisorTeam')->name('managersSupervisorTeam');
+
+    Route::any('/all-voters', 'AdminController@voterList')->name('voterList');
 });

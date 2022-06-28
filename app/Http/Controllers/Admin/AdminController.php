@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MasterAdmin;
 use App\models\State_co;
+use App\Models\Voter;
 use App\Imports\BulkImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -133,5 +134,12 @@ class AdminController extends Controller
     {
         $title = "Managers Team";
         return view('admin.managers-supervisor-team', compact('title'));
+    }
+
+    public function voterList()
+    {
+        $title = "Voter List";
+        $voterList = Voter::paginate(5);
+        return view('admin.voter_list', compact('title', 'voterList'));
     }
 }

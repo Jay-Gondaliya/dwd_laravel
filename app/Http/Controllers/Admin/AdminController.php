@@ -112,7 +112,8 @@ class AdminController extends Controller
     public function votersAnalysis()
     {
         $title = "Voters Analysis";
-        return view('admin.voters-analysis', compact('title'));
+        $voterList = Voter::paginate(5);
+        return view('admin.voters-analysis', compact('title', 'voterList'));
     }
 
     public function supervisorVolunteersTeam()

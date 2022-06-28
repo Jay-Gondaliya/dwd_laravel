@@ -74,10 +74,13 @@ class AdminController extends Controller
 
     public function fileUpload(Request $request) 
     {
-        Excel::import(new BulkImport, $request->file('file_data'));
-        $response['code'] = "200";
+        $response = [];
+        if(!empty($request->file('file_data'))) {
+            Excel::import(new BulkImport, $request->file('file_data'));
+            $response['code'] = "200";
+        }
         echo json_encode($response);
-		die();
+        die();
     }
 
     public function adminIndex()

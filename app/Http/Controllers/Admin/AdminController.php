@@ -22,20 +22,20 @@ class AdminController extends Controller
     {
         $username = $request->username;
         $password = md5($request->password);
-        
-        if($request->profile_type == "state") {
-            $adminList =State_co ::where([['username', '=', $username], ['password', '=', $password]])->first();
+
+        if ($request->profile_type == "state") {
+            $adminList = State_co::where([['username', '=', $username], ['password', '=', $password]])->first();
             $_SESSION['tenant'] = $adminList;
             $_SESSION['tenant']['type'] = "state";
         }
 
-        if(!empty($adminList)) {
+        if (!empty($adminList)) {
             $response['code'] = "200";
         } else {
             $response['code'] = "400";
         }
-		echo json_encode($response);
-		die();
+        echo json_encode($response);
+        die();
     }
 
     public function forgotPassword()
@@ -46,10 +46,10 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $state_co= 10;
-        $lga_co= 20;
-        $ward_co= 30;
-        $cell_co= 40;
+        $state_co = 10;
+        $lga_co = 20;
+        $ward_co = 30;
+        $cell_co = 40;
         $title = "Dashboard";
         return view('admin.dashboard', compact('title', 'state_co', 'lga_co', 'ward_co', 'cell_co'));
     }
@@ -72,10 +72,10 @@ class AdminController extends Controller
         return view('admin.file_import', compact('title'));
     }
 
-    public function fileUpload(Request $request) 
+    public function fileUpload(Request $request)
     {
         $response = [];
-        if(!empty($request->file('file_data'))) {
+        if (!empty($request->file('file_data'))) {
             Excel::import(new BulkImport, $request->file('file_data'));
             $response['code'] = "200";
         }
@@ -97,16 +97,16 @@ class AdminController extends Controller
         $adminList = MasterAdmin::where([['username', '=', $username], ['password', '=', $password]])->first();
         $_SESSION['tenant'] = $adminList;
         $_SESSION['tenant']['type'] = "national";
-        
-        if(!empty($adminList)) {
+
+        if (!empty($adminList)) {
             $response['code'] = "200";
             $response['message'] = "Login successfully!";
         } else {
             $response['code'] = "400";
             $response['message'] = "Incorrect Username or Password!";
         }
-		echo json_encode($response);
-		die();
+        echo json_encode($response);
+        die();
     }
 
     public function votersAnalysis()

@@ -22,30 +22,30 @@
                                     </div>
                                     <form class="mt-5" id="checkLoginForm">
                                         @csrf
-                                    <div class="form-group row mb-4">
-                                                <div class="col-md-12">
-                                                    <select class="form-control select2" name="profile_type" id="profile_type">
-                                                        <option>Select your profile</option>
-                                                        <option value="state">State Coordinator</option>
-                                                        <option value="local">Local Government Area Coordinator</option>
-                                                        <option value="ward">Ward Coordinator</option>
-                                                        <option value="cell">Cell Coordinator</option>
-                                                    </select>
-                                                </div>
+                                        <div class="form-group row mb-4">
+                                            <div class="col-md-12">
+                                                <select class="form-control select2" name="profile_type" id="profile_type">
+                                                    <option>Select your profile</option>
+                                                    <option value="state">State Coordinator</option>
+                                                    <option value="local">Local Government Area Coordinator</option>
+                                                    <option value="ward">Ward Coordinator</option>
+                                                    <option value="cell">Cell Coordinator</option>
+                                                </select>
                                             </div>
-                                        <div class="input-group mb-4">
-                                                <div class="input-group-text">
-                                                    <i class="fe fe-user"></i>
-                                                </div>
-                                            <input type="text" class="form-control" placeholder="Username" name="username" id="username"/>
                                         </div>
-                                        
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-text">
+                                                <i class="fe fe-user"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Username" name="username" id="username" />
+                                        </div>
+
                                         <div class="input-group mb-4">
                                             <div class="input-group" id="Password-toggle1">
                                                 <a href="" class="input-group-text">
                                                     <i class="fe fe-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="form-control" type="password" placeholder="Confirm Password" name="password" id="password"/>
+                                                <input class="form-control" type="password" placeholder="Confirm Password" name="password" id="password" />
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -60,7 +60,7 @@
                                         <div class="form-group fs-13 text-center">
                                             <a href="{{ route('forgot-password') }}">Forget Password ?</a>
                                         </div>
-                                        
+
                                     </form>
                                 </div>
                             </div>
@@ -79,30 +79,30 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-     $(document).on('click', '#checkLogin', function(e) {
-          e.preventDefault();
-          var formData = new FormData($('#checkLoginForm')[0]);
+    $(document).on('click', '#checkLogin', function(e) {
+        e.preventDefault();
+        var formData = new FormData($('#checkLoginForm')[0]);
 
-          $.ajax({
-                url: "{{ route('checkLogin') }}",
-               method: 'POST',
-               data: formData,
-               dataType: "json",
-               contentType: false,
-               processData: false,
-               success: function(response) {
-                    if (response.code == 200) {
-                        $(".error").html('');
-                        window.location.href = "{{ route('dashboard') }}";
-                    } else {
-                        $("#admin_all").html('');
-                        $('#admin_all').addClass('alert alert-danger mx-5');
-                        $.each(response.error, function(key, value) {
-                            $("#admin_all").append(value+"<br/>");
-                        });
-                    }
-              },
-          });
-     });
+        $.ajax({
+            url: "{{ route('checkLogin') }}",
+            method: 'POST',
+            data: formData,
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response.code == 200) {
+                    $(".error").html('');
+                    window.location.href = "{{ route('dashboard') }}";
+                } else {
+                    $("#admin_all").html('');
+                    $('#admin_all').addClass('alert alert-danger mx-5');
+                    $.each(response.error, function(key, value) {
+                        $("#admin_all").append(value + "<br/>");
+                    });
+                }
+            },
+        });
+    });
 </script>
 @endsection

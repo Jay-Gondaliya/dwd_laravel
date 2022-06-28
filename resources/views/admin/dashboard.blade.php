@@ -4,13 +4,13 @@
 @section('heading') {{ $title }} @stop
 
 @section('content')
-    <div class="page-header border-bottom">
-        <div class="page-leftheader">
-            <h4 class="page-title mb-0 text-primary">Manage Team</h4>
-        </div>
+<div class="page-header border-bottom">
+    <div class="page-leftheader">
+        <h4 class="page-title mb-0 text-primary">Manage Team</h4>
     </div>
-    <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
+</div>
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
         <a href="managers-team.html">
             <div class="card overflow-hidden dash1-card border-0 dash1">
                 <div class="card-body">
@@ -22,9 +22,9 @@
                     </div>
                 </div>
             </div>
-            </a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
+        </a>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
         <a href="managers-supervisor-team.html">
             <div class="card overflow-hidden dash1-card border-0 dash2">
                 <div class="card-body">
@@ -36,9 +36,9 @@
                     </div>
                 </div>
             </div>
-            </a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
+        </a>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
         <a href="managers-field-volunteers-team.html">
             <div class="card overflow-hidden dash1-card border-0 dash3">
                 <div class="card-body">
@@ -50,9 +50,9 @@
                     </div>
                 </div>
             </div>
-            </a>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
+        </a>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
         <a href="all-voters.html">
             <div class="card overflow-hidden dash1-card border-0 dash4">
                 <div class="card-body">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            </a>
-        </div>
+        </a>
     </div>
+</div>
 @endsection

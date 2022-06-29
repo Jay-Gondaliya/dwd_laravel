@@ -147,4 +147,56 @@ class AdminController extends Controller
         $voterList = Voter::paginate(5);
         return view('admin.voter_list', compact('title', 'voterList'));
     }
+
+    public function voterStore(Request $request)
+    {
+        if(!empty($request->voter_id)) {
+            $addCompanyOwner = Voter::where('id', $request->voter_id)->first();
+        }
+
+        if(empty($addCompanyOwner)) {
+            $addCompanyOwner = new Voter;
+        }
+
+        $addCompanyOwner->fname = $request->fname;
+        $addCompanyOwner->mname = $request->mname;
+        $addCompanyOwner->lname = $request->lname;
+        $addCompanyOwner->gender = $request->gender;
+        $addCompanyOwner->dob = $request->dob;
+        $addCompanyOwner->mobile =$request->mobile;
+        $addCompanyOwner->is_mobile = '1';
+        $addCompanyOwner->email = $request->email;
+        $addCompanyOwner->state = $request->state;
+        $addCompanyOwner->lga = $request->lga;
+        $addCompanyOwner->ward = $request->ward;
+        $addCompanyOwner->cell = !empty($request->cell) ? $request->cell : 1;
+        $addCompanyOwner->address = $request->address;
+        $addCompanyOwner->fb = $request->fb;
+        $addCompanyOwner->insta = $request->insta;
+        $addCompanyOwner->twitter = $request->twitter;
+        $addCompanyOwner->is_voter ='0';
+        $addCompanyOwner->is_pvc = '1';
+        $addCompanyOwner->save();
+
+        return response()->json(['code' => "200"]);
+    }
+
+    public function editVoter($id)
+    {
+        $editVoter = Voter::where('id', $id)->first();
+        $title = "Edit Voter";
+        return view('admin.file_import', compact('editVoter', 'title'));
+    }
+
+    public function voterDelete(Request $request)
+    {
+        $voter    = Voter::where('id', $request->id)->first();
+        if (!empty($voter->id)) {
+            $voter->delete();
+            return response()->json(['code' => "1"]);
+        } else {
+            $title = "404 Error Page";
+            return view('admin.404', compact('title'));
+        }
+    }
 }

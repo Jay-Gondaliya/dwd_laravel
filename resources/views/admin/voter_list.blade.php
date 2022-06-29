@@ -64,9 +64,9 @@
                                         <tr>
                                             <td>{{ $voter->fname }} {{ $voter->mname }} {{ $voter->lname }}</td>
                                             <td class="action_icon">
-                                                <a href="#" class="eye_"><i class="fa fa-eye"></i></a>
-                                                <a href="edit-voter.html" class="edit_"><i class="fa fa-edit"></i></a>
-                                                <a href="#" class="trash_"><i class="fa fa-trash"></i></a>
+                                                <!-- <a href="#" class="eye_"><i class="fa fa-eye"></i></a> -->
+                                                <a href="{{ route('edit_voter', $voter->id) }}" class="edit_"><i class="fa fa-edit"></i></a>
+                                                <a href="javascript:void(0)" class="remove_voter" data-id="{{ $voter->id }}"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -87,4 +87,25 @@
         </div>
     </div>
     <!-- /Row -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).on('click', '.remove_voter', function(){
+     var ele = $(this);
+     var parent_row = ele.parents("tr");
+     var id = ele.attr("data-id");
+
+    $.ajax({
+        url: "{{ route('delete_voter') }}",
+        method: "DELETE",
+        data: {_token: '{{ csrf_token() }}',id: id},
+        dataType: "json",
+        success: function (response) {
+            if(response.code == 1){
+                location.reload();
+            }
+        }
+    });
+});
+</script>
 @endsection

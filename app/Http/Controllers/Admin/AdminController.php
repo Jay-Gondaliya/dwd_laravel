@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\MasterAdmin;
 use App\models\State_co;
 use App\Models\Voter;
+use App\Models\StateCoordinator;
 use App\Imports\BulkImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -46,7 +47,7 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $state_co = 10;
+        $state_co = StateCoordinator::count();
         $lga_co = 20;
         $ward_co = 30;
         $cell_co = 40;
@@ -70,7 +71,8 @@ class AdminController extends Controller
     public function voterAdd()
     {
         $title = "Voter";
-        return view('admin.file_import', compact('title'));
+        $editVoter = new Voter;
+        return view('admin.file_import', compact('title', 'editVoter'));
     }
 
     public function fileUpload(Request $request)

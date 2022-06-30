@@ -35,4 +35,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::any('/managers-supervisor-team', 'AdminController@managersSupervisorTeam')->name('managersSupervisorTeam');
 
     Route::any('/all-voters', 'AdminController@voterList')->name('voterList');
+
+    Route::group(['prefix' => 'state-coordinator'], function () {
+        Route::any('list', 'StateCoordinatorController@stateCoordinatorList')->name('admin.state_coordinatorlist');
+        Route::any('create', 'StateCoordinatorController@addStateCoordinator')->name('admin.addstate_coordinator');
+        Route::any('store', 'StateCoordinatorController@storeStateCoordinator')->name('admin.storestate_coordinator');
+        Route::any('edit/{id}', 'StateCoordinatorController@editStateCoordinator')->name('admin.editstate_coordinator');
+        Route::any('delete', 'StateCoordinatorController@deleteStateCoordinator')->name('admin.deletestate_coordinator');
+    });
 });

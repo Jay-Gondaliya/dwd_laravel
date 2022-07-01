@@ -7,7 +7,7 @@
     <!--Page header-->
     <div class="page-header border-bottom">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0 text-primary">All State Coordinator</h4>
+            <h4 class="page-title mb-0 text-primary">All Local Government Area Coordinator</h4>
         </div>
         
     </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-5">
             <div class="btn-list">
-                <a href="{{route('admin.addstate_coordinator')}}"  class="btn btn-primary btn-pill">
+                <a href="{{route('admin.addlga_coordinator')}}"  class="btn btn-primary btn-pill">
                     Add New</a>
             </div>
             </div>
@@ -47,13 +47,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">State Coordinator List</div>
+                    <div class="card-title">Local Government Area Coordinator List</div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap" id="example1">
                             <thead>
                                 <tr>
+                                    <th class="wd-90p border-bottom-0"><strong>State</strong></th>
                                     <th class="wd-90p border-bottom-0"><strong>Full Name</strong></th>
                                     <th class="wd-90p border-bottom-0"><strong>Mobile Number</strong></th>
                                     <th class="wd-90p border-bottom-0"><strong>Email Address</strong></th>
@@ -61,15 +62,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($stateList->toArray()['total']))
-                                    @foreach($stateList as $state)
+                                @if(!empty($lgaList->toArray()['total']))
+                                    @foreach($lgaList as $lga)
                                         <tr>
-                                            <td>{{ $state->fname }} {{ $state->mname }} {{ $state->lname }}</td>
-                                            <td>{{ $state->mobile }}</td>
-                                            <td>{{ $state->email }}</td>
+                                            <td>{{ $lga->state_name }}</td>
+                                            <td>{{ $lga->fname }} {{ $lga->mname }} {{ $lga->lname }}</td>
+                                            <td>{{ $lga->mobile }}</td>
+                                            <td>{{ $lga->email }}</td>
                                             <td class="action_icon">
-                                                <a href="{{ route('admin.editstate_coordinator', $state->id) }}" class="edit_"><i class="fa fa-edit"></i></a>
-                                                <a href="javascript:void(0)" class="remove_state" data-id="{{$state->id}}"><i class="fa fa-trash"></i></a>
+                                                <a href="{{ route('admin.editlga_coordinator', $lga->id) }}" class="edit_"><i class="fa fa-edit"></i></a>
+                                                <a href="javascript:void(0)" class="remove_lga" data-id="{{$lga->id}}"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -81,7 +83,7 @@
                             </tbody>
                         </table>
                         <div class="pagination" style="margin-left: 65%;">
-                            {{ $stateList->links() }}
+                            {{ $lgaList->links() }}
                         </div>
                     </div>
                 </div>
@@ -93,13 +95,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(document).on('click', '.remove_state', function(){
+$(document).on('click', '.remove_lga', function(){
      var ele = $(this);
      var parent_row = ele.parents("tr");
      var id = ele.attr("data-id");
 
     $.ajax({
-        url: "{{ route('admin.deletestate_coordinator') }}",
+        url: "{{ route('admin.deletelga_coordinator') }}",
         method: "DELETE",
         data: {_token: '{{ csrf_token() }}',id: id},
         dataType: "json",

@@ -12,13 +12,13 @@ class StateCoordinatorController extends Controller
     public function stateCoordinatorList()
     {
         $title = "State Coordinator List";
-        $stateList = StateCoordinator::paginate(5);
+        $stateList = StateCoordinator::where('is_delete', '0')->paginate(5);
         return view('admin.state.index', compact('title', 'stateList'));
     }
 
     public function addStateCoordinator()
     {
-        $title = "Edit State Coordinator";
+        $title = "Add State Coordinator";
         $editStateCoordinator = new StateCoordinator;
         return view('admin.state.create', compact('title', 'editStateCoordinator'));
     }
@@ -28,7 +28,9 @@ class StateCoordinatorController extends Controller
         $validator = Validator::make($request->all(), [
             'username'  => 'required',
             'password' => 'required',
-            'name'  => 'required',
+            'fname'  => 'required',
+            'mname'  => 'required',
+            'lname'  => 'required',
             'age' => 'required',
             'gender'  => 'required',
             'dob' => 'required',
@@ -41,8 +43,8 @@ class StateCoordinatorController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()]);
         } else {
-            if(!empty($request->voter_id)) {
-                $addStateCoordinator = StateCoordinator::where('id', $request->voter_id)->first();
+            if(!empty($request->id)) {
+                $addStateCoordinator = StateCoordinator::where('id', $request->id)->first();
             }
 
             if(empty($addStateCoordinator)) {
@@ -51,7 +53,9 @@ class StateCoordinatorController extends Controller
 
             $addStateCoordinator->username = $request->username;
             $addStateCoordinator->password = md5($request->password);
-            $addStateCoordinator->name = $request->name;
+            $addStateCoordinator->fname = $request->fname;
+            $addStateCoordinator->mname = $request->mname;
+            $addStateCoordinator->lname = $request->lname;
             $addStateCoordinator->age = $request->age;
             $addStateCoordinator->gender = $request->gender;
             $addStateCoordinator->dob = $request->dob;
@@ -60,6 +64,7 @@ class StateCoordinatorController extends Controller
             $addStateCoordinator->email = $request->email;
             $addStateCoordinator->is_email = '1';
             $addStateCoordinator->address = $request->address;
+            $addStateCoordinator->is_delete = '0';
             $addStateCoordinator->save();
 
             return response()->json(['code' => "200"]);
@@ -75,7 +80,11 @@ class StateCoordinatorController extends Controller
 
     public function deleteStateCoordinator(Request $request)
     {
-        $stateCoordinator    = StateCoordinator::where('id', $request->id)->delete();
+        $stateCoordinator    = StateCoordinator::where('id', $request->id)->first();
+        if(!empty($stateCoordinator->id)) {
+            $stateCoordinator->is_delete = '1';
+            $stateCoordinator->save();
+        }
         return response()->json(['code' => "1"]);
     }
 }

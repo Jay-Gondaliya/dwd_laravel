@@ -43,4 +43,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
         Route::any('edit/{id}', 'StateCoordinatorController@editStateCoordinator')->name('admin.editstate_coordinator');
         Route::any('delete', 'StateCoordinatorController@deleteStateCoordinator')->name('admin.deletestate_coordinator');
     });
+
+    Route::group(['prefix' => 'lga-coordinator'], function () {
+        Route::any('list', 'LGACoordinatorController@lgaCoordinatorList')->name('admin.lga_coordinatorlist');
+        Route::any('create', 'LGACoordinatorController@addLGACoordinator')->name('admin.addlga_coordinator');
+        Route::any('store', 'LGACoordinatorController@storeLGACoordinator')->name('admin.storelga_coordinator');
+        Route::any('edit/{id}', 'LGACoordinatorController@editLGACoordinator')->name('admin.editlga_coordinator');
+        Route::any('delete', 'LGACoordinatorController@deleteLGACoordinator')->name('admin.deletelga_coordinator');
+    });
 });

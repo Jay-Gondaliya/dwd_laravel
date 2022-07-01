@@ -8,6 +8,7 @@ use App\Models\MasterAdmin;
 use App\models\State_co;
 use App\Models\Voter;
 use App\Models\StateCoordinator;
+use App\Models\LGACoordinator;
 use App\Imports\BulkImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -47,8 +48,8 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $state_co = StateCoordinator::count();
-        $lga_co = 20;
+        $state_co = StateCoordinator::where('is_delete', '0')->count();
+        $lga_co = LGACoordinator::where('is_delete', '0')->count();
         $ward_co = 30;
         $cell_co = 40;
         $voterCount = Voter::count();

@@ -25,7 +25,7 @@
         </a>
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
-        <a href="managers-supervisor-team.html">
+        <a href="{{route('admin.lga_coordinatorlist')}}">
             <div class="card overflow-hidden dash1-card border-0 dash2">
                 <div class="card-body">
                     <div class="row">

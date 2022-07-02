@@ -39,7 +39,7 @@
         </a>
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
-        <a href="managers-field-volunteers-team.html">
+        <a href="{{route('admin.ward_coordinatorlist')}}">
             <div class="card overflow-hidden dash1-card border-0 dash3">
                 <div class="card-body">
                     <div class="row">
@@ -53,7 +53,7 @@
         </a>
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
-        <a href="all-voters.html">
+        <a href="{{route('admin.cell_coordinatorlist')}}">
             <div class="card overflow-hidden dash1-card border-0 dash4">
                 <div class="card-body">
                     <div class="row">

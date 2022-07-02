@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\MasterAdmin;
 use App\models\State_co;
 use App\Models\Voter;
+use App\Models\WardCoordinator;
+use App\Models\CellCoordinator;
 use App\Models\StateCoordinator;
 use App\Models\LGACoordinator;
 use App\Imports\BulkImport;
@@ -50,8 +52,8 @@ class AdminController extends Controller
     {
         $state_co = StateCoordinator::where('is_delete', '0')->count();
         $lga_co = LGACoordinator::where('is_delete', '0')->count();
-        $ward_co = 30;
-        $cell_co = 40;
+        $ward_co = WardCoordinator::where('is_delete', '0')->count();
+        $cell_co = CellCoordinator::where('is_delete', '0')->count();
         $voterCount = Voter::count();
         $title = "Dashboard";
         return view('admin.dashboard', compact('title', 'state_co', 'lga_co', 'ward_co', 'cell_co', 'voterCount'));

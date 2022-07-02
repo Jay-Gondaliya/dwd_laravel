@@ -51,4 +51,22 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
         Route::any('edit/{id}', 'LGACoordinatorController@editLGACoordinator')->name('admin.editlga_coordinator');
         Route::any('delete', 'LGACoordinatorController@deleteLGACoordinator')->name('admin.deletelga_coordinator');
     });
+
+    Route::group(['prefix' => 'ward-coordinator'], function () {
+        Route::any('list', 'WardCoordinatorController@wardCoordinatorList')->name('admin.ward_coordinatorlist');
+        Route::any('create', 'WardCoordinatorController@addWardCoordinator')->name('admin.addward_coordinator');
+        Route::any('store', 'WardCoordinatorController@storeWardCoordinator')->name('admin.storeward_coordinator');
+        Route::any('edit/{id}', 'WardCoordinatorController@editWardCoordinator')->name('admin.editward_coordinator');
+        Route::any('delete', 'WardCoordinatorController@deleteWardCoordinator')->name('admin.deleteward_coordinator');
+
+        Route::any('get/records', 'WardCoordinatorController@getRecords')->name('admin.getRecords');
+    });
+
+    Route::group(['prefix' => 'cell-coordinator'], function () {
+        Route::any('list', 'CellCoordinatorController@cellCoordinatorList')->name('admin.cell_coordinatorlist');
+        Route::any('create', 'CellCoordinatorController@addCellCoordinator')->name('admin.addcell_coordinator');
+        Route::any('store', 'CellCoordinatorController@storeCellCoordinator')->name('admin.storecell_coordinator');
+        Route::any('edit/{id}', 'CellCoordinatorController@editCellCoordinator')->name('admin.editcell_coordinator');
+        Route::any('delete', 'CellCoordinatorController@deleteCellCoordinator')->name('admin.deletecell_coordinator');
+    });
 });

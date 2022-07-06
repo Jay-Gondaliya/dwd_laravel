@@ -32,6 +32,21 @@ class AdminController extends Controller
             $_SESSION['tenant'] = $adminList;
             $_SESSION['tenant']['type'] = "state";
         }
+        if ($request->profile_type == "local") {
+            $adminList = LGACoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
+            $_SESSION['tenant'] = $adminList;
+            $_SESSION['tenant']['type'] = "lga";
+        }
+        if ($request->profile_type == "word") {
+            $adminList = WardCoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
+            $_SESSION['tenant'] = $adminList;
+            $_SESSION['tenant']['type'] = "word";
+        }
+        if ($request->profile_type == "cell") {
+            $adminList = CellCoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
+            $_SESSION['tenant'] = $adminList;
+            $_SESSION['tenant']['type'] = "cell";
+        }
 
         if (!empty($adminList)) {
             $response['code'] = "200";

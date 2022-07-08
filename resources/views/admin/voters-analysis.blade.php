@@ -112,7 +112,6 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="card">
-
                                                                 <div class="card-body p-3">
                                                                     <div class="panel panel-primary">
                                                                         <div class=" tab-menu-heading p-0 bg-light">
@@ -665,8 +664,8 @@
                                                     <div class="card-body">
                                                         <div class="all_buttons_datatable">
                                                             <ul>
-                                                                <li><button type="button"
-                                                                        class="datatable_buttons btn btn-primary">Print</button>
+                                                                <li><a href="{{route('download_pdf_voters')}}"
+                                                                        class="datatable_buttons btn btn-primary">Print</a>
                                                                 </li>
                                                                 <li><button type="button"
                                                                         class="datatable_buttons btn btn-primary">Expert</button>

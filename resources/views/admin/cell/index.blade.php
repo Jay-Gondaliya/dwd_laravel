@@ -63,9 +63,11 @@
                             </thead>
                             <tbody>
                                 @if(!empty($cellList->toArray()['total']))
+                                
                                     @foreach($cellList as $cell)
+                                    
                                         <tr>
-                                            <td>{{ $cell->ward_name }}</td>
+                                            <td>{{$cell->wardname}}</td>
                                             <td>{{ $cell->fname }} {{ $cell->mname }} {{ $cell->lname }}</td>
                                             <td>{{ $cell->mobile }}</td>
                                             <td>{{ $cell->email }}</td>

@@ -134,8 +134,10 @@ class AdminController extends Controller
     public function votersAnalysis()
     {
         $title = "Voters Analysis";
-        $voterList = Voter::paginate(5);
-        return view('admin.voters-analysis', compact('title', 'voterList'));
+        $title = "Voter List";
+        $voterList = Voter::where('is_delete', '0')->paginate(5);
+        $printVoterList = Voter::where('is_delete', '0')->get();
+        return view('admin.voters-analysis', compact('title', 'voterList', 'printVoterList'));
     }
 
     public function supervisorVolunteersTeam()
@@ -165,8 +167,9 @@ class AdminController extends Controller
     public function voterList()
     {
         $title = "Voter List";
-        $voterList = Voter::paginate(5);
-        return view('admin.voter_list', compact('title', 'voterList'));
+        $voterList = Voter::where('is_delete', '0')->paginate(5);
+        $printVoterList = Voter::where('is_delete', '0')->get();
+        return view('admin.voter_list', compact('title', 'voterList', 'printVoterList'));
     }
 
     public function voterStore(Request $request)
@@ -204,7 +207,7 @@ class AdminController extends Controller
 
     public function editVoter($id)
     {
-        $editVoter = Voter::where('id', $id)->first();
+        $editVoter = Voter::where([['id', '=', $id], ['is_delete', '=', '0']])->first();
         $title = "Edit Voter";
         return view('admin.file_import', compact('editVoter', 'title'));
     }

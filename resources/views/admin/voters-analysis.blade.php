@@ -688,7 +688,10 @@
                                                         <div class="all_buttons_datatable">
                                                             <ul>
                                                                 <li><a href="{{route('download_pdf_voters')}}"
-                                                                        class="datatable_buttons btn btn-primary">Print</a>
+                                                                        class="datatable_buttons btn btn-primary">Generate PDF</a>
+                                                                </li>
+                                                                <li><button type="button"
+                                                                        class="datatable_buttons btn btn-primary" onclick="printDiv()">Print</button>
                                                                 </li>
                                                                 <li><button type="button"
                                                                         class="datatable_buttons btn btn-primary">Expert</button>
@@ -705,40 +708,81 @@
                                                             </ul>
                                                         </div>
                                                         <div class="table-responsive">
-														<table class="table table-bordered text-nowrap">
-															<thead>
-																<tr>
-																	<th class="wd-15p border-bottom-0">First name</th>
-																	<th class="wd-15p border-bottom-0">Last name</th>
-																	<th class="wd-20p border-bottom-0">Position</th>
-																	<th class="wd-15p border-bottom-0">Start date</th>
-																	<th class="wd-10p border-bottom-0">Salary</th>
-																	<th class="wd-25p border-bottom-0">E-mail</th>
-																</tr>
-															</thead>
-															<tbody>
-																@if(!empty($voterList))
-																	@foreach($voterList as $voter)
-																		<tr>
-																			<td>{{ $voter->fname }} {{ $voter->mname }}</td>
-																			<td>{{ $voter->lname }}</td>
-																			<td>Supervisor</td>
-																			<td>10/10/2022</td>
-																			<td>100000</td>
-																			<td>{{ $voter->email }}</td>
-																		</tr>
-																	@endforeach
-																@else
-																	<tr>
-																		<td colspan="6" class="text-center">No Records.</td>
-																	</tr>
-																@endif
-															</tbody>
-														</table>
+                                                            <table class="table table-bordered text-nowrap">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="wd-15p border-bottom-0">First name</th>
+                                                                        <th class="wd-15p border-bottom-0">Last name</th>
+                                                                        <th class="wd-20p border-bottom-0">Position</th>
+                                                                        <th class="wd-15p border-bottom-0">Start date</th>
+                                                                        <th class="wd-10p border-bottom-0">Salary</th>
+                                                                        <th class="wd-25p border-bottom-0">E-mail</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @if(!empty($voterList))
+                                                                        @foreach($voterList as $voter)
+                                                                            <tr>
+                                                                                <td>{{ $voter->fname }} {{ $voter->mname }}</td>
+                                                                                <td>{{ $voter->lname }}</td>
+                                                                                <td>Supervisor</td>
+                                                                                <td>10/10/2022</td>
+                                                                                <td>100000</td>
+                                                                                <td>{{ $voter->email }}</td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <tr>
+                                                                            <td colspan="6" class="text-center">No Records.</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                </tbody>
+                                                            </table>
 														<div class="pagination" style="margin-left: 65%;">
 															{{ $voterList->links() }}
 														</div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="row d-none" id="printarea">
+                                                <div class="col-12">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered text-nowrap">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="wd-15p border-bottom-0">First name</th>
+                                                                            <th class="wd-15p border-bottom-0">Last name</th>
+                                                                            <th class="wd-20p border-bottom-0">Position</th>
+                                                                            <th class="wd-15p border-bottom-0">Start date</th>
+                                                                            <th class="wd-10p border-bottom-0">Salary</th>
+                                                                            <th class="wd-25p border-bottom-0">E-mail</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @if(!empty($printVoterList))
+                                                                            @foreach($printVoterList as $voter)
+                                                                                <tr>
+                                                                                    <td>{{ $voter->fname }} {{ $voter->mname }}</td>
+                                                                                    <td>{{ $voter->lname }}</td>
+                                                                                    <td>Supervisor</td>
+                                                                                    <td>10/10/2022</td>
+                                                                                    <td>100000</td>
+                                                                                    <td>{{ $voter->email }}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <tr>
+                                                                                <td colspan="6" class="text-center">No Records.</td>
+                                                                            </tr>
+                                                                        @endif
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/div-->
                                                 </div>
                                             </div>
                                         </div>
@@ -851,11 +895,19 @@
 
 
     <script>
-    $(document).ready(function() {
-        $("#show-result").click(function() {
-            $(".show-result-box").show();
+        $(document).ready(function() {
+            $("#show-result").click(function() {
+                $(".show-result-box").show();
+            });
         });
-    });
+        function printDiv(){
+            $(".show-result-box").show();
+            var printContents = document.getElementById("printarea").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
     </script>
 </body>
 

@@ -713,10 +713,9 @@
                                                                     <tr>
                                                                         <th class="wd-15p border-bottom-0">First name</th>
                                                                         <th class="wd-15p border-bottom-0">Last name</th>
-                                                                        <th class="wd-20p border-bottom-0">Position</th>
                                                                         <th class="wd-15p border-bottom-0">Date Of Birth</th>
-                                                                        <th class="wd-10p border-bottom-0">Salary</th>
                                                                         <th class="wd-25p border-bottom-0">E-mail</th>
+                                                                        <th class="wd-5p border-bottom-0">Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -725,15 +724,18 @@
                                                                             <tr>
                                                                                 <td>{{ $voter->fname }} {{ $voter->mname }}</td>
                                                                                 <td>{{ $voter->lname }}</td>
-                                                                                <td>Supervisor</td>
                                                                                 <td>{{ $voter->dob }}</td>
-                                                                                <td>100000</td>
                                                                                 <td>{{ $voter->email }}</td>
+                                                                                <td class="action_icon">
+                                                                                    <!-- <a href="#" class="eye_"><i class="fa fa-eye"></i></a> -->
+                                                                                    <a href="{{ route('edit_voter', $voter->id) }}" class="edit_"><i class="fa fa-edit"></i></a>
+                                                                                    <a href="javascript:void(0)" class="remove_voter" data-id="{{ $voter->id }}"><i class="fa fa-trash"></i></a>
+                                                                                </td>
                                                                             </tr>
                                                                         @endforeach
                                                                     @else
                                                                         <tr>
-                                                                            <td colspan="6" class="text-center">No Records.</td>
+                                                                            <td colspan="7" class="text-center">No Records.</td>
                                                                         </tr>
                                                                     @endif
                                                                 </tbody>
@@ -754,9 +756,7 @@
                                                                         <tr>
                                                                             <th class="wd-15p border-bottom-0">First name</th>
                                                                             <th class="wd-15p border-bottom-0">Last name</th>
-                                                                            <th class="wd-20p border-bottom-0">Position</th>
                                                                             <th class="wd-15p border-bottom-0">Date Of Birth</th>
-                                                                            <th class="wd-10p border-bottom-0">Salary</th>
                                                                             <th class="wd-25p border-bottom-0">E-mail</th>
                                                                         </tr>
                                                                     </thead>
@@ -766,15 +766,13 @@
                                                                                 <tr>
                                                                                     <td>{{ $voter->fname }} {{ $voter->mname }}</td>
                                                                                     <td>{{ $voter->lname }}</td>
-                                                                                    <td>Supervisor</td>
                                                                                     <td>{{ $voter->dob }}</td>
-                                                                                    <td>100000</td>
                                                                                     <td>{{ $voter->email }}</td>
                                                                                 </tr>
                                                                             @endforeach
                                                                         @else
                                                                             <tr>
-                                                                                <td colspan="6" class="text-center">No Records.</td>
+                                                                                <td colspan="4" class="text-center">No Records.</td>
                                                                             </tr>
                                                                         @endif
                                                                     </tbody>
@@ -911,6 +909,24 @@
             window.print();
             document.body.innerHTML = originalContents;
         }
+
+        $(document).on('click', '.remove_voter', function(){
+            var ele = $(this);
+            var parent_row = ele.parents("tr");
+            var id = ele.attr("data-id");
+
+            $.ajax({
+                url: "{{ route('delete_voter') }}",
+                method: "DELETE",
+                data: {_token: '{{ csrf_token() }}',id: id},
+                dataType: "json",
+                success: function (response) {
+                    if(response.code == 1){
+                        location.reload();
+                    }
+                }
+            });
+        });
     </script>
 </body>
 

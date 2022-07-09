@@ -337,7 +337,7 @@
 										<div class="form-group">
 											<label class="form-label">Select Cell</label>
 											<select class="form-control" name="cell" id="select_cell">
-												<option value="">Select Ward</option>
+												<option value="">Select Cell</option>
 												@if(!empty($cellList) && !empty($editVoter->id))
 													@foreach($cellList as $cell)
 														<option value="{{ $cell->id }}" @if($editVoter->cell == $cell->id) {{'selected'}} @endif>{{ $cell->fname }}</option>
@@ -648,7 +648,7 @@
 			success: function(response) {
 				if (response.code == 200) {
 					$(".error").html('');
-					window.location.href = "{{ route('voterList') }}";
+					window.location.href = "{{ route('voters-analysis') }}";
 				} else {
 					$("#login_error").text(response.message);
 				}

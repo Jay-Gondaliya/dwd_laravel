@@ -275,9 +275,9 @@ class AdminController extends Controller
     {
         $editVoter = Voter::where([['id', '=', $id], ['is_delete', '=', '0']])->first();
         $stateList = StateCoordinator::where('is_delete', '0')->get();
-        $lgaList = LGACoordinator::where([['state_id', '=', $editCellCoordinator->state], ['is_delete', '=', '0']])->get();
-        $wardList = WardCoordinator::where([['lga_id', '=', $editCellCoordinator->lga], ['is_delete', '=', '0']])->get();
-        $cellList = CellCoordinator::where([['ward_id', '=', $editCellCoordinator->ward], ['is_delete', '=', '0']])->get();
+        $lgaList = LGACoordinator::where([['state_id', '=', $editVoter->state], ['is_delete', '=', '0']])->get();
+        $wardList = WardCoordinator::where([['lga_id', '=', $editVoter->lga], ['is_delete', '=', '0']])->get();
+        $cellList = CellCoordinator::where([['ward_id', '=', $editVoter->ward], ['is_delete', '=', '0']])->get();
         $title = "Edit Voter";
         return view('admin.file_import', compact('editVoter', 'title', 'stateList', 'lgaList', 'wardList', 'cellList'));
     }

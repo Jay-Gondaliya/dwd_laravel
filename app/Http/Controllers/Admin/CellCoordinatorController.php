@@ -18,7 +18,6 @@ class CellCoordinatorController extends Controller
         $cellList = CellCoordinator::select('cell_coordinator.*','ward_coordinator.fname as wardname')
         ->leftJoin('ward_coordinator', 'ward_coordinator.id', '=', 'cell_coordinator.lga_id')
         ->where('cell_coordinator.is_delete', '0')->paginate(5);
-        $data = $request->session()->all();
         return view('admin.cell.index', compact('title', 'cellList'));
     }
 

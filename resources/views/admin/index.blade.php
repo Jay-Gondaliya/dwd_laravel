@@ -20,7 +20,7 @@
                                         <h1 class="mb-2">Log In</h1>
                                         <a href="javascript:void(0);" class="">Welcome Back !</a>
                                     </div>
-                                    <form class="mt-5" id="checkLoginForm">
+                                    <form class="mt-5" id="checkLoginForm" action="{{ route('checkLogin') }}" method="post">
                                         @csrf
                                         <div class="form-group row mb-4">
                                             <div class="col-md-12">
@@ -55,7 +55,7 @@
                                             </label>
                                         </div>
                                         <div class="form-group text-center mb-3">
-                                            <button type="button" class="btn btn-primary btn-lg w-100 br-7" id="checkLogin">Log In</button>
+                                            <button type="submit" class="btn btn-primary btn-lg w-100 br-7">Log In</button>
                                         </div>
                                         <div class="form-group fs-13 text-center">
                                             <a href="{{ route('forgot_password') }}">Forget Password ?</a>

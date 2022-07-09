@@ -13,6 +13,7 @@ use App\Models\StateCoordinator;
 use App\Models\LGACoordinator;
 use App\Imports\BulkImport;
 use PDF;
+use Session;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -30,32 +31,29 @@ class AdminController extends Controller
 
         if ($request->profile_type == "state") {
             $adminList = State_co::where([['username', '=', $username], ['password', '=', $password]])->first();
-            $_SESSION['tenant'] = $adminList;
-            $_SESSION['tenant']['type'] = "state";
+            Session::put('type', 'state');
         }
         if ($request->profile_type == "local") {
             $adminList = LGACoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
-            $_SESSION['tenant'] = $adminList;
-            $_SESSION['tenant']['type'] = "lga";
+            Session::put('type', 'lga');
         }
         if ($request->profile_type == "ward") {
             $adminList = WardCoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
-            $_SESSION['tenant'] = $adminList;
-            $_SESSION['tenant']['type'] = "ward";
+            Session::put('type', 'ward');
         }
         if ($request->profile_type == "cell") {
             $adminList = CellCoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
-            $_SESSION['tenant'] = $adminList;
-            $_SESSION['tenant']['type'] = "cell";
+            Session::put('type', 'cell');
         }
 
-        if (!empty($adminList)) {
-            $response['code'] = "200";
-        } else {
-            $response['code'] = "400";
-        }
-        echo json_encode($response);
-        die();
+        return redirect()->route('dashboard');
+        // if (!empty($adminList)) {
+        //     $response['code'] = "200";
+        // } else {
+        //     $response['code'] = "400";
+        // }
+        // echo json_encode($response);
+        // die();
     }
 
     public function forgotPassword(Request $request)
@@ -65,23 +63,15 @@ class AdminController extends Controller
 
         if ($request->profile_type == "state") {
             $adminList = State_co::where('email', $email)->first();
-            // $_SESSION['tenant'] = $adminList;
-            // $_SESSION['tenant']['type'] = "state";
         }
         if ($request->profile_type == "local") {
             $adminList = LGACoordinator::where('email', $email)->first();
-            // $_SESSION['tenant'] = $adminList;
-            // $_SESSION['tenant']['type'] = "lga";
         }
         if ($request->profile_type == "ward") {
             $adminList = WardCoordinator::where('email', $email)->first();
-            // $_SESSION['tenant'] = $adminList;
-            // $_SESSION['tenant']['type'] = "ward";
         }
         if ($request->profile_type == "cell") {
             $adminList = CellCoordinator::where('email', $email)->first();
-            // $_SESSION['tenant'] = $adminList;
-            // $_SESSION['tenant']['type'] = "cell";
         }
 
         if (!empty($adminList)) {
@@ -108,7 +98,7 @@ class AdminController extends Controller
         return view('admin.forgot-password', compact('title'));
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $state_co = StateCoordinator::where('is_delete', '0')->count();
         $lga_co = LGACoordinator::where('is_delete', '0')->count();
@@ -162,18 +152,18 @@ class AdminController extends Controller
         $password = md5($request->password);
 
         $adminList = MasterAdmin::where([['username', '=', $username], ['password', '=', $password]])->first();
-        $_SESSION['tenant'] = $adminList;
-        $_SESSION['tenant']['type'] = "national";
-
-        if (!empty($adminList)) {
-            $response['code'] = "200";
-            $response['message'] = "Login successfully!";
-        } else {
-            $response['code'] = "400";
-            $response['message'] = "Incorrect Username or Password!";
-        }
-        echo json_encode($response);
-        die();
+        
+        Session::put('type', 'national');
+        return redirect()->route('dashboard');
+        // if (!empty($adminList)) {
+        //     $response['code'] = "200";
+        //     $response['message'] = "Login successfully!";
+        // } else {
+        //     $response['code'] = "400";
+        //     $response['message'] = "Incorrect Username or Password!";
+        // }
+        // echo json_encode($response);
+        // die();
     }
 
     public function adminForgotPassword(Request $request)

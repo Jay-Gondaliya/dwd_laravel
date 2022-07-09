@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Voter;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use DateTime;
 
 class BulkImport implements ToModel,WithHeadingRow
 {
@@ -15,12 +16,14 @@ class BulkImport implements ToModel,WithHeadingRow
     */
     public function model(array $row)
     {
+        $dateGenerate = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['dob']);
+        $date = \Carbon\Carbon::parse($dateGenerate);
         $add=new Voter;
         $add->fname=$row['fname'];
         $add->mname=$row['mname'];
         $add->lname=$row['lname'];
         $add->gender=$row['gender'];
-        // $add->dob=$row['dob'];
+        $add->dob=$date->format('Y-m-d');
         $add->mobile=$row['mobile'];
         $add->is_mobile=$row['is_mobile'];
         $add->email=$row['email'];

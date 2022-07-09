@@ -714,7 +714,7 @@
                                                                         <th class="wd-15p border-bottom-0">First name</th>
                                                                         <th class="wd-15p border-bottom-0">Last name</th>
                                                                         <th class="wd-20p border-bottom-0">Position</th>
-                                                                        <th class="wd-15p border-bottom-0">Start date</th>
+                                                                        <th class="wd-15p border-bottom-0">Date Of Birth</th>
                                                                         <th class="wd-10p border-bottom-0">Salary</th>
                                                                         <th class="wd-25p border-bottom-0">E-mail</th>
                                                                     </tr>
@@ -726,7 +726,7 @@
                                                                                 <td>{{ $voter->fname }} {{ $voter->mname }}</td>
                                                                                 <td>{{ $voter->lname }}</td>
                                                                                 <td>Supervisor</td>
-                                                                                <td>10/10/2022</td>
+                                                                                <td>{{ $voter->dob }}</td>
                                                                                 <td>100000</td>
                                                                                 <td>{{ $voter->email }}</td>
                                                                             </tr>
@@ -755,7 +755,7 @@
                                                                             <th class="wd-15p border-bottom-0">First name</th>
                                                                             <th class="wd-15p border-bottom-0">Last name</th>
                                                                             <th class="wd-20p border-bottom-0">Position</th>
-                                                                            <th class="wd-15p border-bottom-0">Start date</th>
+                                                                            <th class="wd-15p border-bottom-0">Date Of Birth</th>
                                                                             <th class="wd-10p border-bottom-0">Salary</th>
                                                                             <th class="wd-25p border-bottom-0">E-mail</th>
                                                                         </tr>
@@ -767,7 +767,7 @@
                                                                                     <td>{{ $voter->fname }} {{ $voter->mname }}</td>
                                                                                     <td>{{ $voter->lname }}</td>
                                                                                     <td>Supervisor</td>
-                                                                                    <td>10/10/2022</td>
+                                                                                    <td>{{ $voter->dob }}</td>
                                                                                     <td>100000</td>
                                                                                     <td>{{ $voter->email }}</td>
                                                                                 </tr>

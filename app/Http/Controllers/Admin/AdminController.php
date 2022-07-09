@@ -12,6 +12,7 @@ use App\Models\CellCoordinator;
 use App\Models\StateCoordinator;
 use App\Models\LGACoordinator;
 use App\Imports\BulkImport;
+use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -69,7 +70,7 @@ class AdminController extends Controller
         $lga_co = LGACoordinator::where('is_delete', '0')->count();
         $ward_co = WardCoordinator::where('is_delete', '0')->count();
         $cell_co = CellCoordinator::where('is_delete', '0')->count();
-        $voterCount = Voter::count();
+        $voterCount = Voter::where('is_delete', '0')->count();
         $title = "Dashboard";
         return view('admin.dashboard', compact('title', 'state_co', 'lga_co', 'ward_co', 'cell_co', 'voterCount'));
     }
@@ -206,6 +207,22 @@ class AdminController extends Controller
         $editVoter = Voter::where('id', $id)->first();
         $title = "Edit Voter";
         return view('admin.file_import', compact('editVoter', 'title'));
+    }
+
+    public function downloadPdfVoters()
+    {
+        $title = "Voter List";
+        $voterList = Voter::select('voter.*', 'cell_coordinator.fname as cell_name', 'ward_coordinator.fname as wardname', 'lga_coordinator.fname as lga_name', 'state_co.fname as state_name')
+        ->leftJoin('cell_coordinator', 'cell_coordinator.id', '=', 'voter.cell')
+        ->leftJoin('ward_coordinator', 'ward_coordinator.id', '=', 'voter.ward')
+        ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'voter.lga')
+        ->leftJoin('state_co', 'state_co.id', '=', 'voter.state')
+        ->where('voter.is_delete', '0')
+        ->get();
+        $data = ['voterList' => $voterList];
+        $pdf = PDF::loadView('admin.download_voters', $data);
+        
+        return $pdf->download('download_voter_list.pdf');
     }
 
     public function voterDelete(Request $request)

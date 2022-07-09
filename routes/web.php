@@ -29,6 +29,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::any('/managers-dashboard', 'AdminController@managersDashboard')->name('managers-dashboard');
 
     Route::any('/voters-analysis', 'AdminController@votersAnalysis')->name('voters-analysis');
+    Route::any('/download-pdf-voters', 'AdminController@downloadPdfVoters')->name('download_pdf_voters');
     Route::any('/supervisor-field-volunteers-team', 'AdminController@supervisorVolunteersTeam')->name('supervisorVolunteersTeam');
     Route::any('/reports-graphs', 'AdminController@reportsGraphs')->name('reports-graphs');
     Route::any('/managers-team', 'AdminController@managersTeam')->name('managersTeam');

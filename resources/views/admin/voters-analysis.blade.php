@@ -86,7 +86,30 @@
                     <!--End Page header-->
 
                     <!-- Row-1 -->
-
+                    <div class="page-rightheader">
+                        <div class="row">
+                            <div class="col-9">
+                            </div>
+                            <div class="col-3">
+                                <div class="btn-list">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-pill" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Filters</a>
+                                    <div class="dropdown-menu border-0">
+                                        <a class="dropdown-item" href="javascript:void(0);">Today</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Yesterday</a>
+                                        <a class="dropdown-item active" href="javascript:void(0);">Last 7 days</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Last 30 days</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Last 6 months</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Last year</a>
+                                    </div>
+                                    <a href="{{route('voter_add')}}" class="btn btn-primary btn-pill">
+                                        Add New</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- End Row-1 -->
 
                     <!-- Row -->

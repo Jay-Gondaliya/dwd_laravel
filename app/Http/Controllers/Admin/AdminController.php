@@ -135,7 +135,8 @@ class AdminController extends Controller
     {
         $title = "Voter";
         $editVoter = new Voter;
-        return view('admin.file_import', compact('title', 'editVoter'));
+        $stateList = StateCoordinator::where('is_delete', '0')->get();
+        return view('admin.file_import', compact('title', 'editVoter', 'stateList'));
     }
 
     public function fileUpload(Request $request)
@@ -273,8 +274,12 @@ class AdminController extends Controller
     public function editVoter($id)
     {
         $editVoter = Voter::where([['id', '=', $id], ['is_delete', '=', '0']])->first();
+        $stateList = StateCoordinator::where('is_delete', '0')->get();
+        $lgaList = LGACoordinator::where([['state_id', '=', $editCellCoordinator->state], ['is_delete', '=', '0']])->get();
+        $wardList = WardCoordinator::where([['lga_id', '=', $editCellCoordinator->lga], ['is_delete', '=', '0']])->get();
+        $cellList = CellCoordinator::where([['ward_id', '=', $editCellCoordinator->ward], ['is_delete', '=', '0']])->get();
         $title = "Edit Voter";
-        return view('admin.file_import', compact('editVoter', 'title'));
+        return view('admin.file_import', compact('editVoter', 'title', 'stateList', 'lgaList', 'wardList', 'cellList'));
     }
 
     public function downloadPdfVoters()

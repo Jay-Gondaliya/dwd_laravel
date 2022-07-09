@@ -201,7 +201,7 @@
 							<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="demo3">
 								<div class="row">
 
-									<div class="col-lg-4">
+									<!-- <div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">State</label>
 											<select class="form-control select2" data-placeholder="Choose one (with searchbox)" name="state">
@@ -291,6 +291,58 @@
 												<option value="5855" @if($editVoter->ward == "5855") {{'selected'}}@endif>TABON TABON/OKO OBA</option>
 												<option value="5856" @if($editVoter->ward == "5856") {{'selected'}}@endif>ORILE AGEGE/OKO OBA</option>
 												<option value="5857" @if($editVoter->ward == "5857") {{'selected'}}@endif>ISALE ODO</option>
+											</select>
+										</div>
+									</div> -->
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label class="form-label">Select State</label>
+											<select class="form-control" name="state" id="select_state">
+												<option value="">Select State</option>
+												@if(!empty($stateList))
+													@foreach($stateList as $state)
+														<option value="{{ $state->id }}" @if($editVoter->state == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
+													@endforeach
+												@endif
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label class="form-label">Select Local Government</label>
+											<select class="form-control" name="lga" id="select_lga">
+												<option value="">Select Local Government</option>
+												@if(!empty($lgaList) && !empty($editVoter->id))
+													@foreach($lgaList as $lga)
+														<option value="{{ $lga->id }}" @if($editVoter->lga == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
+													@endforeach
+												@endif
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label class="form-label">Select Ward</label>
+											<select class="form-control" name="ward" id="select_ward">
+												<option value="">Select Ward</option>
+												@if(!empty($wardList) && !empty($editVoter->id))
+													@foreach($wardList as $ward)
+														<option value="{{ $ward->id }}" @if($editVoter->ward == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
+													@endforeach
+												@endif
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label class="form-label">Select Cell</label>
+											<select class="form-control" name="cell" id="select_cell">
+												<option value="">Select Ward</option>
+												@if(!empty($cellList) && !empty($editVoter->id))
+													@foreach($cellList as $cell)
+														<option value="{{ $cell->id }}" @if($editVoter->cell == $cell->id) {{'selected'}} @endif>{{ $cell->fname }}</option>
+													@endforeach
+												@endif
 											</select>
 										</div>
 									</div>
@@ -612,6 +664,75 @@
 		$('.btnPrevious').click(function() {
 			$('.panel-tabs .active').parent().prev('li').find('a').trigger('click');
 		});
+	});
+
+	$("#select_state").change(function () {
+		var state = this.value;
+		var _token = $('input[name="_token"]').val();
+		var str = "";
+
+		if (state != '') {
+			$.ajax({
+					type: "post",
+					url: "{{ route('admin.getRecords') }}",
+					datatype: "json",
+					data: {value: state, from: 'state', _token: _token},
+					success: function (response) {
+						$('#select_lga').html('<option value="">Select Local Government</option>');
+						$.each(response.success, function (key, value) {
+							$("#select_lga").append('<option value="' + value.id + '">' + value.name + '</option>');
+						});
+					}
+			});
+		} else {
+			$('#select_lga').html('');
+		}
+	});
+
+	$("#select_lga").change(function () {
+		var state = this.value;
+		var _token = $('input[name="_token"]').val();
+		var str = "";
+
+		if (state != '') {
+			$.ajax({
+					type: "post",
+					url: "{{ route('admin.getRecords') }}",
+					datatype: "json",
+					data: {value: state, from: 'lga', _token: _token},
+					success: function (response) {
+						$('#select_ward').html('<option value="">Select Ward</option>');
+						$.each(response.success, function (key, value) {
+							$("#select_ward").append('<option value="' + value.id + '">' + value.name + '</option>');
+						});
+					}
+			});
+		} else {
+			$('#select_ward').html('');
+		}
+	});
+
+	$("#select_ward").change(function () {
+		var ward = this.value;
+		var _token = $('input[name="_token"]').val();
+		var str = "";
+
+		if (ward != '') {
+			$.ajax({
+					type: "post",
+					url: "{{ route('admin.getRecords') }}",
+					datatype: "json",
+					data: {value: ward, from: 'ward', _token: _token},
+					success: function (response) {
+						$('#select_cell').html('<option value="">Select Cell</option>');
+						$.each(response.success, function (key, value) {
+							$("#select_cell").append('<option value="' + value.id + '">' + value.name + '</option>');
+						});
+					}
+			});
+		} else {
+			$('#select_cell').html('');
+		}
 	});
 </script>
 @endsection

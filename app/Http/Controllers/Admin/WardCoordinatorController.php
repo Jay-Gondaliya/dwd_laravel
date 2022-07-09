@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WardCoordinator;
 use App\Models\LGACoordinator;
+use App\Models\CellCoordinator;
 use App\Models\StateCoordinator;
 use Illuminate\Support\Facades\Validator;
 
@@ -118,6 +119,13 @@ class WardCoordinatorController extends Controller
             foreach ($wardList as $key => $ward) {
                 $details[$key]['id']   = $ward->id;
                 $details[$key]['name'] = $ward->fname;
+            }
+        } else if ($from == 'ward') {
+            /* getting cell from ward */
+            $cellList = CellCoordinator::where([['ward_id', '=', $value], ['is_delete', '=', '0']])->get();
+            foreach ($cellList as $key => $cell) {
+                $details[$key]['id']   = $cell->id;
+                $details[$key]['name'] = $cell->fname;
             }
         }
         return response()->json([

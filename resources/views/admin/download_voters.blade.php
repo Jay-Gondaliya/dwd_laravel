@@ -25,19 +25,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="wd-15p border-bottom-0">First name</th>
-                            <th class="wd-15p border-bottom-0">Gender</th>
-                            <th class="wd-20p border-bottom-0">Date Of Birth Day</th>
-                            <th class="wd-15p border-bottom-0">Mobile Number</th>
-                            <th class="wd-25p border-bottom-0">E-mail</th>
-                            <th class="wd-25p border-bottom-0">State</th>
-                            <th class="wd-25p border-bottom-0">LGA</th>
-                            <th class="wd-25p border-bottom-0">Ward</th>
-                            <th class="wd-25p border-bottom-0">Cell</th>
-                            <th class="wd-25p border-bottom-0">Address</th>
-                            <th class="wd-25p border-bottom-0">Facebook Link</th>
-                            <th class="wd-25p border-bottom-0">Instagram Link</th>
-                            <th class="wd-25p border-bottom-0">Twitter Link</th>
+                            <th class="wd-15p border-bottom-0">Personal Information</th>
+                            <th class="wd-15p border-bottom-0">Location</th>
+                            <th class="wd-20p border-bottom-0">Social Media</th>
+                            <th class="wd-15p border-bottom-0">Voter's Mobilization</th>
+                            <th class="wd-25p border-bottom-0">Voter's Engagement</th>
                         </tr>
                     </thead>
                     <tbody>

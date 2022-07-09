@@ -902,8 +902,11 @@
         });
         function printDiv(){
             $(".show-result-box").show();
-            var printContents = document.getElementById("printarea").innerHTML;
+            var printContents="<h3>Voters List</h3>";
+            printContents+="<hr/>";
+            printContents += document.getElementById("printarea").innerHTML;
             var originalContents = document.body.innerHTML;
+            
             document.body.innerHTML = printContents;
             window.print();
             document.body.innerHTML = originalContents;

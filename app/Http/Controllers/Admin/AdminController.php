@@ -38,10 +38,10 @@ class AdminController extends Controller
             $_SESSION['tenant'] = $adminList;
             $_SESSION['tenant']['type'] = "lga";
         }
-        if ($request->profile_type == "word") {
+        if ($request->profile_type == "ward") {
             $adminList = WardCoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
             $_SESSION['tenant'] = $adminList;
-            $_SESSION['tenant']['type'] = "word";
+            $_SESSION['tenant']['type'] = "ward";
         }
         if ($request->profile_type == "cell") {
             $adminList = CellCoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
@@ -58,7 +58,51 @@ class AdminController extends Controller
         die();
     }
 
-    public function forgotPassword()
+    public function forgotPassword(Request $request)
+    {
+        $email = $request->email;
+        $password = md5($request->password);
+
+        if ($request->profile_type == "state") {
+            $adminList = State_co::where('email', $email)->first();
+            // $_SESSION['tenant'] = $adminList;
+            // $_SESSION['tenant']['type'] = "state";
+        }
+        if ($request->profile_type == "local") {
+            $adminList = LGACoordinator::where('email', $email)->first();
+            // $_SESSION['tenant'] = $adminList;
+            // $_SESSION['tenant']['type'] = "lga";
+        }
+        if ($request->profile_type == "ward") {
+            $adminList = WardCoordinator::where('email', $email)->first();
+            // $_SESSION['tenant'] = $adminList;
+            // $_SESSION['tenant']['type'] = "ward";
+        }
+        if ($request->profile_type == "cell") {
+            $adminList = CellCoordinator::where('email', $email)->first();
+            // $_SESSION['tenant'] = $adminList;
+            // $_SESSION['tenant']['type'] = "cell";
+        }
+
+        if (!empty($adminList)) {
+            $adminList->email = $email;
+            $adminList->password = $password;
+            $adminList->save();
+            $response['code'] = "200";
+        } else {
+            $response['code'] = "400";
+        }
+        echo json_encode($response);
+        die();
+    }
+
+    public function forgotPasswordAdminView()
+    {
+        $title = "Admin Forgot Password";
+        return view('admin.admin-forgot-password', compact('title'));
+    }
+
+    public function userForgotPassword()
     {
         $title = "Forgot Password";
         return view('admin.forgot-password', compact('title'));
@@ -119,6 +163,27 @@ class AdminController extends Controller
         $adminList = MasterAdmin::where([['username', '=', $username], ['password', '=', $password]])->first();
         $_SESSION['tenant'] = $adminList;
         $_SESSION['tenant']['type'] = "national";
+
+        if (!empty($adminList)) {
+            $response['code'] = "200";
+            $response['message'] = "Login successfully!";
+        } else {
+            $response['code'] = "400";
+            $response['message'] = "Incorrect Username or Password!";
+        }
+        echo json_encode($response);
+        die();
+    }
+
+    public function adminForgotPassword(Request $request)
+    {
+        $email = $request->email;
+        $password = md5($request->password);
+
+        $adminList = MasterAdmin::where('email', $email)->first();
+        $adminList->email = $email;
+        $adminList->password = $password;
+        $adminList->save();
 
         if (!empty($adminList)) {
             $response['code'] = "200";

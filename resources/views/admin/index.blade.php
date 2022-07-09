@@ -58,7 +58,7 @@
                                             <button type="button" class="btn btn-primary btn-lg w-100 br-7" id="checkLogin">Log In</button>
                                         </div>
                                         <div class="form-group fs-13 text-center">
-                                            <a href="{{ route('forgot-password') }}">Forget Password ?</a>
+                                            <a href="{{ route('forgot_password') }}">Forget Password ?</a>
                                         </div>
 
                                     </form>

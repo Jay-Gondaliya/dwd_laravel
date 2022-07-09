@@ -264,6 +264,17 @@ class AdminController extends Controller
         $addCompanyOwner->fb = $request->fb;
         $addCompanyOwner->insta = $request->insta;
         $addCompanyOwner->twitter = $request->twitter;
+
+        $addCompanyOwner->question_1 = $request->question_1;
+        $addCompanyOwner->question_2 = $request->question_2;
+        $addCompanyOwner->question_3 = $request->question_3;
+        $addCompanyOwner->question_4 = $request->question_4;
+        $addCompanyOwner->question_5 = $request->question_5;
+        $addCompanyOwner->question_6 = $request->question_6;
+        $addCompanyOwner->question_7 = $request->question_7;
+        $addCompanyOwner->question_8 = $request->question_8;
+        $addCompanyOwner->question_9 = $request->question_9;
+
         $addCompanyOwner->is_voter ='0';
         $addCompanyOwner->is_pvc = '1';
         $addCompanyOwner->save();

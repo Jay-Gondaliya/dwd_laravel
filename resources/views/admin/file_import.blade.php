@@ -200,100 +200,6 @@
 							</div>
 							<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="demo3">
 								<div class="row">
-
-									<!-- <div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">State</label>
-											<select class="form-control select2" data-placeholder="Choose one (with searchbox)" name="state">
-												<option>Select State</option>
-												<option value="1" @if($editVoter->state == "1") {{'selected'}}@endif>ABIA</option>
-												<option value="2" @if($editVoter->state == "2") {{'selected'}}@endif>ADAMAWA</option>
-												<option value="3" @if($editVoter->state == "3") {{'selected'}}@endif>AKWA IBOM</option>
-												<option value="4" @if($editVoter->state == "4") {{'selected'}}@endif>ANAMBRA</option>
-												<option value="5" @if($editVoter->state == "5") {{'selected'}}@endif>BAUCHI</option>
-												<option value="6" @if($editVoter->state == "6") {{'selected'}}@endif>BAYELSA</option>
-												<option value="7" @if($editVoter->state == "7") {{'selected'}}@endif>BENUE</option>
-												<option value="8" @if($editVoter->state == "8") {{'selected'}}@endif>BORNO</option>
-												<option value="9" @if($editVoter->state == "9") {{'selected'}}@endif>CROSS RIVER</option>
-												<option value="10" @if($editVoter->state == "10") {{'selected'}}@endif>DELTA</option>
-												<option value="11" @if($editVoter->state == "11") {{'selected'}}@endif>EBONYI</option>
-												<option value="12" @if($editVoter->state == "12") {{'selected'}}@endif>EDO</option>
-												<option value="13" @if($editVoter->state == "13") {{'selected'}}@endif>EKITI</option>
-												<option value="14" @if($editVoter->state == "14") {{'selected'}}@endif>ENUGU</option>
-												<option value="37" @if($editVoter->state == "37") {{'selected'}}@endif>FEDERAL CAPITAL TERRITORY</option>
-												<option value="15" @if($editVoter->state == "15") {{'selected'}}@endif>GOMBE</option>
-												<option value="16" @if($editVoter->state == "16") {{'selected'}}@endif>IMO</option>
-												<option value="17" @if($editVoter->state == "17") {{'selected'}}@endif>JIGAWA</option>
-												<option value="18" @if($editVoter->state == "18") {{'selected'}}@endif>KADUNA</option>
-												<option value="19" @if($editVoter->state == "19") {{'selected'}}@endif>KANO</option>
-												<option value="20" @if($editVoter->state == "20") {{'selected'}}@endif>KATSINA</option>
-												<option value="21" @if($editVoter->state == "21") {{'selected'}}@endif>KEBBI</option>
-												<option value="22" @if($editVoter->state == "22") {{'selected'}}@endif>KOGI</option>
-												<option value="23" @if($editVoter->state == "23") {{'selected'}}@endif>KWARA</option>
-												<option value="24" @if($editVoter->state == "24") {{'selected'}}@endif>LAGOS</option>
-												<option value="25" @if($editVoter->state == "25") {{'selected'}}@endif>NASARAWA</option>
-												<option value="26" @if($editVoter->state == "26") {{'selected'}}@endif>NIGER</option>
-												<option value="27" @if($editVoter->state == "27") {{'selected'}}@endif>OGUN</option>
-												<option value="28" @if($editVoter->state == "28") {{'selected'}}@endif>ONDO</option>
-												<option value="29" @if($editVoter->state == "29") {{'selected'}}@endif>OSUN</option>
-												<option value="30" @if($editVoter->state == "30") {{'selected'}}@endif>OYO</option>
-												<option value="31" @if($editVoter->state == "31") {{'selected'}}@endif>PLATEAU</option>
-												<option value="32" @if($editVoter->state == "32") {{'selected'}}@endif>RIVERS</option>
-												<option value="33" @if($editVoter->state == "33") {{'selected'}}@endif>SOKOTO</option>
-												<option value="34" @if($editVoter->state == "34") {{'selected'}}@endif>TARABA</option>
-												<option value="35" @if($editVoter->state == "35") {{'selected'}}@endif>YOBE</option>
-												<option value="36" @if($editVoter->state == "36") {{'selected'}}@endif>ZAMFARA</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">LGA</label>
-											<select class="form-control select2" name="lga" data-placeholder="Choose one (with searchbox)">
-												<option>Select LGA</option>
-												<option value="01" @if($editVoter->lga == "01") {{'selected'}}@endif>AGEGE</option>
-												<option value="02" @if($editVoter->lga == "02") {{'selected'}}@endif>AJEROMI/IFELODUN</option>
-												<option value="03" @if($editVoter->lga == "03") {{'selected'}}@endif>ALIMOSHO</option>
-												<option value="04" @if($editVoter->lga == "04") {{'selected'}}@endif>AMUWO-ODOFIN</option>
-												<option value="05" @if($editVoter->lga == "05") {{'selected'}}@endif>APAPA</option>
-												<option value="06" @if($editVoter->lga == "06") {{'selected'}}@endif>BADAGRY</option>
-												<option value="07" @if($editVoter->lga == "07") {{'selected'}}@endif>EPE</option>
-												<option value="08" @if($editVoter->lga == "08") {{'selected'}}@endif>ETI-OSA</option>
-												<option value="09" @if($editVoter->lga == "09") {{'selected'}}@endif>IBEJU/LEKKI</option>
-												<option value="10" @if($editVoter->lga == "10") {{'selected'}}@endif>IFAKO-IJAYE</option>
-												<option value="11" @if($editVoter->lga == "11") {{'selected'}}@endif>IKEJA</option>
-												<option value="12" @if($editVoter->lga == "12") {{'selected'}}@endif>IKORODU</option>
-												<option value="13" @if($editVoter->lga == "13") {{'selected'}}@endif>KOSOFE</option>
-												<option value="14" @if($editVoter->lga == "14") {{'selected'}}@endif>LAGOS ISLAND</option>
-												<option value="15" @if($editVoter->lga == "15") {{'selected'}}@endif>LAGOS MAINLAND</option>
-												<option value="16" @if($editVoter->lga == "16") {{'selected'}}@endif>MUSHIN</option>
-												<option value="17" @if($editVoter->lga == "17") {{'selected'}}@endif>OJO</option>
-												<option value="18" @if($editVoter->lga == "18") {{'selected'}}@endif>OSHODI/ISOLO</option>
-												<option value="19" @if($editVoter->lga == "19") {{'selected'}}@endif>SOMOLU</option>
-												<option value="20" @if($editVoter->lga == "20") {{'selected'}}@endif>SURULERE</option>
-											</select>
-
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Ward</label>
-											<select class="form-control select2" name="ward" data-placeholder="Choose one (with searchbox)">
-												<option>Select Ward</option>
-												<option value="5847" @if($editVoter->ward == "5847") {{'selected'}}@endif>ISALE/IDIMANGORO</option>
-												<option value="5848" @if($editVoter->ward == "5848") {{'selected'}}@endif>ILORO/ONIPETESI</option>
-												<option value="5849" @if($editVoter->ward == "5849") {{'selected'}}@endif>ONIWAYA/PAPA-UKU</option>
-												<option value="5850" @if($editVoter->ward == "5850") {{'selected'}}@endif>AGBOTIKUYO/DOPEMU</option>
-												<option value="5851" @if($editVoter->ward == "5851") {{'selected'}}@endif>OYEWOLE/PAPA ASHAFA</option>
-												<option value="5852" @if($editVoter->ward == "5852") {{'selected'}}@endif>OKEKOTO</option>
-												<option value="5853" @if($editVoter->ward == "5853") {{'selected'}}@endif>KEKE</option>
-												<option value="5854" @if($editVoter->ward == "5854") {{'selected'}}@endif>DAROCHA</option>
-												<option value="5855" @if($editVoter->ward == "5855") {{'selected'}}@endif>TABON TABON/OKO OBA</option>
-												<option value="5856" @if($editVoter->ward == "5856") {{'selected'}}@endif>ORILE AGEGE/OKO OBA</option>
-												<option value="5857" @if($editVoter->ward == "5857") {{'selected'}}@endif>ISALE ODO</option>
-											</select>
-										</div>
-									</div> -->
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">Select State</label>
@@ -420,61 +326,57 @@
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">Voted Last Election?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Yes</option>
-												<option>No</option>
+											<select class="form-control select2" name="question_1">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_1 == "1") {{'selected'}}@endif>Yes</option>
+												<option value="0" @if($editVoter->question_1 == "0") {{'selected'}}@endif>No</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">Reason for not voting in last election?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Moved to new location</option>
-												<option>Not of age</option>
-												<option>Not interested</option>
-												<option>Lost faith in process</option>
-												<option>Not enough education/information</option>
-												<option>Sickness</option>
+											<select class="form-control select2" name="question_2">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_2 == "1") {{'selected'}}@endif>Moved to new location</option>
+												<option value="2" @if($editVoter->question_2 == "2") {{'selected'}}@endif>Not of age</option>
+												<option value="3" @if($editVoter->question_2 == "3") {{'selected'}}@endif>Not interested</option>
+												<option value="4" @if($editVoter->question_2 == "4") {{'selected'}}@endif>Lost faith in process</option>
+												<option value="5" @if($editVoter->question_2 == "5") {{'selected'}}@endif>Not enough education/information</option>
+												<option value="6" @if($editVoter->question_2 == "6") {{'selected'}}@endif>Sickness</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">Whom did you vote for in the last election?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Lorem ipsum</option>
-												<option>Lorem ipsum</option>
-												<option>Lorem ipsum</option>
-												<option>Lorem ipsum</option>
+											<select class="form-control select2" name="question_3">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_3 == "1") {{'selected'}}@endif>Patry A</option>
+												<option value="2" @if($editVoter->question_3 == "2") {{'selected'}}@endif>Party B</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">What party are you sympathetic to?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Lorem ipsum</option>
-												<option>Lorem ipsum</option>
-												<option>Lorem ipsum</option>
-												<option>Lorem ipsum</option>
+											<select class="form-control select2" name="question_4">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_4 == "1") {{'selected'}}@endif>Patry A</option>
+												<option value="2" @if($editVoter->question_4 == "2") {{'selected'}}@endif>Party B</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">What things are important to you that you think the government Should provide?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Education</option>
-												<option>Employment</option>
-												<option>Cleanliness</option>
-												<option>Environment</option>
-												<option>Crime</option>
+											<select class="form-control select2" name="question_5">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_5 == "1") {{'selected'}}@endif>Education</option>
+												<option value="2" @if($editVoter->question_5 == "2") {{'selected'}}@endif>Employment</option>
+												<option value="3" @if($editVoter->question_5 == "3") {{'selected'}}@endif>Cleanliness</option>
+												<option value="4" @if($editVoter->question_5 == "4") {{'selected'}}@endif>Environment</option>
+												<option value="5" @if($editVoter->question_5 == "5") {{'selected'}}@endif>Crime</option>
 											</select>
 										</div>
 									</div>
@@ -482,30 +384,30 @@
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">Moved from a registered ward to a new one?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Yes</option>
-												<option>No</option>
+											<select class="form-control select2" name="question_6">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_6 == "1") {{'selected'}}@endif>Yes</option>
+												<option value="0" @if($editVoter->question_6 == "0") {{'selected'}}@endif>No</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">If yes, Have you registered in the new ward?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Yes</option>
-												<option>No</option>
+											<select class="form-control select2" name="question_7">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_7 == "1") {{'selected'}}@endif>Yes</option>
+												<option value="0" @if($editVoter->question_7 == "0") {{'selected'}}@endif>No</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">Have you registered for the Feb 2022 elections?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Yes</option>
-												<option>No</option>
+											<select class="form-control select2" name="question_8">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_8 == "1") {{'selected'}}@endif>Yes</option>
+												<option value="0" @if($editVoter->question_8 == "0") {{'selected'}}@endif>No</option>
 											</select>
 										</div>
 									</div>
@@ -513,10 +415,10 @@
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label class="form-label">Would you like to support a deserving candidate via donations?</label>
-											<select class="form-control select2">
-												<option>-- Select --</option>
-												<option>Yes</option>
-												<option>No</option>
+											<select class="form-control select2" name="question_9">
+												<option value="">-- Select --</option>
+												<option value="1" @if($editVoter->question_9 == "1") {{'selected'}}@endif>Yes</option>
+												<option value="0" @if($editVoter->question_9 == "0") {{'selected'}}@endif>No</option>
 											</select>
 										</div>
 									</div>

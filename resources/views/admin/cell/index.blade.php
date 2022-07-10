@@ -62,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($cellList->toArray()['total']))
+                                @if(!empty($cellList->count()))
                                 
                                     @foreach($cellList as $cell)
                                     
@@ -79,7 +79,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4" class="text-center">No Records.</td>
+                                        <td colspan="4" class="text-center">No Records Found.</td>
                                     </tr>
                                 @endif
                             </tbody>

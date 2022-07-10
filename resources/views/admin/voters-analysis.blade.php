@@ -631,7 +631,7 @@
                                                 <div class="show-result-button text-right">
                                                     <div class="btn-list mt-5 mx-5">
                                                         <button type="submit" class="btn btn-success ml-4">
-                                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                                            <i class="fa fa-search" aria-hidden="true"></i> Show Result
                                                         </button>
                                                         <!-- <a href="javascript:void(0);" class="btn btn-pill btn-success"
                                                             id="show-result">Show Result</a> -->
@@ -679,7 +679,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        @if(!empty($voterList))
+                                                                        @if(!empty($voterList->count()))
                                                                             @foreach($voterList as $voter)
                                                                                 <tr>
                                                                                     <td>{{ $voter->fname }} {{ $voter->mname }}</td>
@@ -695,7 +695,7 @@
                                                                             @endforeach
                                                                         @else
                                                                             <tr>
-                                                                                <td colspan="7" class="text-center">No Records.</td>
+                                                                                <td colspan="7" class="text-center">No Records Found.</td>
                                                                             </tr>
                                                                         @endif
                                                                     </tbody>

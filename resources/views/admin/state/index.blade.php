@@ -61,7 +61,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($stateList->toArray()['total']))
+                                @if(!empty($stateList->count()))
                                     @foreach($stateList as $state)
                                         <tr>
                                             <td>{{ $state->fname }} {{ $state->mname }} {{ $state->lname }}</td>

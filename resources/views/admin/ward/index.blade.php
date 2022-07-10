@@ -62,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($wardList->toArray()['total']))
+                                @if(!empty($wardList->count()))
                                     @foreach($wardList as $ward)
                                         <tr>
                                             <td>{{ $ward->lga_name }}</td>

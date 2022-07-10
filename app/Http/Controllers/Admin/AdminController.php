@@ -100,11 +100,51 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
+        $userLoginID = Session::get('tenant')['id'];
         $state_co = StateCoordinator::where('is_delete', '0')->count();
-        $lga_co = LGACoordinator::where('is_delete', '0')->count();
-        $ward_co = WardCoordinator::where('is_delete', '0')->count();
-        $cell_co = CellCoordinator::where('is_delete', '0')->count();
-        $voterCount = Voter::where('is_delete', '0')->count();
+        $lga_co = LGACoordinator::select('*');
+
+        if(Session::get('type') == "state") {
+            $lga_co = $lga_co->where('state_id', $userLoginID);
+        }
+
+        $lga_co = $lga_co->where('is_delete', '0')->count();
+
+        $ward_co = WardCoordinator::select('*');
+
+        if(Session::get('type') == "lga") {
+            $ward_co = $ward_co->where('lga_id', $userLoginID);
+        } else if(Session::get('type') == "state") {
+            $ward_co = $ward_co->where('state_id', $userLoginID);
+        }
+
+        $ward_co = $ward_co->where('is_delete', '0')->count();
+        
+        $cell_co = CellCoordinator::select('*');
+        
+        if(Session::get('type') == "lga") {
+            $cell_co = $cell_co->where('lga_id', $userLoginID);
+        } else if(Session::get('type') == "state") {
+            $cell_co = $cell_co->where('state_id', $userLoginID);
+        } else if(Session::get('type') == "ward") {
+            $cell_co = $cell_co->where('ward_id', $userLoginID);
+        }
+
+        $cell_co = $cell_co->where('is_delete', '0')->count();
+
+        $voterCount = Voter::select('*');
+
+        if(Session::get('type') == "lga") {
+            $voterCount = $voterCount->where('lga_id', $userLoginID);
+        } else if(Session::get('type') == "state") {
+            $voterCount = $voterCount->where('state_id', $userLoginID);
+        } else if(Session::get('type') == "ward") {
+            $voterCount = $voterCount->where('ward_id', $userLoginID);
+        } else if(Session::get('type') == "cell") {
+            $voterCount = $voterCount->where('cell', $userLoginID);
+        }
+
+        $voterCount = $voterCount->where('is_delete', '0')->count();
         $title = "Dashboard";
         return view('admin.dashboard', compact('title', 'state_co', 'lga_co', 'ward_co', 'cell_co', 'voterCount'));
     }
@@ -310,6 +350,8 @@ class AdminController extends Controller
             $voterList = $voterList->where('state', $userLoginID);
         } else if(Session::get('type') == "ward") {
             $voterList = $voterList->where('ward', $userLoginID);
+        } else if(Session::get('type') == "cell") {
+            $voterList = $voterList->where('cell', $userLoginID);
         }
 
         $voterList = $voterList->where('is_delete', '0')->paginate(5);

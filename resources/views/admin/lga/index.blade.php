@@ -62,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($lgaList->toArray()['total']))
+                                @if(!empty($lgaList->count()))
                                     @foreach($lgaList as $lga)
                                         <tr>
                                             <td>{{ $lga->state_name }}</td>
@@ -77,7 +77,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4" class="text-center">No Records.</td>
+                                        <td colspan="4" class="text-center">No Records Found.</td>
                                     </tr>
                                 @endif
                             </tbody>

@@ -91,7 +91,7 @@
                             <div class="col-9">
                             </div>
                             <div class="col-3">
-                                <div class="btn-list">
+                                <div class="btn-list" style="float:right;">
                                     <a href="javascript:void(0);" class="btn btn-success btn-pill" data-bs-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         Filters</a>

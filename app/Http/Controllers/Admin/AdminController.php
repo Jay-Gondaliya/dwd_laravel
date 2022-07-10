@@ -428,4 +428,13 @@ class AdminController extends Controller
             return view('admin.404', compact('title'));
         }
     }
+
+    public function logoutAdmin(Request $request)
+    {
+        if (Session::get('type') == 'national') {
+            return redirect()->route('admin.index');
+        } else {
+            return redirect()->route('index');
+        }
+    }
 }

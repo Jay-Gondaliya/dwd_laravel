@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
     Route::any('/', 'AdminController@index')->name('index');
     Route::any('/checkLogin', 'AdminController@checkLogin')->name('checkLogin');
+    Route::any('/logout-user', 'AdminController@logoutAdmin')->name('logoutAdmin');
     Route::any('/user/forgot-password', 'AdminController@userForgotPassword')->name('forgot_password');
     Route::any('/admin', 'AdminController@adminIndex')->name('admin.index');
     Route::any('/admin/forgot', 'AdminController@forgotPasswordAdminView')->name('admin.admin_forgot_password');

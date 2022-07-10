@@ -26,7 +26,7 @@ class StateCoordinatorController extends Controller
     public function storeStateCoordinator(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username'  => 'required',
+            'username'  => 'required|unique:state_co',
             'password' => 'required',
             'fname'  => 'required',
             'mname'  => 'required',

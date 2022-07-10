@@ -16,6 +16,7 @@ class WardCoordinatorController extends Controller
     public function wardCoordinatorList()
     {
         $userLoginID = Session::get('tenant')['id'];
+        // print_r($userLoginID);exit;
         $title = "Ward Coordinator List";
         $wardList = WardCoordinator::select('ward_coordinator.*','lga_coordinator.fname as lga_name')
         ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'ward_coordinator.lga_id');
@@ -43,7 +44,7 @@ class WardCoordinatorController extends Controller
         $validator = Validator::make($request->all(), [
             'select_state'  => 'required',
             'select_lga'  => 'required',
-            'username'  => 'required',
+            'username'  => 'required|unique:ward_coordinator',
             'password' => 'required',
             'fname'  => 'required',
             'mname'  => 'required',

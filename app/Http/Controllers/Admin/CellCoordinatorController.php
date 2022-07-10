@@ -47,7 +47,7 @@ class CellCoordinatorController extends Controller
             'select_state'  => 'required',
             'select_lga'  => 'required',
             'select_ward'  => 'required',
-            'username'  => 'required',
+            'username'  => 'required|unique:cell_coordinator',
             'password' => 'required',
             'fname'  => 'required',
             'mname'  => 'required',

@@ -39,7 +39,7 @@ class LGACoordinatorController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'select_state'  => 'required',
-            'username'  => 'required',
+            'username'  => 'required|unique:lga_coordinator',
             'password' => 'required',
             'fname'  => 'required',
             'mname'  => 'required',

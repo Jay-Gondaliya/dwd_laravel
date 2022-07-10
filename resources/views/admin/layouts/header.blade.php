@@ -245,7 +245,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated">
                                     <div class="text-center">
-                                        <div class="text-center user pb-0 font-weight-bold">Michael Smith</div>
+                                        <div class="text-center user pb-0 font-weight-bold">{{ Session::get('tenant')['fname'].' ' .Session::get('tenant')['lname']}}</div>
                                         <!--<span class="text-center user-semi-title">Web Designer</span>-->
                                         <div class="dropdown-divider"></div>
                                     </div>

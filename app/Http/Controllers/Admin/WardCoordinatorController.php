@@ -32,9 +32,22 @@ class WardCoordinatorController extends Controller
     }
 
     public function addWardCoordinator()
-    {
+    {   
+        $userLoginID = Session::get('tenant')['id'];
+        
+        $userType = Session::get('type');
+        if($userType!='national'){
+            if($userType!='state'){
+                $userStateID = Session::get('tenant')['state_id'];
+            }else{
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+        }else{
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $title = "Add Ward Coordinator";
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+        
         $editWardCoordinator = new WardCoordinator;
         return view('admin.ward.create', compact('title', 'editWardCoordinator', 'stateList'));
     }
@@ -92,9 +105,22 @@ class WardCoordinatorController extends Controller
     }
 
     public function editWardCoordinator($id)
-    {
+    {   
+        $userLoginID = Session::get('tenant')['id'];
+        
+        $userType = Session::get('type');
+        if($userType!='national'){
+            if($userType!='state'){
+                $userStateID = Session::get('tenant')['state_id'];
+            }else{
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+        }else{
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $editWardCoordinator = WardCoordinator::where('id', $id)->first();
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+//        $stateList = StateCoordinator::where('is_delete', '0')->get();
         $lgaList = LGACoordinator::where([['state_id', '=', $editWardCoordinator->state_id], ['is_delete', '=', '0']])->get();
         $title = "Edit Ward Coordinator";
         return view('admin.ward.create', compact('editWardCoordinator', 'title', 'stateList', 'lgaList'));

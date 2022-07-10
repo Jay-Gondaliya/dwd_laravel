@@ -35,8 +35,21 @@ class CellCoordinatorController extends Controller
 
     public function addCellCoordinator()
     {
+        $userLoginID = Session::get('tenant')['id'];
+        
+        $userType = Session::get('type');
+        if($userType!='national'){
+            if($userType!='state'){
+                $userStateID = Session::get('tenant')['state_id'];
+            }else{
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+        }else{
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $title = "Add Cell Coordinator";
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+        
         $editCellCoordinator = new CellCoordinator;
         return view('admin.cell.create', compact('title', 'editCellCoordinator', 'stateList'));
     }
@@ -96,9 +109,22 @@ class CellCoordinatorController extends Controller
     }
 
     public function editCellCoordinator($id)
-    {
+    { 
+        $userLoginID = Session::get('tenant')['id'];
+        
+        $userType = Session::get('type');
+        if($userType!='national'){
+            if($userType!='state'){
+                $userStateID = Session::get('tenant')['state_id'];
+            }else{
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+        }else{
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $editCellCoordinator = CellCoordinator::where('id', $id)->first();
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+//        $stateList = StateCoordinator::where('is_delete', '0')->get();
         $lgaList = LGACoordinator::where([['state_id', '=', $editCellCoordinator->state_id], ['is_delete', '=', '0']])->get();
         $wardList = WardCoordinator::where([['lga_id', '=', $editCellCoordinator->lga_id], ['is_delete', '=', '0']])->get();
         $title = "Edit Cell Coordinator";

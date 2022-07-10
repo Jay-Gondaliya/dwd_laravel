@@ -36,6 +36,7 @@ class AdminController extends Controller
         if ($request->profile_type == "local") {
             $adminList = LGACoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
             Session::put('type', 'lga');
+            
         }
         if ($request->profile_type == "ward") {
             $adminList = WardCoordinator::where([['username', '=', $username], ['password', '=', $password]])->first();
@@ -48,6 +49,10 @@ class AdminController extends Controller
 
         if (!empty($adminList)) {
             Session::put('tenant', $adminList);
+//            echo "<pre>";
+//print_r($adminList);
+//echo "<pre>";
+//die;
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('index');
@@ -163,9 +168,22 @@ class AdminController extends Controller
 
     public function voterAdd()
     {
+        $userLoginID = Session::get('tenant')['id'];
+        
+        $userType = Session::get('type');
+        if($userType!='national'){
+            if($userType!='state'){
+                $userStateID = Session::get('tenant')['state_id'];
+            }else{
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+        }else{
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $title = "Voter";
         $editVoter = new Voter;
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+//        $stateList = StateCoordinator::where('is_delete', '0')->get();
         return view('admin.file_import', compact('title', 'editVoter', 'stateList'));
     }
 
@@ -441,8 +459,21 @@ class AdminController extends Controller
 
     public function editVoter($id)
     {
+        $userLoginID = Session::get('tenant')['id'];
+
+        $userType = Session::get('type');
+        if ($userType != 'national') {
+            if ($userType != 'state') {
+                $userStateID = Session::get('tenant')['state_id'];
+            } else {
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id', '=', $userStateID], ['is_delete', '=', '0']])->get();
+        } else {
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $editVoter = Voter::where([['id', '=', $id], ['is_delete', '=', '0']])->first();
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+//        $stateList = StateCoordinator::where('is_delete', '0')->get();
         $lgaList = LGACoordinator::where([['state_id', '=', $editVoter->state], ['is_delete', '=', '0']])->get();
         $wardList = WardCoordinator::where([['lga_id', '=', $editVoter->lga], ['is_delete', '=', '0']])->get();
         $cellList = CellCoordinator::where([['ward_id', '=', $editVoter->ward], ['is_delete', '=', '0']])->get();

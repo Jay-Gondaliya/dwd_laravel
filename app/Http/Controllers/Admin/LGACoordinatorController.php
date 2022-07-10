@@ -29,8 +29,21 @@ class LGACoordinatorController extends Controller
 
     public function addLGACoordinator()
     {
+        $userLoginID = Session::get('tenant')['id'];
+        
+        $userType = Session::get('type');
+        if($userType!='national'){
+            if($userType!='state'){
+                $userStateID = Session::get('tenant')['state_id'];
+            }else{
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+        }else{
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $title = "Add LGA Coordinator";
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+//        $stateList = StateCoordinator::where('is_delete', '0')->get();
         $editLGACoordinator = new LGACoordinator;
         return view('admin.lga.create', compact('title', 'editLGACoordinator', 'stateList'));
     }
@@ -87,8 +100,21 @@ class LGACoordinatorController extends Controller
 
     public function editLGACoordinator($id)
     {
+        $userLoginID = Session::get('tenant')['id'];
+        
+        $userType = Session::get('type');
+        if($userType!='national'){
+            if($userType!='state'){
+                $userStateID = Session::get('tenant')['state_id'];
+            }else{
+                $userStateID = Session::get('tenant')['id'];
+            }
+            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+        }else{
+            $stateList = StateCoordinator::where('is_delete', '0')->get();
+        }
         $editLGACoordinator = LGACoordinator::where('id', $id)->first();
-        $stateList = StateCoordinator::where('is_delete', '0')->get();
+//        $stateList = StateCoordinator::where('is_delete', '0')->get();
         $title = "Edit LGA Coordinator";
         return view('admin.lga.create', compact('editLGACoordinator', 'title', 'stateList'));
     }

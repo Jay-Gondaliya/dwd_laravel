@@ -187,13 +187,131 @@ class AdminController extends Controller
         die();
     }
 
-    public function votersAnalysis()
+    public function votersAnalysis(Request $request)
     {
         $title = "Voters Analysis";
         $title = "Voter List";
-        $voterList = Voter::where('is_delete', '0')->paginate(5);
+        $voterList = Voter::select('*');
+
+        $searchResult['fname'] = '';
+        if (!empty($request->fname)) {
+            $searchResult['fname']    = $request->fname;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('fname', 'LIKE', "%{$request->fname}%");
+            });
+        }
+
+        $searchResult['mname'] = '';
+        if (!empty($request->mname)) {
+            $searchResult['mname']    = $request->mname;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('mname', 'LIKE', "%{$request->mname}%");
+            });
+        }
+
+        $searchResult['lname'] = '';
+        if (!empty($request->lname)) {
+            $searchResult['lname']    = $request->lname;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('lname', 'LIKE', "%{$request->lname}%");
+            });
+        }
+
+        $searchResult['gender'] = '';
+        if (!empty($request->gender)) {
+            $searchResult['gender']    = $request->gender;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('gender', 'LIKE', "%{$request->gender}%");
+            });
+        }
+
+        $searchResult['is_mobile'] = '';
+        if (!empty($request->is_mobile)) {
+            $searchResult['is_mobile']    = $request->is_mobile;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('is_mobile', '=', $request->is_mobile);
+            });
+        }
+
+        $searchResult['mobile'] = '';
+        if (!empty($request->mobile)) {
+            $searchResult['mobile']    = $request->mobile;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('mobile', 'LIKE', "%{$request->mobile}%");
+            });
+        }
+
+        $searchResult['email'] = '';
+        if (!empty($request->email)) {
+            $searchResult['email']    = $request->email;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('email', 'LIKE', "%{$request->email}%");
+            });
+        }
+
+        $searchResult['filter_state'] = '';
+        if (!empty($request->filter_state)) {
+            $searchResult['filter_state']    = $request->filter_state;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('state', '=', $request->filter_state);
+            });
+        }
+
+        $searchResult['filter_lga'] = '';
+        if (!empty($request->filter_lga)) {
+            $searchResult['filter_lga']    = $request->filter_lga;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('lga', '=', $request->filter_lga);
+            });
+        }
+
+        $searchResult['filter_ward'] = '';
+        if (!empty($request->filter_ward)) {
+            $searchResult['filter_ward']    = $request->filter_ward;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('ward', '=', $request->filter_ward);
+            });
+        }
+
+        $searchResult['insta_filter'] = '';
+        if (!empty($request->insta_filter)) {
+            $searchResult['insta_filter']    = $request->insta_filter;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('insta', '!=', '');
+            });
+        }
+
+        $searchResult['twitter_filter'] = '';
+        if (!empty($request->twitter_filter)) {
+            $searchResult['twitter_filter']    = $request->twitter_filter;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('twitter', '!=', '');
+            });
+        }
+
+        $searchResult['fb_filter'] = '';
+        if (!empty($request->fb_filter)) {
+            $searchResult['fb_filter']    = $request->fb_filter;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('fb', '!=', '');
+            });
+        }
+
+        $searchResult['is_pvc'] = '';
+        if (!empty($request->is_pvc)) {
+            $searchResult['is_pvc']    = $request->is_pvc;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('is_pvc', '=', $request->is_pvc);
+            });
+        }
+
+        $voterList = $voterList->where('is_delete', '0')->paginate(5);
+
         $printVoterList = Voter::where('is_delete', '0')->get();
-        return view('admin.voters-analysis', compact('title', 'voterList', 'printVoterList'));
+        $stateList = StateCoordinator::where('is_delete', '0')->get();
+        $lgaList = LGACoordinator::where('is_delete', '0')->get();
+        $wardList = WardCoordinator::where('is_delete', '0')->get();
+        return view('admin.voters-analysis', compact('title', 'voterList', 'printVoterList', 'searchResult', 'stateList', 'lgaList', 'wardList'));
     }
 
     public function supervisorVolunteersTeam()

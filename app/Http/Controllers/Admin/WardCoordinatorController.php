@@ -9,15 +9,24 @@ use App\Models\LGACoordinator;
 use App\Models\CellCoordinator;
 use App\Models\StateCoordinator;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class WardCoordinatorController extends Controller
 {
     public function wardCoordinatorList()
     {
+        $userLoginID = Session::get('tenant')['id'];
         $title = "Ward Coordinator List";
         $wardList = WardCoordinator::select('ward_coordinator.*','lga_coordinator.fname as lga_name')
-        ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'ward_coordinator.lga_id')
-        ->where('ward_coordinator.is_delete', '0')->paginate(5);
+        ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'ward_coordinator.lga_id');
+
+        if(Session::get('type') == "lga") {
+            $wardList = $wardList->where('ward_coordinator.lga_id', $userLoginID);
+        } else if(Session::get('type') == "state") {
+            $wardList = $wardList->where('ward_coordinator.state_id', $userLoginID);
+        }
+
+        $wardList = $wardList->where('ward_coordinator.is_delete', '0')->paginate(5);
         return view('admin.ward.index', compact('title', 'wardList'));
     }
 

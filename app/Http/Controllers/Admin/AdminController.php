@@ -46,12 +46,12 @@ class AdminController extends Controller
             Session::put('type', 'cell');
         }
 
-        return redirect()->route('dashboard');
-        // if (!empty($adminList)) {
-        //     $response['code'] = "200";
-        // } else {
-        //     $response['code'] = "400";
-        // }
+        if (!empty($adminList)) {
+            Session::put('tenant', $adminList);
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('index');
+        }
         // echo json_encode($response);
         // die();
     }
@@ -152,16 +152,14 @@ class AdminController extends Controller
         $password = md5($request->password);
 
         $adminList = MasterAdmin::where([['username', '=', $username], ['password', '=', $password]])->first();
-        
-        Session::put('type', 'national');
-        return redirect()->route('dashboard');
-        // if (!empty($adminList)) {
-        //     $response['code'] = "200";
-        //     $response['message'] = "Login successfully!";
-        // } else {
-        //     $response['code'] = "400";
-        //     $response['message'] = "Incorrect Username or Password!";
-        // }
+
+        if (!empty($adminList)) {
+            Session::put('type', 'national');
+            Session::put('tenant', $adminList);
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('admin.index');
+        }
         // echo json_encode($response);
         // die();
     }
@@ -189,6 +187,7 @@ class AdminController extends Controller
 
     public function votersAnalysis(Request $request)
     {
+        $userLoginID = Session::get('tenant')['id'];
         $title = "Voters Analysis";
         $title = "Voter List";
         $voterList = Voter::select('*');
@@ -303,6 +302,14 @@ class AdminController extends Controller
             $voterList = $voterList->where(function ($query) use ($request) {
                 $query->orWhere('is_pvc', '=', $request->is_pvc);
             });
+        }
+
+        if(Session::get('type') == "lga") {
+            $voterList = $voterList->where('lga', $userLoginID);
+        } else if(Session::get('type') == "state") {
+            $voterList = $voterList->where('state', $userLoginID);
+        } else if(Session::get('type') == "ward") {
+            $voterList = $voterList->where('ward', $userLoginID);
         }
 
         $voterList = $voterList->where('is_delete', '0')->paginate(5);
@@ -432,8 +439,10 @@ class AdminController extends Controller
     public function logoutAdmin(Request $request)
     {
         if (Session::get('type') == 'national') {
+            $request->session()->forget('type');
             return redirect()->route('admin.index');
         } else {
+            $request->session()->forget('type');
             return redirect()->route('index');
         }
     }

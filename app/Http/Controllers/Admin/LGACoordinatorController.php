@@ -7,15 +7,23 @@ use Illuminate\Http\Request;
 use App\Models\LGACoordinator;
 use App\Models\StateCoordinator;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class LGACoordinatorController extends Controller
 {
     public function lgaCoordinatorList()
     {
+        $userLoginID = Session::get('tenant')['id'];
         $title = "LGA Coordinator List";
         $lgaList = LGACoordinator::select('lga_coordinator.*','state_co.fname as state_name')
-        ->leftJoin('state_co', 'state_co.id', '=', 'lga_coordinator.state_id')
-        ->where('lga_coordinator.is_delete', '0')->paginate(5);
+        ->leftJoin('state_co', 'state_co.id', '=', 'lga_coordinator.state_id');
+        
+        if(Session::get('type') == "state") {
+            $lgaList = $lgaList->where('lga_coordinator.state_id', $userLoginID);
+        }
+
+        $lgaList = $lgaList->where('lga_coordinator.is_delete', '0')->paginate(5);
+
         return view('admin.lga.index', compact('title', 'lgaList'));
     }
 

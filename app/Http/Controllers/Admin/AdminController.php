@@ -135,11 +135,11 @@ class AdminController extends Controller
         $voterCount = Voter::select('*');
 
         if(Session::get('type') == "lga") {
-            $voterCount = $voterCount->where('lga_id', $userLoginID);
+            $voterCount = $voterCount->where('lga', $userLoginID);
         } else if(Session::get('type') == "state") {
-            $voterCount = $voterCount->where('state_id', $userLoginID);
+            $voterCount = $voterCount->where('state', $userLoginID);
         } else if(Session::get('type') == "ward") {
-            $voterCount = $voterCount->where('ward_id', $userLoginID);
+            $voterCount = $voterCount->where('ward', $userLoginID);
         } else if(Session::get('type') == "cell") {
             $voterCount = $voterCount->where('cell', $userLoginID);
         }

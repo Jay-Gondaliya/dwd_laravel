@@ -629,12 +629,12 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="show-result-button text-right">
-                                                    <div class="btn-list mt-5">
+                                                    <div class="btn-list mt-5 mx-5">
                                                         <button type="submit" class="btn btn-success ml-4">
                                                             <i class="fa fa-search" aria-hidden="true"></i>
                                                         </button>
-                                                        <a href="javascript:void(0);" class="btn btn-pill btn-success"
-                                                            id="show-result">Show Result</a>
+                                                        <!-- <a href="javascript:void(0);" class="btn btn-pill btn-success"
+                                                            id="show-result">Show Result</a> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -854,9 +854,7 @@
 
     <script>
         $(document).ready(function() {
-            $("#show-result").click(function() {
-                $(".show-result-box").show();
-            });
+            $(".show-result-box").show();
         });
         function printDiv(){
             $(".show-result-box").show();

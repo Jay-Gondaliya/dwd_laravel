@@ -17,7 +17,6 @@ class WardCoordinatorController extends Controller
     {
         if(!empty(Session::get('tenant')['id'])) {
             $userLoginID = Session::get('tenant')['id'];
-            // print_r($userLoginID);exit;
             $title = "Ward Coordinator List";
             $wardList = WardCoordinator::select('ward_coordinator.*','lga_coordinator.fname as lga_name')
             ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'ward_coordinator.lga_id');
@@ -150,27 +149,42 @@ class WardCoordinatorController extends Controller
 
     public function getRecords(Request $request)
     {
+        $userLoginID = Session::get('tenant')['id'];
         $data    = $request->all();
         $from    = $data['from'];
         $value   = $data['value'];
         $details = array();
+        $userType = Session::get('type');
+        $userStateID = Session::get('tenant')['id'];
         if ($from == 'state') {
             /* getting lga from state */
-            $lgaLevel = LGACoordinator::where([['state_id', '=', $value], ['is_delete', '=', '0']])->get();
+            if($userType=='lga'){
+                $lgaLevel = LGACoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+            }else{
+                $lgaLevel = LGACoordinator::where([['state_id', '=', $value], ['is_delete', '=', '0']])->get();
+            }
             foreach ($lgaLevel as $key => $state) {
                 $details[$key]['id']   = $state->id;
                 $details[$key]['name'] = $state->fname;
             }
         } else if ($from == 'lga') {
             /* getting ward from lga */
-            $wardList = WardCoordinator::where([['lga_id', '=', $value], ['is_delete', '=', '0']])->get();
+            if($userType=='ward'){
+                $lgaLevel = WardCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+            }else{
+                $wardList = WardCoordinator::where([['lga_id', '=', $value], ['is_delete', '=', '0']])->get();
+            }
             foreach ($wardList as $key => $ward) {
                 $details[$key]['id']   = $ward->id;
                 $details[$key]['name'] = $ward->fname;
             }
         } else if ($from == 'ward') {
             /* getting cell from ward */
-            $cellList = CellCoordinator::where([['ward_id', '=', $value], ['is_delete', '=', '0']])->get();
+            if($userType=='ward'){
+                $cellList = CellCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+            }else{
+                $cellList = CellCoordinator::where([['ward_id', '=', $value], ['is_delete', '=', '0']])->get();
+            }
             foreach ($cellList as $key => $cell) {
                 $details[$key]['id']   = $cell->id;
                 $details[$key]['name'] = $cell->fname;

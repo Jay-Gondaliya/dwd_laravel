@@ -526,6 +526,7 @@ class AdminController extends Controller
             // $stateList = StateCoordinator::where('is_delete', '0')->get();
 
             $userType = Session::get('type');
+            $userStateID = Session::get('tenant')['id'];
             if($userType!='national'){
                 if($userType!='state'){
                     $userStateID = Session::get('tenant')['state_id'];

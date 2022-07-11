@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\StateCoordinator;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class StateCoordinatorController extends Controller
 {

@@ -893,6 +893,8 @@
                 type: 'POST',
                 url: "{{route('download_pdf_voters')}}",
                 data: formData,
+                contentType: false,
+			    processData: false,
                 xhrFields: {
                     responseType: 'blob'
                 },

@@ -610,7 +610,7 @@ $voterListPrint = Voter::select('*');
         return view('admin.file_import', compact('editVoter', 'title', 'stateList', 'lgaList', 'wardList', 'cellList'));
     }
 
-    public function downloadPdfVoters()
+    public function downloadPdfVoters(Request $request)
     {
         $title = "Voter List";
         $voterList = Voter::select('voter.*', 'cell_coordinator.fname as cell_name', 'ward_coordinator.fname as wardname', 'lga_coordinator.fname as lga_name', 'state_co.fname as state_name')
@@ -746,16 +746,7 @@ $voterListPrint = Voter::select('*');
         $data = ['voterList' => $voterList];
         $pdf = PDF::loadView('admin.download_voters', $data);
         
-        // return $pdf->download('download_voter_list.pdf');
-
-        // $pdf = PDF::loadView('pdf.pdf');
-
-        $path = public_path('pdf/');
-        $fileName =  time().'.'. 'pdf' ;
-        $pdf->save($path . '/' . $fileName);
-
-        $pdf = public_path('pdf/'.$fileName);
-        return response()->download($pdf);
+        return $pdf->download('download_voter_list.pdf');
     }
 
     public function voterDelete(Request $request)

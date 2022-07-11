@@ -59,383 +59,383 @@
 <!-- Color Skin css -->
 <link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet" type="text/css" />
 <div class="page-header border-bottom">
-	<div class="page-leftheader">
-		<h4 class="page-title mb-0 text-primary">Create Voter</h4>
-	</div>
+    <div class="page-leftheader">
+        <h4 class="page-title mb-0 text-primary">Create Voter</h4>
+    </div>
 </div>
 <div class="row">
-	<form class="mt-5" id="fileDataForm">
-		@csrf
-		<div class="row">
-			<div class="col-md-6 input-group mb-4">
-				<div class="input-group-text">
-					<i class="fe fe-user"></i>
-				</div>
-				<input type="file" class="form-control" name="file_data" id="file_data" />
-			</div>
-			<div class="col-md-3 input-group mb-4">
-				<button type="button" class="btn btn-primary btn-sm" id="addFileData">Voter File Upload</button>
-			</div>
-		</div>
-	</form>
+    <form class="mt-5" id="fileDataForm">
+        @csrf
+        <div class="row">
+            <div class="col-md-6 input-group mb-4">
+                <div class="input-group-text">
+                    <i class="fe fe-user"></i>
+                </div>
+                <input type="file" class="form-control" name="file_data" id="file_data" />
+            </div>
+            <div class="col-md-3 input-group mb-4">
+                <button type="button" class="btn btn-primary btn-sm" id="addFileData">Voter File Upload</button>
+            </div>
+        </div>
+    </form>
 
-	<div class="col-md-12">
-		<div class="card-body p-3">
-			<div class="panel panel-primary">
-				<div class="tab-menu-heading p-0">
-					<div class="tabs-menu">
-						<ul class="nav panel-tabs" id="pills-tab" role="tablist">
-							<li class="">
-								<a class="active" id="demo1" data-toggle="pill" href="#pills-1" role="tab">Personal Info</a>
-							</li>
-							<li class="">
-								<a class="" id="demo2" data-toggle="pill" href="#pills-2" role="tab">Contact Info</a>
-							</li>
-							<li class="">
-								<a class="" id="demo3" data-toggle="pill" href="#pills-3" role="tab">Location</a>
-							</li>
-							<li class="">
-								<a class="" id="demo4" data-toggle="pill" href="#pills-4" role="tab">Social Media</a>
-							</li>
-							<li class="">
-								<a class="" id="demo5" data-toggle="pill" href="#pills-5" role="tab">Voter's Mobilization</a>
-							</li>
-							<li class="">
-								<a class="" id="demo6" data-toggle="pill" href="#pills-6" role="tab">Voter's Engagement</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<form id="createVoterForm">
-					@csrf
-					<input type="hidden" name="voter_id" value="{{ $editVoter->id }}" />
-					<div class="panel-body tabs-menu-body">
-						<div class="tab-content" id="pills-tabContent">
-							<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="demo1">
-								<div class="row">
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label for="validationCustom01" class="form-label">First Name</label>
-											<input type="text" class="form-control" name="fname" value="{{ $editVoter->fname }}" placeholder="First Name">
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Middle Name</label>
-											<input type="text" class="form-control" name="mname" value="{{ $editVoter->mname }}" placeholder="Middle Name">
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Last Name</label>
-											<input type="text" class="form-control" name="lname" value="{{ $editVoter->lname }}" placeholder="Last Name">
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<label class="form-label">Gender</label>
-										<ul class="new_inline_radio">
-											<li>
-												<label class="custom-control custom-radio">
-													<input type="radio" class="custom-control-input" name="gender" value="male" checked="">
-													<span class="custom-control-label">Male</span>
-												</label>
-											</li>
-											<li>
-												<label class="custom-control custom-radio">
-													<input type="radio" class="custom-control-input" name="gender" value="female">
-													<span class="custom-control-label">Female</span>
-												</label>
-											</li>
-										</ul>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Date of Birth</label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18">
-															<path d="M0 0h24v24H0V0z" fill="none" />
-															<path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z" />
-															<path d="M4 5.01h16V8H4z" opacity=".3" />
-														</svg>
-													</div>
-												</div><input class="form-control fc-datepicker" value="{{ $editVoter->dob }}" type="date" name="dob">
-											</div>
-										</div>
-									</div>
-									<div class="col-12 col-sm-12" id="btnNext">
-										<a class="btn btn-primary btnNext">Save and Next</a>
-									</div>
-								</div>
+    <div class="col-md-12">
+        <div class="card-body p-3">
+            <div class="panel panel-primary">
+                <div class="tab-menu-heading p-0">
+                    <div class="tabs-menu">
+                        <ul class="nav panel-tabs" id="pills-tab" role="tablist">
+                            <li class="">
+                                <a class="active" id="demo1" data-toggle="pill" href="#pills-1" role="tab">Personal Info</a>
+                            </li>
+                            <li class="">
+                                <a class="" id="demo2" data-toggle="pill" href="#pills-2" role="tab">Contact Info</a>
+                            </li>
+                            <li class="">
+                                <a class="" id="demo3" data-toggle="pill" href="#pills-3" role="tab">Location</a>
+                            </li>
+                            <li class="">
+                                <a class="" id="demo4" data-toggle="pill" href="#pills-4" role="tab">Social Media</a>
+                            </li>
+                            <li class="">
+                                <a class="" id="demo5" data-toggle="pill" href="#pills-5" role="tab">Voter's Mobilization</a>
+                            </li>
+                            <li class="">
+                                <a class="" id="demo6" data-toggle="pill" href="#pills-6" role="tab">Voter's Engagement</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form id="createVoterForm">
+                    @csrf
+                    <input type="hidden" name="voter_id" value="{{ $editVoter->id }}" />
+                    <div class="panel-body tabs-menu-body">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="demo1">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="validationCustom01" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" name="fname" value="{{ $editVoter->fname }}" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Middle Name</label>
+                                            <input type="text" class="form-control" name="mname" value="{{ $editVoter->mname }}" placeholder="Middle Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" name="lname" value="{{ $editVoter->lname }}" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-label">Gender</label>
+                                        <ul class="new_inline_radio">
+                                            <li>
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" name="gender" value="male" checked="">
+                                                    <span class="custom-control-label">Male</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" name="gender" value="female">
+                                                    <span class="custom-control-label">Female</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Date of Birth</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18">
+                                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                                        <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z" />
+                                                        <path d="M4 5.01h16V8H4z" opacity=".3" />
+                                                        </svg>
+                                                    </div>
+                                                </div><input class="form-control fc-datepicker" value="{{ $editVoter->dob }}" type="date" name="dob">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12" id="btnNext">
+                                        <a class="btn btn-primary btnNext">Save and Next</a>
+                                    </div>
+                                </div>
 
-							</div>
-							<div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="demo2">
-								<div class="row">
+                            </div>
+                            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="demo2">
+                                <div class="row">
 
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Mobile number</label>
-											<input type="number" class="form-control" name="mobile" value="{{ $editVoter->mobile }}" placeholder="Mobile number">
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Enter OTP</label>
-											<input type="text" class="form-control" id="enterotp" placeholder="Enter OTP">
-											<a href="#" class="resend_otp">Resend OTP</a>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Email Address</label>
-											<input type="email" class="form-control" name="email" value="{{ $editVoter->email }}" placeholder="Email Address">
-										</div>
-									</div>
-									<div class="col-12 col-sm-12" id="btnNext">
-										<a class="btn btn-primary btnNext">Save and Next</a>
-									</div>
-								</div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Mobile number</label>
+                                            <input type="number" class="form-control" name="mobile" value="{{ $editVoter->mobile }}" placeholder="Mobile number">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Enter OTP</label>
+                                            <input type="text" class="form-control" id="enterotp" placeholder="Enter OTP">
+                                            <a href="#" class="resend_otp">Resend OTP</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Email Address</label>
+                                            <input type="email" class="form-control" name="email" value="{{ $editVoter->email }}" placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12" id="btnNext">
+                                        <a class="btn btn-primary btnNext">Save and Next</a>
+                                    </div>
+                                </div>
 
-							</div>
-							<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="demo3">
-								<div class="row">
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Select State</label>
-											<select class="form-control" name="state" id="select_state">
-												<option value="">Select State</option>
-												@if(!empty($stateList))
-													@foreach($stateList as $state)
-														<option value="{{ $state->id }}" @if($editVoter->state == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
-													@endforeach
-												@endif
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Select Local Government</label>
-											<select class="form-control" name="lga" id="select_lga">
-												<option value="">Select Local Government</option>
-												@if(!empty($lgaList) && !empty($editVoter->id))
-													@foreach($lgaList as $lga)
-														<option value="{{ $lga->id }}" @if($editVoter->lga == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
-													@endforeach
-												@endif
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Select Ward</label>
-											<select class="form-control" name="ward" id="select_ward">
-												<option value="">Select Ward</option>
-												@if(!empty($wardList) && !empty($editVoter->id))
-													@foreach($wardList as $ward)
-														<option value="{{ $ward->id }}" @if($editVoter->ward == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
-													@endforeach
-												@endif
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Select Cell</label>
-											<select class="form-control" name="cell" id="select_cell">
-												<option value="">Select Cell</option>
-												@if(!empty($cellList) && !empty($editVoter->id))
-													@foreach($cellList as $cell)
-														<option value="{{ $cell->id }}" @if($editVoter->cell == $cell->id) {{'selected'}} @endif>{{ $cell->fname }}</option>
-													@endforeach
-												@endif
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-12">
-										<div class="form-group">
-											<label class="form-label">Resident Address</label>
-											<textarea class="form-control" name="address" rows="4" placeholder="Resident Address">{{ $editVoter->address }}</textarea>
-										</div>
-									</div>
-									<div class="col-12 col-sm-12" id="btnNext">
-										<a class="btn btn-primary btnNext">Save and Next</a>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="demo4">
-								<div class="row">
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Facebook</label>
-											<input type="text" class="form-control" name="fb" value="{{ $editVoter->fb }}" placeholder="Facebook Username">
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Instagram</label>
-											<input type="text" class="form-control" name="insta" value="{{ $editVoter->insta }}" placeholder="Instagram Username">
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Twitter</label>
-											<input type="text" class="form-control" name="twitter" value="{{ $editVoter->twitter }}" placeholder="Twitter Username">
-										</div>
-									</div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="demo3">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Select State</label>
+                                            <select class="form-control" name="state" id="select_state">
+                                                <option value="">Select State</option>
+                                                @if(!empty($stateList))
+                                                @foreach($stateList as $state)
+                                                <option value="{{ $state->id }}" @if($editVoter->state == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Select Local Government</label>
+                                            <select class="form-control" name="lga" id="select_lga">
+                                                <option value="">Select Local Government</option>
+                                                @if(!empty($lgaList) && !empty($editVoter->id))
+                                                @foreach($lgaList as $lga)
+                                                <option value="{{ $lga->id }}" @if($editVoter->lga == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Select Ward</label>
+                                            <select class="form-control" name="ward" id="select_ward">
+                                                <option value="">Select Ward</option>
+                                                @if(!empty($wardList) && !empty($editVoter->id))
+                                                @foreach($wardList as $ward)
+                                                <option value="{{ $ward->id }}" @if($editVoter->ward == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Select Cell</label>
+                                            <select class="form-control" name="cell" id="select_cell">
+                                                <option value="">Select Cell</option>
+                                                @if(!empty($cellList) && !empty($editVoter->id))
+                                                @foreach($cellList as $cell)
+                                                <option value="{{ $cell->id }}" @if($editVoter->cell == $cell->id) {{'selected'}} @endif>{{ $cell->fname }}</option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Resident Address</label>
+                                            <textarea class="form-control" name="address" rows="4" placeholder="Resident Address">{{ $editVoter->address }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12" id="btnNext">
+                                        <a class="btn btn-primary btnNext">Save and Next</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="demo4">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Facebook</label>
+                                            <input type="text" class="form-control" name="fb" value="{{ $editVoter->fb }}" placeholder="Facebook Username">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Instagram</label>
+                                            <input type="text" class="form-control" name="insta" value="{{ $editVoter->insta }}" placeholder="Instagram Username">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Twitter</label>
+                                            <input type="text" class="form-control" name="twitter" value="{{ $editVoter->twitter }}" placeholder="Twitter Username">
+                                        </div>
+                                    </div>
 
-									<div class="col-12 col-sm-12" id="btnNext">
-										<a class="btn btn-primary btnNext">Save and Next</a>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="demo5">
-								<div class="row">
+                                    <div class="col-12 col-sm-12" id="btnNext">
+                                        <a class="btn btn-primary btnNext">Save and Next</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="demo5">
+                                <div class="row">
 
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Do you have a permanent voters card?</label>
-											<select class="form-control select2" name="is_voter">
-												<option>-- Select --</option>
-												<option value="1" @if($editVoter->is_voter == "1") {{'selected'}}@endif>Yes</option>
-												<option value="0" @if($editVoter->is_voter == "0") {{'selected'}}@endif>No</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Reason for not having a PVC?</label>
-											<select class="form-control select2" name="is_pvc">
-												<option>-- Select --</option>
-												<option value="1" @if($editVoter->is_pvc == "1") {{'selected'}}@endif>Not of age</option>
-												<option value="2" @if($editVoter->is_pvc == "2") {{'selected'}}@endif>Not interested</option>
-												<option value="3" @if($editVoter->is_pvc == "3") {{'selected'}}@endif>Lost faith in process</option>
-												<option value="4" @if($editVoter->is_pvc == "4") {{'selected'}}@endif>Not enough education/information</option>
-												<option value="5" @if($editVoter->is_pvc == "5") {{'selected'}}@endif>Sickness</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-12 col-sm-12" id="btnNext">
-										<a class="btn btn-primary btnNext">Save and Next</a>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="pills-6" role="tabpanel" aria-labelledby="demo6">
-								<div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Do you have a permanent voters card?</label>
+                                            <select class="form-control select2" name="is_voter">
+                                                <option>-- Select --</option>
+                                                <option value="1" @if($editVoter->is_voter == "1") {{'selected'}}@endif>Yes</option>
+                                                <option value="0" @if($editVoter->is_voter == "0") {{'selected'}}@endif>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Reason for not having a PVC?</label>
+                                            <select class="form-control select2" name="is_pvc">
+                                                <option>-- Select --</option>
+                                                <option value="1" @if($editVoter->is_pvc == "1") {{'selected'}}@endif>Not of age</option>
+                                                <option value="2" @if($editVoter->is_pvc == "2") {{'selected'}}@endif>Not interested</option>
+                                                <option value="3" @if($editVoter->is_pvc == "3") {{'selected'}}@endif>Lost faith in process</option>
+                                                <option value="4" @if($editVoter->is_pvc == "4") {{'selected'}}@endif>Not enough education/information</option>
+                                                <option value="5" @if($editVoter->is_pvc == "5") {{'selected'}}@endif>Sickness</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12" id="btnNext">
+                                        <a class="btn btn-primary btnNext">Save and Next</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-6" role="tabpanel" aria-labelledby="demo6">
+                                <div class="row">
 
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Voted Last Election?</label>
-											<select class="form-control select2" name="question_1">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_1 == "1") {{'selected'}}@endif>Yes</option>
-												<option value="0" @if($editVoter->question_1 == "0") {{'selected'}}@endif>No</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Reason for not voting in last election?</label>
-											<select class="form-control select2" name="question_2">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_2 == "1") {{'selected'}}@endif>Moved to new location</option>
-												<option value="2" @if($editVoter->question_2 == "2") {{'selected'}}@endif>Not of age</option>
-												<option value="3" @if($editVoter->question_2 == "3") {{'selected'}}@endif>Not interested</option>
-												<option value="4" @if($editVoter->question_2 == "4") {{'selected'}}@endif>Lost faith in process</option>
-												<option value="5" @if($editVoter->question_2 == "5") {{'selected'}}@endif>Not enough education/information</option>
-												<option value="6" @if($editVoter->question_2 == "6") {{'selected'}}@endif>Sickness</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Whom did you vote for in the last election?</label>
-											<select class="form-control select2" name="question_3">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_3 == "1") {{'selected'}}@endif>Patry A</option>
-												<option value="2" @if($editVoter->question_3 == "2") {{'selected'}}@endif>Party B</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">What party are you sympathetic to?</label>
-											<select class="form-control select2" name="question_4">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_4 == "1") {{'selected'}}@endif>Patry A</option>
-												<option value="2" @if($editVoter->question_4 == "2") {{'selected'}}@endif>Party B</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">What things are important to you that you think the government Should provide?</label>
-											<select class="form-control select2" name="question_5">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_5 == "1") {{'selected'}}@endif>Education</option>
-												<option value="2" @if($editVoter->question_5 == "2") {{'selected'}}@endif>Employment</option>
-												<option value="3" @if($editVoter->question_5 == "3") {{'selected'}}@endif>Cleanliness</option>
-												<option value="4" @if($editVoter->question_5 == "4") {{'selected'}}@endif>Environment</option>
-												<option value="5" @if($editVoter->question_5 == "5") {{'selected'}}@endif>Crime</option>
-											</select>
-										</div>
-									</div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Voted Last Election?</label>
+                                            <select class="form-control select2" name="question_1">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_1 == "1") {{'selected'}}@endif>Yes</option>
+                                                <option value="0" @if($editVoter->question_1 == "0") {{'selected'}}@endif>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Reason for not voting in last election?</label>
+                                            <select class="form-control select2" name="question_2">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_2 == "1") {{'selected'}}@endif>Moved to new location</option>
+                                                <option value="2" @if($editVoter->question_2 == "2") {{'selected'}}@endif>Not of age</option>
+                                                <option value="3" @if($editVoter->question_2 == "3") {{'selected'}}@endif>Not interested</option>
+                                                <option value="4" @if($editVoter->question_2 == "4") {{'selected'}}@endif>Lost faith in process</option>
+                                                <option value="5" @if($editVoter->question_2 == "5") {{'selected'}}@endif>Not enough education/information</option>
+                                                <option value="6" @if($editVoter->question_2 == "6") {{'selected'}}@endif>Sickness</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Whom did you vote for in the last election?</label>
+                                            <select class="form-control select2" name="question_3">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_3 == "1") {{'selected'}}@endif>Patry A</option>
+                                                <option value="2" @if($editVoter->question_3 == "2") {{'selected'}}@endif>Party B</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">What party are you sympathetic to?</label>
+                                            <select class="form-control select2" name="question_4">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_4 == "1") {{'selected'}}@endif>Patry A</option>
+                                                <option value="2" @if($editVoter->question_4 == "2") {{'selected'}}@endif>Party B</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">What things are important to you that you think the government Should provide?</label>
+                                            <select class="form-control select2" name="question_5">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_5 == "1") {{'selected'}}@endif>Education</option>
+                                                <option value="2" @if($editVoter->question_5 == "2") {{'selected'}}@endif>Employment</option>
+                                                <option value="3" @if($editVoter->question_5 == "3") {{'selected'}}@endif>Cleanliness</option>
+                                                <option value="4" @if($editVoter->question_5 == "4") {{'selected'}}@endif>Environment</option>
+                                                <option value="5" @if($editVoter->question_5 == "5") {{'selected'}}@endif>Crime</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Moved from a registered ward to a new one?</label>
-											<select class="form-control select2" name="question_6">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_6 == "1") {{'selected'}}@endif>Yes</option>
-												<option value="0" @if($editVoter->question_6 == "0") {{'selected'}}@endif>No</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">If yes, Have you registered in the new ward?</label>
-											<select class="form-control select2" name="question_7">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_7 == "1") {{'selected'}}@endif>Yes</option>
-												<option value="0" @if($editVoter->question_7 == "0") {{'selected'}}@endif>No</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Have you registered for the Feb 2022 elections?</label>
-											<select class="form-control select2" name="question_8">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_8 == "1") {{'selected'}}@endif>Yes</option>
-												<option value="0" @if($editVoter->question_8 == "0") {{'selected'}}@endif>No</option>
-											</select>
-										</div>
-									</div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Moved from a registered ward to a new one?</label>
+                                            <select class="form-control select2" name="question_6">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_6 == "1") {{'selected'}}@endif>Yes</option>
+                                                <option value="0" @if($editVoter->question_6 == "0") {{'selected'}}@endif>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">If yes, Have you registered in the new ward?</label>
+                                            <select class="form-control select2" name="question_7">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_7 == "1") {{'selected'}}@endif>Yes</option>
+                                                <option value="0" @if($editVoter->question_7 == "0") {{'selected'}}@endif>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Have you registered for the Feb 2022 elections?</label>
+                                            <select class="form-control select2" name="question_8">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_8 == "1") {{'selected'}}@endif>Yes</option>
+                                                <option value="0" @if($editVoter->question_8 == "0") {{'selected'}}@endif>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-									<div class="col-lg-4">
-										<div class="form-group">
-											<label class="form-label">Would you like to support a deserving candidate via donations?</label>
-											<select class="form-control select2" name="question_9">
-												<option value="">-- Select --</option>
-												<option value="1" @if($editVoter->question_9 == "1") {{'selected'}}@endif>Yes</option>
-												<option value="0" @if($editVoter->question_9 == "0") {{'selected'}}@endif>No</option>
-											</select>
-										</div>
-									</div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Would you like to support a deserving candidate via donations?</label>
+                                            <select class="form-control select2" name="question_9">
+                                                <option value="">-- Select --</option>
+                                                <option value="1" @if($editVoter->question_9 == "1") {{'selected'}}@endif>Yes</option>
+                                                <option value="0" @if($editVoter->question_9 == "0") {{'selected'}}@endif>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-									<div class="col-12 mb-2 mt-2">
-										<button class="btn btn-primary createVoter" type="button">Save and Next</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                                    <div class="col-12 mb-2 mt-2">
+                                        <button class="btn btn-primary createVoter" type="button">Save and Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- Bootstrap5 js-->
@@ -517,124 +517,125 @@
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(document).on('click', '#addFileData', function(e) {
-		e.preventDefault();
-		var formData = new FormData($('#fileDataForm')[0]);
+$(document).on('click', '#addFileData', function (e) {
+    e.preventDefault();
+    var formData = new FormData($('#fileDataForm')[0]);
 
-		$.ajax({
-			url: "{{ route('fileUpload') }}",
-			method: 'POST',
-			data: formData,
-			dataType: "json",
-			contentType: false,
-			processData: false,
-			success: function(response) {
-				if (response.code == 200) {
-					location.reload();
-				} else {}
-			},
-		});
-	});
+    $.ajax({
+        url: "{{ route('fileUpload') }}",
+        method: 'POST',
+        data: formData,
+        dataType: "json",
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response.code == 200) {
+                location.reload();
+            } else {
+            }
+        },
+    });
+});
 
-	$(document).on('click', '.createVoter', function(e) {
-		e.preventDefault();
-		var formData = new FormData($('#createVoterForm')[0]);
+$(document).on('click', '.createVoter', function (e) {
+    e.preventDefault();
+    var formData = new FormData($('#createVoterForm')[0]);
 
-		$.ajax({
-			url: "{{ route('store_voter') }}",
-			method: 'POST',
-			data: formData,
-			dataType: "json",
-			contentType: false,
-			processData: false,
-			success: function(response) {
-				if (response.code == 200) {
-					$(".error").html('');
-					window.location.href = "{{ route('voters-analysis') }}";
-				} else {
-					$("#login_error").text(response.message);
-				}
-			},
-		});
-	});
+    $.ajax({
+        url: "{{ route('store_voter') }}",
+        method: 'POST',
+        data: formData,
+        dataType: "json",
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response.code == 200) {
+                $(".error").html('');
+                window.location.href = "{{ route('voters-analysis') }}";
+            } else {
+                $("#login_error").text(response.message);
+            }
+        },
+    });
+});
 
-	$(document).ready(function() {
-		$('.btnNext').click(function() {
-			$('.panel-tabs .active').parent().next('li').find('a').trigger('click');
-		});
+$(document).ready(function () {
+    $('.btnNext').click(function () {
+        $('.panel-tabs .active').parent().next('li').find('a').trigger('click');
+    });
 
-		$('.btnPrevious').click(function() {
-			$('.panel-tabs .active').parent().prev('li').find('a').trigger('click');
-		});
-	});
+    $('.btnPrevious').click(function () {
+        $('.panel-tabs .active').parent().prev('li').find('a').trigger('click');
+    });
+});
 
-	$("#select_state").change(function () {
-		var state = this.value;
-		var _token = $('input[name="_token"]').val();
-		var str = "";
+$("#select_state").change(function () {
+    var state = this.value;
+    var _token = $('input[name="_token"]').val();
+    var str = "";
 
-		if (state != '') {
-			$.ajax({
-					type: "post",
-					url: "{{ route('admin.getRecords') }}",
-					datatype: "json",
-					data: {value: state, from: 'state', _token: _token},
-					success: function (response) {
-						$('#select_lga').html('<option value="">Select Local Government</option>');
-						$.each(response.success, function (key, value) {
-							$("#select_lga").append('<option value="' + value.id + '">' + value.name + '</option>');
-						});
-					}
-			});
-		} else {
-			$('#select_lga').html('');
-		}
-	});
+    if (state != '') {
+        $.ajax({
+            type: "post",
+            url: "{{ route('admin.getRecords') }}",
+            datatype: "json",
+            data: {value: state, from: 'state', _token: _token},
+            success: function (response) {
+                $('#select_lga').html('<option value="">Select Local Government</option>');
+                $.each(response.success, function (key, value) {
+                    $("#select_lga").append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            }
+        });
+    } else {
+        $('#select_lga').html('');
+    }
+});
 
-	$("#select_lga").change(function () {
-		var state = this.value;
-		var _token = $('input[name="_token"]').val();
-		var str = "";
+$("#select_lga").change(function () {
+    var state = this.value;
+    var _token = $('input[name="_token"]').val();
+    var str = "";
 
-		if (state != '') {
-			$.ajax({
-					type: "post",
-					url: "{{ route('admin.getRecords') }}",
-					datatype: "json",
-					data: {value: state, from: 'lga', _token: _token},
-					success: function (response) {
-						$('#select_ward').html('<option value="">Select Ward</option>');
-						$.each(response.success, function (key, value) {
-							$("#select_ward").append('<option value="' + value.id + '">' + value.name + '</option>');
-						});
-					}
-			});
-		} else {
-			$('#select_ward').html('');
-		}
-	});
+    if (state != '') {
+        $.ajax({
+            type: "post",
+            url: "{{ route('admin.getRecords') }}",
+            datatype: "json",
+            data: {value: state, from: 'lga', _token: _token},
+            success: function (response) {
+                $('#select_ward').html('<option value="">Select Ward</option>');
+                $.each(response.success, function (key, value) {
+                    $("#select_ward").append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            }
+        });
+    } else {
+        $('#select_ward').html('');
+    }
+});
 
-	$("#select_ward").change(function () {
-		var ward = this.value;
-		var _token = $('input[name="_token"]').val();
-		var str = "";
+$("#select_ward").change(function () {
+    var ward = this.value;
+    var _token = $('input[name="_token"]').val();
+    var str = "";
 
-		if (ward != '') {
-			$.ajax({
-					type: "post",
-					url: "{{ route('admin.getRecords') }}",
-					datatype: "json",
-					data: {value: ward, from: 'ward', _token: _token},
-					success: function (response) {
-						$('#select_cell').html('<option value="">Select Cell</option>');
-						$.each(response.success, function (key, value) {
-							$("#select_cell").append('<option value="' + value.id + '">' + value.name + '</option>');
-						});
-					}
-			});
-		} else {
-			$('#select_cell').html('');
-		}
-	});
+    if (ward != '') {
+        $.ajax({
+            type: "post",
+            url: "{{ route('admin.getRecords') }}",
+            datatype: "json",
+            data: {value: ward, from: 'ward', _token: _token},
+            success: function (response) {
+                $('#select_cell').html('<option value="">Select Cell</option>');
+                $.each(response.success, function (key, value) {
+                    $("#select_cell").append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            }
+        });
+    } else {
+        $('#select_cell').html('');
+    }
+});
 </script>
 @endsection

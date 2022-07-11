@@ -113,7 +113,7 @@
                     <!-- End Row-1 -->
 
                     <!-- Row -->
-                    <form method="POST" action="{{ route('voters-analysis') }}">
+                    <form method="POST" id="generatePDF" action="{{ route('voters-analysis') }}">
                         @csrf
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
@@ -418,7 +418,7 @@
                                                                     <label class="form-label">State</label>
                                                                     <select class="form-control"
                                                                         data-placeholder="Choose one (with searchbox)" name="filter_state">
-                                                                        <option>Select State</option>
+                                                                        <option value="">Select State</option>
                                                                         @if(!empty($stateList))
                                                                             @foreach($stateList as $state)
                                                                                 <option value="{{ $state->id }}" @if($searchResult['filter_state'] == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
@@ -432,7 +432,7 @@
                                                                     <label class="form-label">LGA</label>
                                                                     <select class="form-control"
                                                                         data-placeholder="Choose one (with searchbox)" name="filter_lga">
-                                                                        <option>Select LGA</option>
+                                                                        <option value="">Select LGA</option>
                                                                         @if(!empty($lgaList))
                                                                             @foreach($lgaList as $lga)
                                                                                 <option value="{{ $lga->id }}" @if($searchResult['filter_lga'] == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
@@ -446,7 +446,7 @@
                                                                     <label class="form-label">Ward</label>
                                                                     <select class="form-control"
                                                                         data-placeholder="Choose one (with searchbox)" name="filter_ward">
-                                                                        <option>Select Ward</option>
+                                                                        <option value="">Select Ward</option>
                                                                         @if(!empty($wardList))
                                                                             @foreach($wardList as $ward)
                                                                                 <option value="{{ $ward->id }}" @if($searchResult['filter_ward'] == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
@@ -647,7 +647,7 @@
                                                         <div class="card-body">
                                                             <div class="all_buttons_datatable">
                                                                 <ul>
-                                                                    <li><a href="{{route('download_pdf_voters')}}"
+                                                                    <li><a href="javascript:void(0)" id="downloadPDF"
                                                                             class="datatable_buttons btn btn-primary">Generate PDF</a>
                                                                     </li>
                                                                     <li><button type="button"
@@ -882,6 +882,29 @@
                     if(response.code == 1){
                         location.reload();
                     }
+                }
+            });
+        });
+
+        $("#downloadPDF").click(function(){
+            var formData = new FormData($('#generatePDF')[0]);
+
+            $.ajax({
+                type: 'POST',
+                url: "{{route('download_pdf_voters')}}",
+                data: formData,
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function(response){
+                    var blob = new Blob([response]);
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "Sample.pdf";
+                    link.click();
+                },
+                error: function(blob){
+                    console.log(blob);
                 }
             });
         });

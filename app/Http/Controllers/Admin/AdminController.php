@@ -373,6 +373,10 @@ class AdminController extends Controller
         }
 
         $voterList = $voterList->where('is_delete', '0')->paginate(5);
+//        echo "<pre>";
+// print_r($voterList);
+// echo "</pre>";
+//    die;
 $voterListPrint = Voter::select('*');
 
         $searchResult['fname'] = '';
@@ -613,13 +617,145 @@ $voterListPrint = Voter::select('*');
         ->leftJoin('cell_coordinator', 'cell_coordinator.id', '=', 'voter.cell')
         ->leftJoin('ward_coordinator', 'ward_coordinator.id', '=', 'voter.ward')
         ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'voter.lga')
-        ->leftJoin('state_co', 'state_co.id', '=', 'voter.state')
-        ->where('voter.is_delete', '0')
-        ->get();
+        ->leftJoin('state_co', 'state_co.id', '=', 'voter.state');
+
+        $searchResult['fname'] = '';
+        if (!empty($request->fname)) {
+            $searchResult['fname']    = $request->fname;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.fname', 'LIKE', "%{$request->fname}%");
+            });
+        }
+
+        $searchResult['mname'] = '';
+        if (!empty($request->mname)) {
+            $searchResult['mname']    = $request->mname;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.mname', 'LIKE', "%{$request->mname}%");
+            });
+        }
+
+        $searchResult['lname'] = '';
+        if (!empty($request->lname)) {
+            $searchResult['lname']    = $request->lname;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.lname', 'LIKE', "%{$request->lname}%");
+            });
+        }
+
+        $searchResult['gender'] = '';
+        if (!empty($request->gender)) {
+            $searchResult['gender']    = $request->gender;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.gender', 'LIKE', "%{$request->gender}%");
+            });
+        }
+
+        $searchResult['is_mobile'] = '';
+        if (!empty($request->is_mobile)) {
+            $searchResult['is_mobile']    = $request->is_mobile;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.is_mobile', '=', $request->is_mobile);
+            });
+        }
+
+        $searchResult['mobile'] = '';
+        if (!empty($request->mobile)) {
+            $searchResult['mobile']    = $request->mobile;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.mobile', 'LIKE', "%{$request->mobile}%");
+            });
+        }
+
+        $searchResult['email'] = '';
+        if (!empty($request->email)) {
+            $searchResult['email']    = $request->email;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.email', 'LIKE', "%{$request->email}%");
+            });
+        }
+
+        $searchResult['filter_state'] = '';
+        if (!empty($request->filter_state)) {
+            $searchResult['filter_state']    = $request->filter_state;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.state', '=', $request->filter_state);
+            });
+        }
+
+        $searchResult['filter_lga'] = '';
+        if (!empty($request->filter_lga)) {
+            $searchResult['filter_lga']    = $request->filter_lga;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.lga', '=', $request->filter_lga);
+            });
+        }
+
+        $searchResult['filter_ward'] = '';
+        if (!empty($request->filter_ward)) {
+            $searchResult['filter_ward']    = $request->filter_ward;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.ward', '=', $request->filter_ward);
+            });
+        }
+
+        $searchResult['insta_filter'] = '';
+        if (!empty($request->insta_filter)) {
+            $searchResult['insta_filter']    = $request->insta_filter;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.insta', '!=', '');
+            });
+        }
+
+        $searchResult['twitter_filter'] = '';
+        if (!empty($request->twitter_filter)) {
+            $searchResult['twitter_filter']    = $request->twitter_filter;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.twitter', '!=', '');
+            });
+        }
+
+        $searchResult['fb_filter'] = '';
+        if (!empty($request->fb_filter)) {
+            $searchResult['fb_filter']    = $request->fb_filter;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.fb', '!=', '');
+            });
+        }
+
+        $searchResult['is_pvc'] = '';
+        if (!empty($request->is_pvc)) {
+            $searchResult['is_pvc']    = $request->is_pvc;
+            $voterList = $voterList->where(function ($query) use ($request) {
+                $query->orWhere('voter.is_pvc', '=', $request->is_pvc);
+            });
+        }
+
+        if(Session::get('type') == "lga") {
+            $voterList = $voterList->where('voter.lga', $userLoginID);
+        } else if(Session::get('type') == "state") {
+            $voterList = $voterList->where('voter.state', $userLoginID);
+        } else if(Session::get('type') == "ward") {
+            $voterList = $voterList->where('voter.ward', $userLoginID);
+        } else if(Session::get('type') == "cell") {
+            $voterList = $voterList->where('voter.cell', $userLoginID);
+        }
+
+        $voterList = $voterList->where('voter.is_delete', '0')->get();
+        
         $data = ['voterList' => $voterList];
         $pdf = PDF::loadView('admin.download_voters', $data);
         
-        return $pdf->download('download_voter_list.pdf');
+        // return $pdf->download('download_voter_list.pdf');
+
+        // $pdf = PDF::loadView('pdf.pdf');
+
+        $path = public_path('pdf/');
+        $fileName =  time().'.'. 'pdf' ;
+        $pdf->save($path . '/' . $fileName);
+
+        $pdf = public_path('pdf/'.$fileName);
+        return response()->download($pdf);
     }
 
     public function voterDelete(Request $request)

@@ -38,7 +38,7 @@
                                     <td><p>{{ $voter->fname }} {{ $voter->mname }} {{ $voter->lname }}</p>
                                         <p>Gender:{{ $voter->gender }}  Date of birth:{{ $voter->dob }}</p>
                                         <p>Mobile:{{ $voter->mobile }} </p>
-                                        <p>Mobile:{{ $voter->email }} </p>
+                                        <p>Email:{{ $voter->email }} </p>
                                     </td>
                                     <td>
                                         <p>State: {{ $voter->state_name }}</p>

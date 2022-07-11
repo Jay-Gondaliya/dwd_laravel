@@ -58,7 +58,7 @@
             </a>
         </div>
     @endif
-    @if(Session::has('type') && ((Session::get('type') == 'national') || (Session::get('type') == 'state')) || (Session::get('type') == 'ward'))
+    @if(Session::has('type') && ((Session::get('type') == 'national') || (Session::get('type') == 'state')) ||  (Session::get('type') == 'lga') || (Session::get('type') == 'ward'))
         <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
             <a href="{{route('admin.cell_coordinatorlist')}}">
                 <div class="card overflow-hidden dash1-card border-0 dash4">

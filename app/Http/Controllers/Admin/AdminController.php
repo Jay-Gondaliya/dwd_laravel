@@ -672,6 +672,7 @@ class AdminController extends Controller
     public function downloadPdfVoters(Request $request)
     {
         if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
             $title = "Voter List";
             $voterList = Voter::select('voter.*', 'cell_coordinator.fname as cell_name', 'ward_coordinator.fname as wardname', 'lga_coordinator.fname as lga_name', 'state_co.fname as state_name')
             ->leftJoin('cell_coordinator', 'cell_coordinator.id', '=', 'voter.cell')

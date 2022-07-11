@@ -170,7 +170,7 @@ class WardCoordinatorController extends Controller
         } else if ($from == 'lga') {
             /* getting ward from lga */
             if($userType=='ward'){
-                $lgaLevel = WardCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
+                $wardList = WardCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
             }else{
                 $wardList = WardCoordinator::where([['lga_id', '=', $value], ['is_delete', '=', '0']])->get();
             }

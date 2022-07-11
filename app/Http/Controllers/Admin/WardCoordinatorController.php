@@ -15,41 +15,49 @@ class WardCoordinatorController extends Controller
 {
     public function wardCoordinatorList()
     {
-        $userLoginID = Session::get('tenant')['id'];
-        // print_r($userLoginID);exit;
-        $title = "Ward Coordinator List";
-        $wardList = WardCoordinator::select('ward_coordinator.*','lga_coordinator.fname as lga_name')
-        ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'ward_coordinator.lga_id');
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            // print_r($userLoginID);exit;
+            $title = "Ward Coordinator List";
+            $wardList = WardCoordinator::select('ward_coordinator.*','lga_coordinator.fname as lga_name')
+            ->leftJoin('lga_coordinator', 'lga_coordinator.id', '=', 'ward_coordinator.lga_id');
 
-        if(Session::get('type') == "lga") {
-            $wardList = $wardList->where('ward_coordinator.lga_id', $userLoginID);
-        } else if(Session::get('type') == "state") {
-            $wardList = $wardList->where('ward_coordinator.state_id', $userLoginID);
+            if(Session::get('type') == "lga") {
+                $wardList = $wardList->where('ward_coordinator.lga_id', $userLoginID);
+            } else if(Session::get('type') == "state") {
+                $wardList = $wardList->where('ward_coordinator.state_id', $userLoginID);
+            }
+
+            $wardList = $wardList->where('ward_coordinator.is_delete', '0')->paginate(5);
+            return view('admin.ward.index', compact('title', 'wardList'));
+        } else {
+            return redirect()->route('index');
         }
-
-        $wardList = $wardList->where('ward_coordinator.is_delete', '0')->paginate(5);
-        return view('admin.ward.index', compact('title', 'wardList'));
     }
 
     public function addWardCoordinator()
     {   
-        $userLoginID = Session::get('tenant')['id'];
-        
-        $userType = Session::get('type');
-        if($userType!='national'){
-            if($userType!='state'){
-                $userStateID = Session::get('tenant')['state_id'];
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            
+            $userType = Session::get('type');
+            if($userType!='national'){
+                if($userType!='state'){
+                    $userStateID = Session::get('tenant')['state_id'];
+                }else{
+                    $userStateID = Session::get('tenant')['id'];
+                }
+                $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
             }else{
-                $userStateID = Session::get('tenant')['id'];
+                $stateList = StateCoordinator::where('is_delete', '0')->get();
             }
-            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-        }else{
-            $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $title = "Add Ward Coordinator";
+            
+            $editWardCoordinator = new WardCoordinator;
+            return view('admin.ward.create', compact('title', 'editWardCoordinator', 'stateList'));
+        } else {
+            return redirect()->route('index');
         }
-        $title = "Add Ward Coordinator";
-        
-        $editWardCoordinator = new WardCoordinator;
-        return view('admin.ward.create', compact('title', 'editWardCoordinator', 'stateList'));
     }
 
     public function storeWardCoordinator(Request $request)
@@ -106,24 +114,28 @@ class WardCoordinatorController extends Controller
 
     public function editWardCoordinator($id)
     {   
-        $userLoginID = Session::get('tenant')['id'];
-        
-        $userType = Session::get('type');
-        if($userType!='national'){
-            if($userType!='state'){
-                $userStateID = Session::get('tenant')['state_id'];
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            
+            $userType = Session::get('type');
+            if($userType!='national'){
+                if($userType!='state'){
+                    $userStateID = Session::get('tenant')['state_id'];
+                }else{
+                    $userStateID = Session::get('tenant')['id'];
+                }
+                $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
             }else{
-                $userStateID = Session::get('tenant')['id'];
+                $stateList = StateCoordinator::where('is_delete', '0')->get();
             }
-            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-        }else{
-            $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $editWardCoordinator = WardCoordinator::where('id', $id)->first();
+    //        $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $lgaList = LGACoordinator::where([['state_id', '=', $editWardCoordinator->state_id], ['is_delete', '=', '0']])->get();
+            $title = "Edit Ward Coordinator";
+            return view('admin.ward.create', compact('editWardCoordinator', 'title', 'stateList', 'lgaList'));
+        } else {
+            return redirect()->route('index');
         }
-        $editWardCoordinator = WardCoordinator::where('id', $id)->first();
-//        $stateList = StateCoordinator::where('is_delete', '0')->get();
-        $lgaList = LGACoordinator::where([['state_id', '=', $editWardCoordinator->state_id], ['is_delete', '=', '0']])->get();
-        $title = "Edit Ward Coordinator";
-        return view('admin.ward.create', compact('editWardCoordinator', 'title', 'stateList', 'lgaList'));
     }
 
     public function deleteWardCoordinator(Request $request)

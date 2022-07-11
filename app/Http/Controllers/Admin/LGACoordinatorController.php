@@ -13,39 +13,47 @@ class LGACoordinatorController extends Controller
 {
     public function lgaCoordinatorList()
     {
-        $userLoginID = Session::get('tenant')['id'];
-        $title = "LGA Coordinator List";
-        $lgaList = LGACoordinator::select('lga_coordinator.*','state_co.fname as state_name')
-        ->leftJoin('state_co', 'state_co.id', '=', 'lga_coordinator.state_id');
-        
-        if(Session::get('type') == "state") {
-            $lgaList = $lgaList->where('lga_coordinator.state_id', $userLoginID);
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            $title = "LGA Coordinator List";
+            $lgaList = LGACoordinator::select('lga_coordinator.*','state_co.fname as state_name')
+            ->leftJoin('state_co', 'state_co.id', '=', 'lga_coordinator.state_id');
+            
+            if(Session::get('type') == "state") {
+                $lgaList = $lgaList->where('lga_coordinator.state_id', $userLoginID);
+            }
+
+            $lgaList = $lgaList->where('lga_coordinator.is_delete', '0')->paginate(5);
+
+            return view('admin.lga.index', compact('title', 'lgaList'));
+        } else {
+            return redirect()->route('index');
         }
-
-        $lgaList = $lgaList->where('lga_coordinator.is_delete', '0')->paginate(5);
-
-        return view('admin.lga.index', compact('title', 'lgaList'));
     }
 
     public function addLGACoordinator()
     {
-        $userLoginID = Session::get('tenant')['id'];
-        
-        $userType = Session::get('type');
-        if($userType!='national'){
-            if($userType!='state'){
-                $userStateID = Session::get('tenant')['state_id'];
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            
+            $userType = Session::get('type');
+            if($userType!='national'){
+                if($userType!='state'){
+                    $userStateID = Session::get('tenant')['state_id'];
+                }else{
+                    $userStateID = Session::get('tenant')['id'];
+                }
+                $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
             }else{
-                $userStateID = Session::get('tenant')['id'];
+                $stateList = StateCoordinator::where('is_delete', '0')->get();
             }
-            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-        }else{
-            $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $title = "Add LGA Coordinator";
+    //        $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $editLGACoordinator = new LGACoordinator;
+            return view('admin.lga.create', compact('title', 'editLGACoordinator', 'stateList'));
+        } else {
+            return redirect()->route('index');
         }
-        $title = "Add LGA Coordinator";
-//        $stateList = StateCoordinator::where('is_delete', '0')->get();
-        $editLGACoordinator = new LGACoordinator;
-        return view('admin.lga.create', compact('title', 'editLGACoordinator', 'stateList'));
     }
 
     public function storeLGACoordinator(Request $request)
@@ -100,23 +108,27 @@ class LGACoordinatorController extends Controller
 
     public function editLGACoordinator($id)
     {
-        $userLoginID = Session::get('tenant')['id'];
-        
-        $userType = Session::get('type');
-        if($userType!='national'){
-            if($userType!='state'){
-                $userStateID = Session::get('tenant')['state_id'];
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            
+            $userType = Session::get('type');
+            if($userType!='national'){
+                if($userType!='state'){
+                    $userStateID = Session::get('tenant')['state_id'];
+                }else{
+                    $userStateID = Session::get('tenant')['id'];
+                }
+                $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
             }else{
-                $userStateID = Session::get('tenant')['id'];
+                $stateList = StateCoordinator::where('is_delete', '0')->get();
             }
-            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-        }else{
-            $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $editLGACoordinator = LGACoordinator::where('id', $id)->first();
+    //        $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $title = "Edit LGA Coordinator";
+            return view('admin.lga.create', compact('editLGACoordinator', 'title', 'stateList'));
+        } else {
+            return redirect()->route('index');
         }
-        $editLGACoordinator = LGACoordinator::where('id', $id)->first();
-//        $stateList = StateCoordinator::where('is_delete', '0')->get();
-        $title = "Edit LGA Coordinator";
-        return view('admin.lga.create', compact('editLGACoordinator', 'title', 'stateList'));
     }
 
     public function deleteLGACoordinator(Request $request)

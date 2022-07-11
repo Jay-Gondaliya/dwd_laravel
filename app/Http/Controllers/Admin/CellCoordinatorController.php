@@ -15,43 +15,51 @@ class CellCoordinatorController extends Controller
 {
     public function cellCoordinatorList()
     {
-        $userLoginID = Session::get('tenant')['id'];
-        $title = "Cell Coordinator List";
-        $cellList = CellCoordinator::select('cell_coordinator.*','ward_coordinator.fname as wardname')
-        ->leftJoin('ward_coordinator', 'ward_coordinator.id', '=', 'cell_coordinator.ward_id');
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            $title = "Cell Coordinator List";
+            $cellList = CellCoordinator::select('cell_coordinator.*','ward_coordinator.fname as wardname')
+            ->leftJoin('ward_coordinator', 'ward_coordinator.id', '=', 'cell_coordinator.ward_id');
 
-        if(Session::get('type') == "lga") {
-            $cellList = $cellList->where('cell_coordinator.lga_id', $userLoginID);
-        } else if(Session::get('type') == "state") {
-            $cellList = $cellList->where('cell_coordinator.state_id', $userLoginID);
-        } else if(Session::get('type') == "ward") {
-            $cellList = $cellList->where('cell_coordinator.ward_id', $userLoginID);
+            if(Session::get('type') == "lga") {
+                $cellList = $cellList->where('cell_coordinator.lga_id', $userLoginID);
+            } else if(Session::get('type') == "state") {
+                $cellList = $cellList->where('cell_coordinator.state_id', $userLoginID);
+            } else if(Session::get('type') == "ward") {
+                $cellList = $cellList->where('cell_coordinator.ward_id', $userLoginID);
+            }
+
+            $cellList = $cellList->where('cell_coordinator.is_delete', '0')->paginate(5);
+
+            return view('admin.cell.index', compact('title', 'cellList'));
+        } else {
+            return redirect()->route('index');
         }
-
-        $cellList = $cellList->where('cell_coordinator.is_delete', '0')->paginate(5);
-
-        return view('admin.cell.index', compact('title', 'cellList'));
     }
 
     public function addCellCoordinator()
     {
-        $userLoginID = Session::get('tenant')['id'];
-        
-        $userType = Session::get('type');
-        if($userType!='national'){
-            if($userType!='state'){
-                $userStateID = Session::get('tenant')['state_id'];
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            
+            $userType = Session::get('type');
+            if($userType!='national'){
+                if($userType!='state'){
+                    $userStateID = Session::get('tenant')['state_id'];
+                }else{
+                    $userStateID = Session::get('tenant')['id'];
+                }
+                $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
             }else{
-                $userStateID = Session::get('tenant')['id'];
+                $stateList = StateCoordinator::where('is_delete', '0')->get();
             }
-            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-        }else{
-            $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $title = "Add Cell Coordinator";
+            
+            $editCellCoordinator = new CellCoordinator;
+            return view('admin.cell.create', compact('title', 'editCellCoordinator', 'stateList'));
+        } else {
+            return redirect()->route('index');
         }
-        $title = "Add Cell Coordinator";
-        
-        $editCellCoordinator = new CellCoordinator;
-        return view('admin.cell.create', compact('title', 'editCellCoordinator', 'stateList'));
     }
 
     public function storeCellCoordinator(Request $request)
@@ -110,25 +118,29 @@ class CellCoordinatorController extends Controller
 
     public function editCellCoordinator($id)
     { 
-        $userLoginID = Session::get('tenant')['id'];
-        
-        $userType = Session::get('type');
-        if($userType!='national'){
-            if($userType!='state'){
-                $userStateID = Session::get('tenant')['state_id'];
+        if(!empty(Session::get('tenant')['id'])) {
+            $userLoginID = Session::get('tenant')['id'];
+            
+            $userType = Session::get('type');
+            if($userType!='national'){
+                if($userType!='state'){
+                    $userStateID = Session::get('tenant')['state_id'];
+                }else{
+                    $userStateID = Session::get('tenant')['id'];
+                }
+                $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
             }else{
-                $userStateID = Session::get('tenant')['id'];
+                $stateList = StateCoordinator::where('is_delete', '0')->get();
             }
-            $stateList = StateCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-        }else{
-            $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $editCellCoordinator = CellCoordinator::where('id', $id)->first();
+            //        $stateList = StateCoordinator::where('is_delete', '0')->get();
+            $lgaList = LGACoordinator::where([['state_id', '=', $editCellCoordinator->state_id], ['is_delete', '=', '0']])->get();
+            $wardList = WardCoordinator::where([['lga_id', '=', $editCellCoordinator->lga_id], ['is_delete', '=', '0']])->get();
+            $title = "Edit Cell Coordinator";
+            return view('admin.cell.create', compact('editCellCoordinator', 'title', 'stateList', 'lgaList', 'wardList'));
+        } else {
+            return redirect()->route('index');
         }
-        $editCellCoordinator = CellCoordinator::where('id', $id)->first();
-//        $stateList = StateCoordinator::where('is_delete', '0')->get();
-        $lgaList = LGACoordinator::where([['state_id', '=', $editCellCoordinator->state_id], ['is_delete', '=', '0']])->get();
-        $wardList = WardCoordinator::where([['lga_id', '=', $editCellCoordinator->lga_id], ['is_delete', '=', '0']])->get();
-        $title = "Edit Cell Coordinator";
-        return view('admin.cell.create', compact('editCellCoordinator', 'title', 'stateList', 'lgaList', 'wardList'));
     }
 
     public function deleteCellCoordinator(Request $request)

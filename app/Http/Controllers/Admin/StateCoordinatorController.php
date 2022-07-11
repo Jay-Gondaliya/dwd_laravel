@@ -11,16 +11,24 @@ class StateCoordinatorController extends Controller
 {
     public function stateCoordinatorList()
     {
-        $title = "State Coordinator List";
-        $stateList = StateCoordinator::where('is_delete', '0')->paginate(5);
-        return view('admin.state.index', compact('title', 'stateList'));
+        if(!empty(Session::get('tenant')['id'])) {
+            $title = "State Coordinator List";
+            $stateList = StateCoordinator::where('is_delete', '0')->paginate(5);
+            return view('admin.state.index', compact('title', 'stateList'));
+        } else {
+            return redirect()->route('index');
+        }
     }
 
     public function addStateCoordinator()
     {
-        $title = "Add State Coordinator";
-        $editStateCoordinator = new StateCoordinator;
-        return view('admin.state.create', compact('title', 'editStateCoordinator'));
+        if(!empty(Session::get('tenant')['id'])) {
+            $title = "Add State Coordinator";
+            $editStateCoordinator = new StateCoordinator;
+            return view('admin.state.create', compact('title', 'editStateCoordinator'));
+        } else {
+            return redirect()->route('index');
+        }
     }
 
     public function storeStateCoordinator(Request $request)
@@ -73,9 +81,13 @@ class StateCoordinatorController extends Controller
 
     public function editStateCoordinator($id)
     {
-        $editStateCoordinator = StateCoordinator::where('id', $id)->first();
-        $title = "Edit State Coordinator";
-        return view('admin.state.create', compact('editStateCoordinator', 'title'));
+        if(!empty(Session::get('tenant')['id'])) {
+            $editStateCoordinator = StateCoordinator::where('id', $id)->first();
+            $title = "Edit State Coordinator";
+            return view('admin.state.create', compact('editStateCoordinator', 'title'));
+        } else {
+            return redirect()->route('index');
+        }
     }
 
     public function deleteStateCoordinator(Request $request)

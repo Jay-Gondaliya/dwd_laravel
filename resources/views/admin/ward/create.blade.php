@@ -48,7 +48,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="validationCustom01" class="form-label">First Name</label>
-                                <input type="text" class="form-control" placeholder="First Name" name="fname" value="{{ $editWardCoordinator->fname }}" required>
+                                <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" value="{{ $editWardCoordinator->fname }}" required>
                                 <span class="text-danger error" id="ward_fname"></span>
                             </div>
                         </div>
@@ -69,15 +69,20 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="validationCustom01" class="form-label">Username</label>
-                                <input type="text" class="form-control" placeholder="Username" name="username" value="{{ $editWardCoordinator->username }}" required>
+                                <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editWardCoordinator->username }}" required>
                                 <span class="text-danger error" id="ward_username"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="validationCustom01" class="form-label">Password</label>
-                                <input type="password" class="form-control" placeholder="Password" name="password" required>
-                                <span class="text-danger error" id="ward_password"></span>
+                            <div class="row">
+                                <div class="col-md-8 form-group">
+                                    <label for="validationCustom01" class="form-label">Password</label>
+                                    <input type="text" class="form-control" placeholder="Password" id="password" name="password" required>
+                                    <span class="text-danger error" id="ward_password"></span>
+                                </div>
+                                <div class="col-md-4 mt-3 form-group">
+                                    <a href="javascript:void(0)" id="gen_code" class="btn btn-success mt-4"><i class="fa fa-refresh"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -220,5 +225,34 @@
 			},
 		});
 	});
+
+    function makepassword(length) {
+        var result = '';
+        var characters = '!~@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
+    $(document).on('click','#gen_code',function() {
+        $('#password').val(makepassword(8));
+    });
+
+    function makeusername(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
+    $('#fname').keyup(function() {
+        var fname = $(this).val();
+        $('#username').val(fname+"_"+makeusername(5));
+    });
 </script>
 @endsection

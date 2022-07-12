@@ -122,205 +122,207 @@
                                         <h3 class="card-title">Filters</h3>
                                     </div>
                                     <div class="card-body p-3">
-                                        <div class="panel panel-primary">
-                                            <div class="tab_wrapper first_tab">
-                                                <ul class="tab_list">
-                                                    <li class="">Personal Info</li>
-                                                    <li>Contact Info</li>
-                                                    <li>Location</li>
-                                                    <li>Social Media</li>
-                                                    <li>Voter Mobilization</li>
-                                                    <li>Voter Engagement</li>
-                                                </ul>
-                                                <div class="content_wrapper">
-                                                    <div class="tab_content active mobile_p_10">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="card">
-                                                                    <div class="card-body p-3">
-                                                                        <div class="panel panel-primary">
-                                                                            <div class=" tab-menu-heading p-0 bg-light">
-                                                                                <div class="tabs-menu1 ">
-                                                                                    <!-- Tabs -->
-                                                                                    <ul class="nav panel-tabs">
-                                                                                        <li class=""><a href="#tab5"
-                                                                                                class="active"
-                                                                                                data-bs-toggle="tab">Name</a>
-                                                                                        </li>
-                                                                                        <li><a href="#tab6"
-                                                                                                data-bs-toggle="tab">Gender</a>
-                                                                                        </li>
-                                                                                        <li><a href="#tab7"
-                                                                                                data-bs-toggle="tab">Age</a>
-                                                                                        </li>
-                                                                                    </ul>
+                                        @if(Session::has('type') && ((Session::get('type') == 'national') || (Session::get('type') == 'state')))
+                                            <div class="panel panel-primary">
+                                                <div class="tab_wrapper first_tab">
+                                                    <ul class="tab_list">
+                                                        <li class="">Personal Info</li>
+                                                        <li>Contact Info</li>
+                                                        <li>Location</li>
+                                                        <li>Social Media</li>
+                                                        <li>Voter Mobilization</li>
+                                                        <li>Voter Engagement</li>
+                                                    </ul>
+                                                    <div class="content_wrapper">
+                                                        <div class="tab_content active mobile_p_10">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="card">
+                                                                        <div class="card-body p-3">
+                                                                            <div class="panel panel-primary">
+                                                                                <div class=" tab-menu-heading p-0 bg-light">
+                                                                                    <div class="tabs-menu1 ">
+                                                                                        <!-- Tabs -->
+                                                                                        <ul class="nav panel-tabs">
+                                                                                            <li class=""><a href="#tab5"
+                                                                                                    class="active"
+                                                                                                    data-bs-toggle="tab">Name</a>
+                                                                                            </li>
+                                                                                            <li><a href="#tab6"
+                                                                                                    data-bs-toggle="tab">Gender</a>
+                                                                                            </li>
+                                                                                            <li><a href="#tab7"
+                                                                                                    data-bs-toggle="tab">Age</a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="panel-body tabs-menu-body">
-                                                                                <div class="tab-content">
-                                                                                    <div class="tab-pane active " id="tab5">
-                                                                                        <div class="">
-                                                                                            <div class="row row-sm">
-                                                                                                <div class="col-lg-4">
-                                                                                                    <div class="form-group">
-                                                                                                        <label
-                                                                                                            for="validationCustom01"
-                                                                                                            class="form-label">First
-                                                                                                            Name</label>
-                                                                                                        <input type="text"
-                                                                                                            class="form-control"
-                                                                                                            id="validationCustom01"
-                                                                                                            placeholder="First Name"
-                                                                                                            name="fname"
-                                                                                                            value="{{ $searchResult['fname'] }}"
-                                                                                                            />
+                                                                                <div class="panel-body tabs-menu-body">
+                                                                                    <div class="tab-content">
+                                                                                        <div class="tab-pane active " id="tab5">
+                                                                                            <div class="">
+                                                                                                <div class="row row-sm">
+                                                                                                    <div class="col-lg-4">
+                                                                                                        <div class="form-group">
+                                                                                                            <label
+                                                                                                                for="validationCustom01"
+                                                                                                                class="form-label">First
+                                                                                                                Name</label>
+                                                                                                            <input type="text"
+                                                                                                                class="form-control"
+                                                                                                                id="validationCustom01"
+                                                                                                                placeholder="First Name"
+                                                                                                                name="fname"
+                                                                                                                value="{{ $searchResult['fname'] }}"
+                                                                                                                />
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                                <div class="col-lg-4">
-                                                                                                    <div class="form-group">
-                                                                                                        <label
-                                                                                                            class="form-label">Middle
-                                                                                                            Name</label>
-                                                                                                        <input type="text"
-                                                                                                            class="form-control"
-                                                                                                            id="middlename"
-                                                                                                            name="mname"
-                                                                                                            value="{{ $searchResult['mname'] }}"
-                                                                                                            placeholder="Middle Name"/>
+                                                                                                    <div class="col-lg-4">
+                                                                                                        <div class="form-group">
+                                                                                                            <label
+                                                                                                                class="form-label">Middle
+                                                                                                                Name</label>
+                                                                                                            <input type="text"
+                                                                                                                class="form-control"
+                                                                                                                id="middlename"
+                                                                                                                name="mname"
+                                                                                                                value="{{ $searchResult['mname'] }}"
+                                                                                                                placeholder="Middle Name"/>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                                <div class="col-lg-4">
-                                                                                                    <div class="form-group">
-                                                                                                        <label
-                                                                                                            class="form-label">Last
-                                                                                                            Name</label>
-                                                                                                        <input type="text"
-                                                                                                            class="form-control"
-                                                                                                            id="lastname"
-                                                                                                            name="lname"
-                                                                                                            value="{{ $searchResult['lname'] }}"
-                                                                                                            placeholder="Last Name"/>
+                                                                                                    <div class="col-lg-4">
+                                                                                                        <div class="form-group">
+                                                                                                            <label
+                                                                                                                class="form-label">Last
+                                                                                                                Name</label>
+                                                                                                            <input type="text"
+                                                                                                                class="form-control"
+                                                                                                                id="lastname"
+                                                                                                                name="lname"
+                                                                                                                value="{{ $searchResult['lname'] }}"
+                                                                                                                placeholder="Last Name"/>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                    <div class="tab-pane " id="tab6">
-                                                                                        <div class="">
-                                                                                            <ul class="display-inline">
-                                                                                                <li>
-                                                                                                    <label
-                                                                                                        class="custom-control custom-radio">
-                                                                                                        <input type="radio"
-                                                                                                            class="custom-control-input"
-                                                                                                            value="male"
-                                                                                                            name="gender" {{ $searchResult['gender'] == "male" ? 'checked' : null }} />
-                                                                                                        <span
-                                                                                                            class="custom-control-label">Male</span>
-                                                                                                    </label>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <label
-                                                                                                        class="custom-control custom-radio">
-                                                                                                        <input type="radio"
-                                                                                                            class="custom-control-input"
-                                                                                                            name="gender"
-                                                                                                            value="female" {{ $searchResult['gender'] == "female" ? 'checked' : null }}/>
-                                                                                                        <span
-                                                                                                            class="custom-control-label">Female</span>
-                                                                                                    </label>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="tab-pane " id="tab7">
-                                                                                        <div class="">
-                                                                                            <div class="row">
-                                                                                                <div class="col-lg-12">
-                                                                                                    <ul
-                                                                                                        class="display-inline">
-                                                                                                        <li>
-                                                                                                            <label
-                                                                                                                class="custom-control custom-radio">
-                                                                                                                <input
-                                                                                                                    type="radio"
-                                                                                                                    class="custom-control-input"
-                                                                                                                    name="example-radios1"
-                                                                                                                    value="option3"
-                                                                                                                    checked="">
-                                                                                                                <span
-                                                                                                                    class="custom-control-label">Below</span>
-                                                                                                            </label>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <input
-                                                                                                                type="email"
-                                                                                                                class="form-control"
-                                                                                                                id=""
-                                                                                                                placeholder="">
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                                <div class="col-lg-12">
-                                                                                                    <ul
-                                                                                                        class="display-inline">
-                                                                                                        <li>
-                                                                                                            <label
-                                                                                                                class="custom-control custom-radio">
-                                                                                                                <input
-                                                                                                                    type="radio"
-                                                                                                                    class="custom-control-input"
-                                                                                                                    name="example-radios1"
-                                                                                                                    value="option4">
-                                                                                                                <span
-                                                                                                                    class="custom-control-label">Above</span>
-                                                                                                            </label>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <input
-                                                                                                                type="email"
-                                                                                                                class="form-control"
-                                                                                                                id=""
-                                                                                                                placeholder="">
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                                <div class="col-lg-12">
-                                                                                                    <ul
-                                                                                                        class="display-inline">
-                                                                                                        <li>
-                                                                                                            <label
-                                                                                                                class="custom-control custom-radio">
-                                                                                                                <input
-                                                                                                                    type="radio"
-                                                                                                                    class="custom-control-input"
-                                                                                                                    name="example-radios1"
-                                                                                                                    value="option5">
-                                                                                                                <span
-                                                                                                                    class="custom-control-label">Between</span>
-                                                                                                            </label>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <input
-                                                                                                                type="email"
-                                                                                                                class="form-control mb-3"
-                                                                                                                id=""
-                                                                                                                placeholder="">
-                                                                                                        </li>
-                                                                                                        <li>
+                                                                                        <div class="tab-pane " id="tab6">
+                                                                                            <div class="">
+                                                                                                <ul class="display-inline">
+                                                                                                    <li>
+                                                                                                        <label
+                                                                                                            class="custom-control custom-radio">
+                                                                                                            <input type="radio"
+                                                                                                                class="custom-control-input"
+                                                                                                                value="male"
+                                                                                                                name="gender" {{ $searchResult['gender'] == "male" ? 'checked' : null }} />
                                                                                                             <span
-                                                                                                                class="between-textbox">To</span>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <input
-                                                                                                                type="email"
-                                                                                                                class="form-control"
-                                                                                                                id=""
-                                                                                                                placeholder="">
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </div>
+                                                                                                                class="custom-control-label">Male</span>
+                                                                                                        </label>
+                                                                                                    </li>
+                                                                                                    <li>
+                                                                                                        <label
+                                                                                                            class="custom-control custom-radio">
+                                                                                                            <input type="radio"
+                                                                                                                class="custom-control-input"
+                                                                                                                name="gender"
+                                                                                                                value="female" {{ $searchResult['gender'] == "female" ? 'checked' : null }}/>
+                                                                                                            <span
+                                                                                                                class="custom-control-label">Female</span>
+                                                                                                        </label>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="tab-pane " id="tab7">
+                                                                                            <div class="">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-lg-12">
+                                                                                                        <ul
+                                                                                                            class="display-inline">
+                                                                                                            <li>
+                                                                                                                <label
+                                                                                                                    class="custom-control custom-radio">
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        class="custom-control-input"
+                                                                                                                        name="example-radios1"
+                                                                                                                        value="option3"
+                                                                                                                        checked="">
+                                                                                                                    <span
+                                                                                                                        class="custom-control-label">Below</span>
+                                                                                                                </label>
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <input
+                                                                                                                    type="email"
+                                                                                                                    class="form-control"
+                                                                                                                    id=""
+                                                                                                                    placeholder="">
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                    <div class="col-lg-12">
+                                                                                                        <ul
+                                                                                                            class="display-inline">
+                                                                                                            <li>
+                                                                                                                <label
+                                                                                                                    class="custom-control custom-radio">
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        class="custom-control-input"
+                                                                                                                        name="example-radios1"
+                                                                                                                        value="option4">
+                                                                                                                    <span
+                                                                                                                        class="custom-control-label">Above</span>
+                                                                                                                </label>
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <input
+                                                                                                                    type="email"
+                                                                                                                    class="form-control"
+                                                                                                                    id=""
+                                                                                                                    placeholder="">
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                    <div class="col-lg-12">
+                                                                                                        <ul
+                                                                                                            class="display-inline">
+                                                                                                            <li>
+                                                                                                                <label
+                                                                                                                    class="custom-control custom-radio">
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        class="custom-control-input"
+                                                                                                                        name="example-radios1"
+                                                                                                                        value="option5">
+                                                                                                                    <span
+                                                                                                                        class="custom-control-label">Between</span>
+                                                                                                                </label>
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <input
+                                                                                                                    type="email"
+                                                                                                                    class="form-control mb-3"
+                                                                                                                    id=""
+                                                                                                                    placeholder="">
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <span
+                                                                                                                    class="between-textbox">To</span>
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <input
+                                                                                                                    type="email"
+                                                                                                                    class="form-control"
+                                                                                                                    id=""
+                                                                                                                    placeholder="">
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
 
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -331,313 +333,315 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab_content">
-                                                        <div class="card-body p-3">
-                                                            <div class="panel panel-primary">
-                                                                <div class=" tab-menu-heading p-0 bg-light">
-                                                                    <div class="tabs-menu1 ">
-                                                                        <!-- Tabs -->
-                                                                        <ul class="nav panel-tabs">
-                                                                            <li class=""><a href="#mobile" class="active"
-                                                                                    data-bs-toggle="tab">Mobile</a></li>
-                                                                            <li><a href="#email"
-                                                                                    data-bs-toggle="tab">Email</a></li>
-                                                                        </ul>
+                                                        <div class="tab_content">
+                                                            <div class="card-body p-3">
+                                                                <div class="panel panel-primary">
+                                                                    <div class=" tab-menu-heading p-0 bg-light">
+                                                                        <div class="tabs-menu1 ">
+                                                                            <!-- Tabs -->
+                                                                            <ul class="nav panel-tabs">
+                                                                                <li class=""><a href="#mobile" class="active"
+                                                                                        data-bs-toggle="tab">Mobile</a></li>
+                                                                                <li><a href="#email"
+                                                                                        data-bs-toggle="tab">Email</a></li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="panel-body tabs-menu-body">
-                                                                    <div class="tab-content">
-                                                                        <div class="tab-pane active " id="mobile">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-4">
-                                                                                    <div class="form-group">
-                                                                                        <label class="form-label">Having
-                                                                                            Mobile Number</label>
-                                                                                        <select
-                                                                                            class="form-control select2" name="is_mobile">
-                                                                                            <option value="">-- Select --</option>
-                                                                                            <option value="1" @if($searchResult['is_mobile'] == "1") {{'selected'}}@endif>Yes</option>
-                                                                                            <option value="0" @if($searchResult['is_mobile'] == "0") {{'selected'}}@endif>No</option>
-                                                                                        </select>
+                                                                    <div class="panel-body tabs-menu-body">
+                                                                        <div class="tab-content">
+                                                                            <div class="tab-pane active " id="mobile">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="form-group">
+                                                                                            <label class="form-label">Having
+                                                                                                Mobile Number</label>
+                                                                                            <select
+                                                                                                class="form-control select2" name="is_mobile">
+                                                                                                <option value="">-- Select --</option>
+                                                                                                <option value="1" @if($searchResult['is_mobile'] == "1") {{'selected'}}@endif>Yes</option>
+                                                                                                <option value="0" @if($searchResult['is_mobile'] == "0") {{'selected'}}@endif>No</option>
+                                                                                            </select>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="col-lg-4">
-                                                                                    <div class="form-group">
-                                                                                        <label class="form-label">Enter
-                                                                                            Mobile Number</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            id="mobile-number"
-                                                                                            name="mobile"
-                                                                                            value="{{ $searchResult['mobile'] }}"
-                                                                                            placeholder="Enter Mobile Number"/>
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="form-group">
+                                                                                            <label class="form-label">Enter
+                                                                                                Mobile Number</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                id="mobile-number"
+                                                                                                name="mobile"
+                                                                                                value="{{ $searchResult['mobile'] }}"
+                                                                                                placeholder="Enter Mobile Number"/>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="tab-pane " id="email">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-4">
-                                                                                    <div class="form-group">
-                                                                                        <label class="form-label">Having
-                                                                                            Email</label>
-                                                                                        <select
-                                                                                            class="form-control select2">
-                                                                                            <option>-- Select --</option>
-                                                                                            <option>Yes</option>
-                                                                                            <option>No</option>
-                                                                                        </select>
+                                                                            <div class="tab-pane " id="email">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="form-group">
+                                                                                            <label class="form-label">Having
+                                                                                                Email</label>
+                                                                                            <select
+                                                                                                class="form-control select2">
+                                                                                                <option>-- Select --</option>
+                                                                                                <option>Yes</option>
+                                                                                                <option>No</option>
+                                                                                            </select>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="col-lg-4">
-                                                                                    <div class="form-group">
-                                                                                        <label class="form-label">Enter
-                                                                                            Email</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            id="mobile-number"
-                                                                                            name="email"
-                                                                                            value="{{ $searchResult['email'] }}"
-                                                                                            placeholder="Enter Email"/>
+                                                                                    <div class="col-lg-4">
+                                                                                        <div class="form-group">
+                                                                                            <label class="form-label">Enter
+                                                                                                Email</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                id="mobile-number"
+                                                                                                name="email"
+                                                                                                value="{{ $searchResult['email'] }}"
+                                                                                                placeholder="Enter Email"/>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab_content">
-                                                        <div class="row">
+                                                        <div class="tab_content">
+                                                            <div class="row">
 
-                                                            <div class="col-lg-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">State</label>
-                                                                    <select class="form-control"
-                                                                        data-placeholder="Choose one (with searchbox)" name="filter_state">
-                                                                        <option value="">Select State</option>
-                                                                        @if(!empty($stateList))
-                                                                            @foreach($stateList as $state)
-                                                                                <option value="{{ $state->id }}" @if($searchResult['filter_state'] == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
-                                                                            @endforeach
-                                                                        @endif
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">LGA</label>
-                                                                    <select class="form-control"
-                                                                        data-placeholder="Choose one (with searchbox)" name="filter_lga">
-                                                                        <option value="">Select LGA</option>
-                                                                        @if(!empty($lgaList))
-                                                                            @foreach($lgaList as $lga)
-                                                                                <option value="{{ $lga->id }}" @if($searchResult['filter_lga'] == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
-                                                                            @endforeach
-                                                                        @endif
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Ward</label>
-                                                                    <select class="form-control"
-                                                                        data-placeholder="Choose one (with searchbox)" name="filter_ward">
-                                                                        <option value="">Select Ward</option>
-                                                                        @if(!empty($wardList))
-                                                                            @foreach($wardList as $ward)
-                                                                                <option value="{{ $ward->id }}" @if($searchResult['filter_ward'] == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
-                                                                            @endforeach
-                                                                        @endif
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_content">
-                                                        <div class="row">
-                                                            <div class="col-lg-2">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="fb_filter" value="1"  {{ $searchResult['fb_filter'] == "1" ? 'checked' : null }}>
-                                                                        <span class="custom-control-label">Facebook</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="insta_filter" value="1"  {{ $searchResult['insta_filter'] == "1" ? 'checked' : null }}>
-                                                                        <span class="custom-control-label">Instagram</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="twitter_filter" value="1"  {{ $searchResult['twitter_filter'] == "1" ? 'checked' : null }}>
-                                                                        <span class="custom-control-label">Twitter</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_content">
-                                                        <div class="row">
-                                                            <div class="col-lg-2">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="is_pvc" value="1" {{ $searchResult['is_pvc'] == "1" ? 'checked' : null }}>
-                                                                        <span class="custom-control-label">Voters with
-                                                                            PVC</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_content">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="example-checkbox5"
-                                                                            value="votedlastelection">
-                                                                        <span class="custom-control-label">Voted Last
-                                                                            Election</span>
-                                                                    </label>
-                                                                </div>
-                                                                <div class="pt-2 ml_30">
+                                                                <div class="col-lg-4">
                                                                     <div class="form-group">
-                                                                        <label class="form-label">Reason for not voting
-                                                                        </label>
-                                                                        <select class="form-control select2">
-                                                                            <option>-- Select --</option>
-                                                                            <option>Moved to new location</option>
-                                                                            <option>Not of age</option>
-                                                                            <option>Not interested</option>
-                                                                            <option>Lost faith in process</option>
-                                                                            <option>Not enough education/information
-                                                                            </option>
-                                                                            <option>Sickness</option>
+                                                                        <label class="form-label">State</label>
+                                                                        <select class="form-control"
+                                                                            data-placeholder="Choose one (with searchbox)" name="filter_state">
+                                                                            <option value="">Select State</option>
+                                                                            @if(!empty($stateList))
+                                                                                @foreach($stateList as $state)
+                                                                                    <option value="{{ $state->id }}" @if($searchResult['filter_state'] == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label">LGA</label>
+                                                                        <select class="form-control"
+                                                                            data-placeholder="Choose one (with searchbox)" name="filter_lga">
+                                                                            <option value="">Select LGA</option>
+                                                                            @if(!empty($lgaList))
+                                                                                @foreach($lgaList as $lga)
+                                                                                    <option value="{{ $lga->id }}" @if($searchResult['filter_lga'] == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label">Ward</label>
+                                                                        <select class="form-control"
+                                                                            data-placeholder="Choose one (with searchbox)" name="filter_ward">
+                                                                            <option value="">Select Ward</option>
+                                                                            @if(!empty($wardList))
+                                                                                @foreach($wardList as $ward)
+                                                                                    <option value="{{ $ward->id }}" @if($searchResult['filter_ward'] == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
+                                                                                @endforeach
+                                                                            @endif
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Voted for? </label>
-                                                                    <select class="form-control select2">
-                                                                        <option>-- Select --</option>
-                                                                        <option>Lorem Ipsum dolor sit amet</option>
-                                                                        <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
-                                                                            sit amet</option>
-                                                                        <option>Lorem Ipsum</option>
-                                                                        <option>Lorem Ipsum dolor sit amet</option>
-                                                                        <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Sympathetic to?</label>
-                                                                    <select class="form-control select2">
-                                                                        <option>-- Select --</option>
-                                                                        <option>Lorem Ipsum dolor sit amet</option>
-                                                                        <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
-                                                                            sit amet</option>
-                                                                        <option>Lorem Ipsum</option>
-                                                                        <option>Lorem Ipsum dolor sit amet</option>
-                                                                        <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Things important to
-                                                                        voter</label>
-                                                                    <select class="form-control select2">
-                                                                        <option>-- Select --</option>
-                                                                        <option>-- Select --</option>
-                                                                        <option>Education</option>
-                                                                        <option>Employment</option>
-                                                                        <option>Cleanliness</option>
-                                                                        <option>Environment</option>
-                                                                        <option>Crime</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="example-checkbox6" value="movedregister">
-                                                                        <span class="custom-control-label">Moved from
-                                                                            registered ward to new one?</span>
-                                                                    </label>
-                                                                </div>
-                                                                <div class="pt-2 ml_30">
+                                                        </div>
+                                                        <div class="tab_content">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
                                                                     <div class="custom-controls-stacked">
                                                                         <label class="custom-control custom-checkbox">
-                                                                            <input type="checkbox"
-                                                                                class="custom-control-input"
-                                                                                name="example-checkbox7" value="newward">
-                                                                            <span class="custom-control-label">Registered in
-                                                                                new ward?</span>
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="fb_filter" value="1"  {{ $searchResult['fb_filter'] == "1" ? 'checked' : null }}>
+                                                                            <span class="custom-control-label">Facebook</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <div class="custom-controls-stacked">
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="insta_filter" value="1"  {{ $searchResult['insta_filter'] == "1" ? 'checked' : null }}>
+                                                                            <span class="custom-control-label">Instagram</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <div class="custom-controls-stacked">
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="twitter_filter" value="1"  {{ $searchResult['twitter_filter'] == "1" ? 'checked' : null }}>
+                                                                            <span class="custom-control-label">Twitter</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_content">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <div class="custom-controls-stacked">
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="is_pvc" value="1" {{ $searchResult['is_pvc'] == "1" ? 'checked' : null }}>
+                                                                            <span class="custom-control-label">Voters with
+                                                                                PVC</span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="example-checkbox8"
-                                                                            value="registeredelction">
-                                                                        <span class="custom-control-label">Registered for
-                                                                            2022 elections</span>
-                                                                    </label>
+                                                        </div>
+                                                        <div class="tab_content">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <div class="custom-controls-stacked">
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="example-checkbox5"
+                                                                                value="votedlastelection">
+                                                                            <span class="custom-control-label">Voted Last
+                                                                                Election</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="pt-2 ml_30">
+                                                                        <div class="form-group">
+                                                                            <label class="form-label">Reason for not voting
+                                                                            </label>
+                                                                            <select class="form-control select2">
+                                                                                <option>-- Select --</option>
+                                                                                <option>Moved to new location</option>
+                                                                                <option>Not of age</option>
+                                                                                <option>Not interested</option>
+                                                                                <option>Lost faith in process</option>
+                                                                                <option>Not enough education/information
+                                                                                </option>
+                                                                                <option>Sickness</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-
-                                                            </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            name="example-checkbox9" value="donate">
-                                                                        <span class="custom-control-label">Would like to
-                                                                            donate</span>
-                                                                    </label>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label">Voted for? </label>
+                                                                        <select class="form-control select2">
+                                                                            <option>-- Select --</option>
+                                                                            <option>Lorem Ipsum dolor sit amet</option>
+                                                                            <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
+                                                                                sit amet</option>
+                                                                            <option>Lorem Ipsum</option>
+                                                                            <option>Lorem Ipsum dolor sit amet</option>
+                                                                            <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label">Sympathetic to?</label>
+                                                                        <select class="form-control select2">
+                                                                            <option>-- Select --</option>
+                                                                            <option>Lorem Ipsum dolor sit amet</option>
+                                                                            <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
+                                                                                sit amet</option>
+                                                                            <option>Lorem Ipsum</option>
+                                                                            <option>Lorem Ipsum dolor sit amet</option>
+                                                                            <option>Lorem Ipsum dolor sit amet Lorem Ipsum dolor
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label">Things important to
+                                                                            voter</label>
+                                                                        <select class="form-control select2">
+                                                                            <option>-- Select --</option>
+                                                                            <option>-- Select --</option>
+                                                                            <option>Education</option>
+                                                                            <option>Employment</option>
+                                                                            <option>Cleanliness</option>
+                                                                            <option>Environment</option>
+                                                                            <option>Crime</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="custom-controls-stacked">
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="example-checkbox6" value="movedregister">
+                                                                            <span class="custom-control-label">Moved from
+                                                                                registered ward to new one?</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="pt-2 ml_30">
+                                                                        <div class="custom-controls-stacked">
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox"
+                                                                                    class="custom-control-input"
+                                                                                    name="example-checkbox7" value="newward">
+                                                                                <span class="custom-control-label">Registered in
+                                                                                    new ward?</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="custom-controls-stacked">
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="example-checkbox8"
+                                                                                value="registeredelction">
+                                                                            <span class="custom-control-label">Registered for
+                                                                                2022 elections</span>
+                                                                        </label>
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="custom-controls-stacked">
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input"
+                                                                                name="example-checkbox9" value="donate">
+                                                                            <span class="custom-control-label">Would like to
+                                                                                donate</span>
+                                                                        </label>
+                                                                    </div>
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                         <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="show-result-button text-right">
-                                                    <div class="btn-list mt-5 mx-5">
-                                                        <button type="submit" class="btn btn-success ml-4">
-                                                            <i class="fa fa-search" aria-hidden="true"></i> Show Result
-                                                        </button>
-                                                        <!-- <a href="javascript:void(0);" class="btn btn-pill btn-success"
-                                                            id="show-result">Show Result</a> -->
+                                            @if(Session::has('type') && ((Session::get('type') == 'national') || (Session::get('type') == 'state')))
+                                                <div class="col-lg-12">
+                                                    <div class="show-result-button text-right">
+                                                        <div class="btn-list mt-5 mx-5">
+                                                            <button type="submit" class="btn btn-success ml-4">
+                                                                <i class="fa fa-search" aria-hidden="true"></i> Show Result
+                                                            </button>
+                                                            <!-- <a href="javascript:void(0);" class="btn btn-pill btn-success"
+                                                                id="show-result">Show Result</a> -->
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                             <div class="col-lg-12">
                                                 <div class="show-result-box mt-5">
                                                     <div class="card">

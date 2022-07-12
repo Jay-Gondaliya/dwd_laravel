@@ -15,17 +15,11 @@
             <div class="mt-1 d-md-block d-none">
                 <form class="form-inline">
                     <div class="search-element">
-                        <input type="search" class="form-control header-search mobile-view-search" placeholder="Search…" aria-label="Search" tabindex="1">
-                        <button class="btn btn-primary-color" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="header-icon search-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/></svg>
-                        </button>
+                        <h3>{{ucwords(Session::get('type'))}} : {{ucwords(Session::get('tenant')['username'])}}</h3>
                     </div>
                 </form>
             </div><!-- SEARCH -->
             <div class="d-flex order-lg-2 ms-auto main-header-end">
-                <button  class="navbar-toggler navresponsive-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="true" aria-label="Toggle navigation">
-                    <i class="fe fe-more-vertical header-icons navbar-toggler-icon"></i>
-                </button>
                 <div class="navbar navbar-expand-lg navbar-collapse responsive-navbar p-0">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                         <div class="d-flex order-lg-2">

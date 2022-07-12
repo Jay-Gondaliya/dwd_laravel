@@ -12,6 +12,8 @@ use App\Models\CellCoordinator;
 use App\Models\StateCoordinator;
 use App\Models\LGACoordinator;
 use App\Imports\BulkImport;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use PDF;
 use Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -49,16 +51,10 @@ class AdminController extends Controller
 
         if (!empty($adminList)) {
             Session::put('tenant', $adminList);
-//            echo "<pre>";
-//print_r($adminList);
-//echo "<pre>";
-//die;
             return redirect()->route('dashboard');
         } else {
-            return redirect()->route('index');
+            return Redirect::back()->withErrors(['msg' => 'Username and Password not match!']);
         }
-        // echo json_encode($response);
-        // die();
     }
 
     public function forgotPassword(Request $request)
@@ -236,7 +232,7 @@ class AdminController extends Controller
             Session::put('tenant', $adminList);
             return redirect()->route('dashboard');
         } else {
-            return redirect()->route('admin.index');
+            return Redirect::back()->withErrors(['msg' => 'Username and Password not match!']);
         }
         // echo json_encode($response);
         // die();

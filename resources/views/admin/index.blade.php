@@ -48,6 +48,9 @@
                                                 <input class="form-control" type="password" placeholder="Confirm Password" name="password" id="password" />
                                             </div>
                                         </div>
+                                        @if($errors->any())
+                                            <span class="text-danger error">{{$errors->first()}}</span>
+                                        @endif
                                         <div class="form-group">
                                             <label class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" />

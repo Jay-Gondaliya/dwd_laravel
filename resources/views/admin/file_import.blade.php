@@ -64,20 +64,22 @@
     </div>
 </div>
 <div class="row">
-    <form class="mt-5" id="fileDataForm">
-        @csrf
-        <div class="row">
-            <div class="col-md-6 input-group mb-4">
-                <div class="input-group-text">
-                    <i class="fe fe-user"></i>
+    @if(Session::has('type') && ((Session::get('type') == 'national') || (Session::get('type') == 'state'))|| (Session::get('type') == 'lga') || (Session::get('type') == 'ward'))
+        <form class="mt-5" id="fileDataForm">
+            @csrf
+            <div class="row">
+                <div class="col-md-6 input-group mb-4">
+                    <div class="input-group-text">
+                        <i class="fe fe-user"></i>
+                    </div>
+                    <input type="file" class="form-control" name="file_data" id="file_data" />
                 </div>
-                <input type="file" class="form-control" name="file_data" id="file_data" />
+                <div class="col-md-3 input-group mb-4">
+                    <button type="button" class="btn btn-primary btn-sm" id="addFileData">Voter File Upload</button>
+                </div>
             </div>
-            <div class="col-md-3 input-group mb-4">
-                <button type="button" class="btn btn-primary btn-sm" id="addFileData">Voter File Upload</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    @endif
 
     <div class="col-md-12">
         <div class="card-body p-3">

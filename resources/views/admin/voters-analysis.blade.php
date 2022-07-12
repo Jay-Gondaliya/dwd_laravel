@@ -906,7 +906,7 @@
                     var blob = new Blob([response]);
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
-                    link.download = "Sample.pdf";
+                    link.download = "Download Voter List.pdf";
                     link.click();
                 },
                 error: function(blob){

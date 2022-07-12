@@ -175,7 +175,10 @@
 			success: function(response) {
 				if (response.code == 200) {
 					$(".error").html('');
-					window.location.href = "{{ route('admin.lga_coordinatorlist') }}";
+                    $('#thankyouModal').modal('show');
+                    setTimeout(function() {
+                        window.location.href = "{{ route('admin.lga_coordinatorlist') }}";
+                    }, 3000);
 				} else {
                     $(".error").html('');
                     $.each(response.error, function(key, value) {

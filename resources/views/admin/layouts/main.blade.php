@@ -22,6 +22,36 @@
 		<link href="{{ asset('assets/plugins/datatables/DataTables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 		<link href="{{ asset('assets/plugins/datatables/Responsive/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
 		<link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet" type="text/css"/>
+		<style>
+			/*--thank you pop starts here--*/
+			.thank-you-pop{
+				width:100%;
+				padding:20px;
+				text-align:center;
+			}
+			.thank-you-pop img{
+				width:76px;
+				height:auto;
+				margin:0 auto;
+				display:block;
+				margin-bottom:25px;
+			}
+
+			.thank-you-pop h1{
+				font-size: 42px;
+				margin-bottom: 25px;
+				color:#5C5C5C;
+			}
+			.thank-you-pop p{
+				font-size: 20px;
+				margin-bottom: 27px;
+				color:#5C5C5C;
+			}
+			#ignismyModal .modal-header{
+				border:0px;
+			}
+			/*--thank you pop ends here--*/
+		</style>
 	</head>
 	<body class="app sidebar-mini">
 		<div class="page">
@@ -31,6 +61,23 @@
         			<div class="side-app">
 						@include('admin.layouts.header')
 						@yield('content')
+						<div class="modal fade" id="thankyouModal" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
+									</div>
+									
+									<div class="modal-body">
+										<div class="thank-you-pop">
+											<img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+											<h1>Thank You!</h1>
+											<p>Your Record Successfully Added!</p>
+										</div>                        
+									</div>					
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<footer class="footer">

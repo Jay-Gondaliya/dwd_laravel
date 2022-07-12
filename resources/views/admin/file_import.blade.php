@@ -532,7 +532,10 @@ $(document).on('click', '#addFileData', function (e) {
         processData: false,
         success: function (response) {
             if (response.code == 200) {
-                location.reload();
+                $('#thankyouModal').modal('show');
+                setTimeout(function() {
+                    window.location.href = "{{ route('voters-analysis') }}";
+                }, 3000);
             } else {
             }
         },
@@ -553,7 +556,10 @@ $(document).on('click', '.createVoter', function (e) {
         success: function (response) {
             if (response.code == 200) {
                 $(".error").html('');
-                window.location.href = "{{ route('voters-analysis') }}";
+                $('#thankyouModal').modal('show');
+                setTimeout(function() {
+                    window.location.href = "{{ route('voters-analysis') }}";
+                }, 3000);
             } else {
                 $("#login_error").text(response.message);
             }

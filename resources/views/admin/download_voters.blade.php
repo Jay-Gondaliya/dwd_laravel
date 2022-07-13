@@ -25,6 +25,10 @@
                                 <th>Gender</th>
                                 <th>Mobile Number</th>
                                 <th>Email</th>
+                                <th>State</th>
+                                <th>LGA</th>
+                                <th>Ward</th>
+                                <th>Cell</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +41,10 @@
                                         <td>{{ $voter->gender }}</td>
                                         <td>{{ $voter->mobile }}</td>
                                         <td>{{ $voter->email }}</td>
+                                        <td>{{ $voter->state_name }}</td>
+                                        <td>{{ $voter->lga_name }}</td>
+                                        <td>{{ $voter->wardname }}</td>
+                                        <td>{{ $voter->cell_name }}</td>
                                     </tr>
                                 @endforeach
                             @else

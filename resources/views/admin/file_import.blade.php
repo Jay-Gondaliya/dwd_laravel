@@ -483,6 +483,23 @@
 			<!-- End Footer-->
 
 		</div>
+
+        <div class="modal fade" id="anotherRecordsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Not Add Records</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive" id="another_records">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 		<!-- End Page -->
 
 		<!-- Back to top -->
@@ -581,6 +598,11 @@
                 $('.panel-tabs .active').parent().prev('li').find('a').trigger('click');
             });
         });
+
+        $(document).on('click', '.close', function (e) {
+            $('.modal').modal('hide');
+            location.reload();
+        });
         
         $(document).on('click', '#addFileData', function (e) {
             e.preventDefault();
@@ -595,10 +617,12 @@
                 processData: false,
                 success: function (response) {
                     if (response.code == 200) {
-                        $('#thankyouModal').modal('show');
-                        setTimeout(function() {
-                            window.location.href = "{{ route('voters-analysis') }}";
-                        }, 3000);
+                        $('#anotherRecordsModal').modal('show');
+                        $('#another_records').html(response.anotherCoordinatorList);
+                        // $('#thankyouModal').modal('show');
+                        // setTimeout(function() {
+                        //     window.location.href = "{{ route('voters-analysis') }}";
+                        // }, 3000);
                     } else {
                     }
                 },

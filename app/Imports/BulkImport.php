@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use DateTime;
 use App\Models\StateCoordinator;
+use App\Models\AnotherCoordinator;
 use App\Models\WardCoordinator;
 use App\Models\LGACoordinator;
 use Session;
@@ -49,6 +50,14 @@ class BulkImport implements ToModel,WithHeadingRow
                 $add->is_voter=$row['is_voter'];
                 $add->is_pvc=$row['is_pvc'];
                 $add->save();
+            } else {
+                $addAnotherCoordinator = new AnotherCoordinator;
+                $addAnotherCoordinator->fname=$row['fname'];
+                $addAnotherCoordinator->mname=$row['mname'];
+                $addAnotherCoordinator->lname=$row['lname'];
+                $addAnotherCoordinator->mobile=$row['mobile'];
+                $addAnotherCoordinator->email=$row['email'];
+                $addAnotherCoordinator->save();
             }
         } else if(Session::get('type') == "lga") {
             $lgaName = LGACoordinator::where('id', $userLoginID)->first();
@@ -79,7 +88,23 @@ class BulkImport implements ToModel,WithHeadingRow
                     $add->is_voter=$row['is_voter'];
                     $add->is_pvc=$row['is_pvc'];
                     $add->save();
+                } else {
+                    $addAnotherCoordinator = new AnotherCoordinator;
+                    $addAnotherCoordinator->fname=$row['fname'];
+                    $addAnotherCoordinator->mname=$row['mname'];
+                    $addAnotherCoordinator->lname=$row['lname'];
+                    $addAnotherCoordinator->mobile=$row['mobile'];
+                    $addAnotherCoordinator->email=$row['email'];
+                    $addAnotherCoordinator->save();
                 }
+            } else {
+                $addAnotherCoordinator = new AnotherCoordinator;
+                $addAnotherCoordinator->fname=$row['fname'];
+                $addAnotherCoordinator->mname=$row['mname'];
+                $addAnotherCoordinator->lname=$row['lname'];
+                $addAnotherCoordinator->mobile=$row['mobile'];
+                $addAnotherCoordinator->email=$row['email'];
+                $addAnotherCoordinator->save();
             }
         } else if(Session::get('type') == "ward") {
             $wardName = WardCoordinator::where('id', $userLoginID)->first();
@@ -112,8 +137,32 @@ class BulkImport implements ToModel,WithHeadingRow
                         $add->is_voter=$row['is_voter'];
                         $add->is_pvc=$row['is_pvc'];
                         $add->save();
+                    } else {
+                        $addAnotherCoordinator = new AnotherCoordinator;
+                        $addAnotherCoordinator->fname=$row['fname'];
+                        $addAnotherCoordinator->mname=$row['mname'];
+                        $addAnotherCoordinator->lname=$row['lname'];
+                        $addAnotherCoordinator->mobile=$row['mobile'];
+                        $addAnotherCoordinator->email=$row['email'];
+                        $addAnotherCoordinator->save();
                     }
+                } else {
+                    $addAnotherCoordinator = new AnotherCoordinator;
+                    $addAnotherCoordinator->fname=$row['fname'];
+                    $addAnotherCoordinator->mname=$row['mname'];
+                    $addAnotherCoordinator->lname=$row['lname'];
+                    $addAnotherCoordinator->mobile=$row['mobile'];
+                    $addAnotherCoordinator->email=$row['email'];
+                    $addAnotherCoordinator->save();
                 }
+            } else {
+                $addAnotherCoordinator = new AnotherCoordinator;
+                $addAnotherCoordinator->fname=$row['fname'];
+                $addAnotherCoordinator->mname=$row['mname'];
+                $addAnotherCoordinator->lname=$row['lname'];
+                $addAnotherCoordinator->mobile=$row['mobile'];
+                $addAnotherCoordinator->email=$row['email'];
+                $addAnotherCoordinator->save();
             }
         }
 

@@ -10,6 +10,7 @@ use App\Models\Voter;
 use App\Models\WardCoordinator;
 use App\Models\CellCoordinator;
 use App\Models\StateCoordinator;
+use App\Models\AnotherCoordinator;
 use App\Models\LGACoordinator;
 use App\Imports\BulkImport;
 use Illuminate\Support\Facades\Validator;
@@ -204,9 +205,14 @@ class AdminController extends Controller
         if(!empty(Session::get('tenant')['id'])) {
             $response = [];
             if (!empty($request->file('file_data'))) {
+                AnotherCoordinator::truncate();
                 Excel::import(new BulkImport, $request->file('file_data'));
+                AnotherCoordinator::where('fname', '=', NULL)->delete();
                 $response['code'] = "200";
             }
+            $anotherCoordinatorList = AnotherCoordinator::all();
+            $anotherCoordinator = view('admin.another_coordinator', compact('anotherCoordinatorList'))->render();
+            $response['anotherCoordinatorList'] = $anotherCoordinator;
             echo json_encode($response);
             die();
         } else {

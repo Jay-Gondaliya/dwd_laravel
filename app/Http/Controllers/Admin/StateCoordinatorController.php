@@ -34,20 +34,37 @@ class StateCoordinatorController extends Controller
 
     public function storeStateCoordinator(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'username'  => 'required|unique:state_co',
-            'password' => 'required',
-            'fname'  => 'required',
-            'mname'  => 'required',
-            'lname'  => 'required',
-            'age' => 'required',
-            'gender'  => 'required',
-            'dob' => 'required',
-            'mobile'  => 'required',
-            'email' => 'required',
-            'address'  => 'required',
-            'policy'  => 'required',
-        ]);
+        if(!empty($request->id)) {
+            $validator = Validator::make($request->all(), [
+                'username'  => 'required',
+                'password' => 'required',
+                'fname'  => 'required',
+                'mname'  => 'required',
+                'lname'  => 'required',
+                'age' => 'required',
+                'gender'  => 'required',
+                'dob' => 'required',
+                'mobile'  => 'required',
+                'email' => 'required|email',
+                'address'  => 'required',
+                'policy'  => 'required',
+            ]);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'username'  => 'required|unique:state_co',
+                'password' => 'required',
+                'fname'  => 'required',
+                'mname'  => 'required',
+                'lname'  => 'required',
+                'age' => 'required',
+                'gender'  => 'required',
+                'dob' => 'required',
+                'mobile'  => 'required',
+                'email' => 'required|email|unique:state_co',
+                'address'  => 'required',
+                'policy'  => 'required',
+            ]);
+        }
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()]);

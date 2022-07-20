@@ -58,21 +58,39 @@ class LGACoordinatorController extends Controller
 
     public function storeLGACoordinator(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'select_state'  => 'required',
-            'username'  => 'required|unique:lga_coordinator',
-            'password' => 'required',
-            'fname'  => 'required',
-            'mname'  => 'required',
-            'lname'  => 'required',
-            'age' => 'required',
-            'gender'  => 'required',
-            'dob' => 'required',
-            'mobile'  => 'required',
-            'email' => 'required',
-            'address'  => 'required',
-            'policy'  => 'required',
-        ]);
+        if(!empty($request->id)) {
+            $validator = Validator::make($request->all(), [
+                'select_state'  => 'required',
+                'username'  => 'required',
+                'password' => 'required',
+                'fname'  => 'required',
+                'mname'  => 'required',
+                'lname'  => 'required',
+                'age' => 'required',
+                'gender'  => 'required',
+                'dob' => 'required',
+                'mobile'  => 'required',
+                'email' => 'required|email',
+                'address'  => 'required',
+                'policy'  => 'required',
+            ]);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'select_state'  => 'required',
+                'username'  => 'required|unique:lga_coordinator',
+                'password' => 'required',
+                'fname'  => 'required',
+                'mname'  => 'required',
+                'lname'  => 'required',
+                'age' => 'required',
+                'gender'  => 'required',
+                'dob' => 'required',
+                'mobile'  => 'required',
+                'email' => 'required|email|unique:lga_coordinator',
+                'address'  => 'required',
+                'policy'  => 'required',
+            ]);
+        }
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()]);

@@ -75,7 +75,7 @@
         </div>
     @endif
     <div class="col-xl-4 col-lg-4 col-md-4 col-xm-12">
-        <a href="{{route('voters-analysis')}}">
+        <a href="@if(Session::get('type') != 'cell') {{route('voters-analysis')}} @else {{route('voter_add')}} @endif">
             <div class="card overflow-hidden dash1-card border-0 dash4">
                 <div class="card-body">
                     <div class="row">

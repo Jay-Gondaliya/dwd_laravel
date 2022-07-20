@@ -83,7 +83,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="validationCustom01" class="form-label">Username</label>
-                                <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editCellCoordinator->username }}" required>
+                                <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editCellCoordinator->username }}" @if(!empty($editCellCoordinator->username)) {{'readonly'}} @endif required/>
                                 <span class="text-danger error" id="cell_username"></span>
                             </div>
                         </div>

@@ -12,63 +12,63 @@
 		<title>DWD</title>
 
 		<!--Favicon -->
-		<link rel="icon" href="assets/images/brand/favicon.ico" type="image/x-icon"/>
+		<link rel="icon" href="{{ asset('assets/images/brand/favicon.ico') }}" type="image/x-icon"/>
 
 		<!--Bootstrap css -->
-		<link id="style" href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link id="style" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
 		<!-- Style css -->
-		<link href="assets/css/style.css" rel="stylesheet" />
-		<link href="assets/css/dark.css" rel="stylesheet" />
-		<link href="assets/css/custom.css" rel="stylesheet" />
-		<link href="assets/css/skin-modes.css" rel="stylesheet" />
+		<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+		<link href="{{ asset('assets/css/dark.css') }}" rel="stylesheet" />
+		<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
+		<link href="{{ asset('assets/css/skin-modes.css') }}" rel="stylesheet" />
 
 		<!-- Animate css -->
-		<link href="assets/css/animated.css" rel="stylesheet" />
+		<link href="{{ asset('assets/css/animated.css') }}" rel="stylesheet" />
 
 
 		<!-- P-scroll bar css-->
-		<link href="assets/plugins/p-scrollbar/p-scrollbar.css" rel="stylesheet" />
+		<link href="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.css') }}" rel="stylesheet" />
 
 		<!---Icons css-->
-		<link href="assets/css/icons.css" rel="stylesheet" />
+		<link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" />
 
 		<!-- INTERNAL Select2 css -->
-		<link href="assets/plugins/select2/select2.min.css" rel="stylesheet" />
+		<link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 
 		<!-- INTERNAL File Uploads css -->
-		<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
+		<link href="{{ asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
 
 		<!-- INTERNAL Time picker css -->
-		<link href="assets/plugins/time-picker/jquery.timepicker.css" rel="stylesheet" />
+		<link href="{{ asset('assets/plugins/time-picker/jquery.timepicker.css') }}" rel="stylesheet" />
 
 		<!-- INTERNAL Date Picker css -->
-		<link href="assets/plugins/date-picker/date-picker.css" rel="stylesheet" />
+		<link href="{{ asset('assets/plugins/date-picker/date-picker.css') }}" rel="stylesheet" />
 
 		<!--Date Picker-->
-		<link href="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
+		<link href="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.css') }}" rel="stylesheet" />
 
 		<!-- INTERNAL File Uploads css-->
-        <link href="assets/plugins/fileupload/css/fileupload.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
 
 		<!-- INTERNAL Mutipleselect css-->
-		<link rel="stylesheet" href="assets/plugins/multipleselect/multiple-select.css">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/multipleselect/multiple-select.css') }}">
 
 		<!-- INTERNAL Sumoselect css-->
-		<link rel="stylesheet" href="assets/plugins/sumoselect/sumoselect.css">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/sumoselect/sumoselect.css') }}">
 
 		<!-- INTERNAL telephoneinput css-->
-		<link rel="stylesheet" href="assets/plugins/telephoneinput/telephoneinput.css">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/telephoneinput/telephoneinput.css') }}">
 
 		<!-- INTERNAL Jquerytransfer css-->
-		<link rel="stylesheet" href="assets/plugins/jQuerytransfer/jquery.transfer.css">
-		<link rel="stylesheet" href="assets/plugins/jQuerytransfer/icon_font/icon_font.css">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/jQuerytransfer/jquery.transfer.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/jQuerytransfer/icon_font/icon_font.css') }}">
 
 		<!-- INTERNAL multi css-->
-		<link rel="stylesheet" href="assets/plugins/multi/multi.min.css">
-		<link href="assets/plugins/tabs/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ asset('assets/plugins/multi/multi.min.css') }}">
+		<link href="{{ asset('assets/plugins/tabs/style.css') }}" rel="stylesheet" />
 	    <!-- Color Skin css -->
-		<link id="theme" href="assets/colors/color1.css" rel="stylesheet" type="text/css"/>
+		<link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet" type="text/css"/>
 		 
 	</head>
 

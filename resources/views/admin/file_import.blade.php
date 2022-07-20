@@ -191,7 +191,7 @@
                                                                                 <path d="M4 5.01h16V8H4z" opacity=".3" />
                                                                                 </svg>
                                                                             </div>
-                                                                        </div><input class="form-control fc-datepicker" value="{{ $editVoter->dob }}" type="date" name="dob">
+                                                                        </div><input class="form-control fc-datepicker" max="{{ date('Y-m-d') }}" value="{{ $editVoter->dob }}" type="date" name="dob">
                                                                     </div>
                                                                 </div>
                                                             </div>

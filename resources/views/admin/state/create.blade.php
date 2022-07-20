@@ -60,7 +60,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="form-label">Age</label>
-                                <input type="email" class="form-control" name="age" value="{{ $editStateCoordinator->age }}" placeholder="Age">
+                                <input type="email" class="form-control" name="age" value="{{ $editStateCoordinator->age }}" id="age" placeholder="Age" readonly/>
                                 <span class="text-danger error" id="state_age"></span>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                         <div class="input-group-text">
                                             <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z"/><path d="M4 5.01h16V8H4z" opacity=".3"/></svg>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="date" name="dob" value="{{ $editStateCoordinator->dob }}"/>
+                                    </div><input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" max="{{ date('Y-m-d') }}" type="date" name="dob" id="dob" value="{{ $editStateCoordinator->dob }}"/>
                                 </div>
                                 <span class="text-danger error" id="state_dob"></span>
                             </div>
@@ -202,6 +202,14 @@
     $('#fname').keyup(function() {
         var fname = $(this).val();
         $('#username').val(fname+"_"+makeusername(5));
+    });
+
+    $("#dob").change(function(){
+        var date = $(this).val();
+        dob = new Date(date);
+        var today = new Date();
+        var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+        $('#age').val(age);
     });
 </script>
 @endsection

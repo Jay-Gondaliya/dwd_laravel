@@ -26,7 +26,7 @@
                                                 <div class="input-group-text">
                                                     <i class="fe fe-user"></i>
                                                 </div>
-                                            <input type="text" class="form-control" placeholder="Username" name="username" id="username"/>
+                                            <input type="text" class="form-control" placeholder="Username" name="username" id="username" required/>
                                         </div>
                                         
                                         <div class="input-group mb-4">
@@ -34,7 +34,7 @@
                                                 <a href="" class="input-group-text">
                                                     <i class="fe fe-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="form-control" type="password" placeholder="Confirm Password" name="password" id="password"/>
+                                                <input class="form-control" type="password" placeholder="Confirm Password" name="password" id="password" required/>
                                             </div>
                                         </div>
                                         @if($errors->any())

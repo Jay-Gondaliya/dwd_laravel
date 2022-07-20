@@ -24,8 +24,8 @@
                                         @csrf
                                         <div class="form-group row mb-4">
                                             <div class="col-md-12">
-                                                <select class="form-control select2" name="profile_type" id="profile_type">
-                                                    <option>Select your profile</option>
+                                                <select class="form-control select2" name="profile_type" id="profile_type" required>
+                                                    <option value="">Select your profile</option>
                                                     <option value="state">State Coordinator</option>
                                                     <option value="local">Local Government Area Coordinator</option>
                                                     <option value="ward">Ward Coordinator</option>
@@ -37,7 +37,7 @@
                                             <div class="input-group-text">
                                                 <i class="fe fe-user"></i>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Username" name="username" id="username" />
+                                            <input type="text" class="form-control" placeholder="Username" name="username" id="username" required />
                                         </div>
 
                                         <div class="input-group mb-4">
@@ -45,7 +45,7 @@
                                                 <a href="" class="input-group-text">
                                                     <i class="fe fe-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="form-control" type="password" placeholder="Confirm Password" name="password" id="password" />
+                                                <input class="form-control" type="password" placeholder="Confirm Password" name="password" id="password" required/>
                                             </div>
                                         </div>
                                         @if($errors->any())

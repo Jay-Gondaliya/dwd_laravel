@@ -41,7 +41,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="validationCustom01" class="form-label">Username</label>
-                                <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editStateCoordinator->username }}" @if(!empty($editStateCoordinator->username)) {{'readonly'}} @endif@if(!empty($editStateCoordinator->username)) {{'readonly'}} @endif required>
+                                <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editStateCoordinator->username }}" @if(!empty($editStateCoordinator->username)) {{'readonly'}} @endif required>
                                 <span class="text-danger error" id="state_username"></span>
                             </div>
                         </div>

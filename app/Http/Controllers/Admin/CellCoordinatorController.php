@@ -154,8 +154,8 @@ class CellCoordinatorController extends Controller
             }
             $editCellCoordinator = CellCoordinator::where('id', $id)->first();
             //        $stateList = StateCoordinator::where('is_delete', '0')->get();
-            $lgaList = LGACoordinator::where([['state_id', '=', $editCellCoordinator->state_id], ['is_delete', '=', '0']])->get();
-            $wardList = WardCoordinator::where([['lga_id', '=', $editCellCoordinator->lga_id], ['is_delete', '=', '0']])->get();
+            $lgaList = LGACoordinator::where([['id', '=', $editCellCoordinator->lga_id], ['is_delete', '=', '0']])->get();
+            $wardList = WardCoordinator::where([['id', '=', $editCellCoordinator->ward_id], ['is_delete', '=', '0']])->get();
             $title = "Edit Cell Coordinator";
             return view('admin.cell.create', compact('editCellCoordinator', 'title', 'stateList', 'lgaList', 'wardList'));
         } else {

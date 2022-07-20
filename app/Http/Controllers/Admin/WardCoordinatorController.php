@@ -178,8 +178,14 @@ class WardCoordinatorController extends Controller
         if ($from == 'state') {
             /* getting lga from state */
             if($userType=='lga'){
-                $lgaLevel = LGACoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-            }else{
+                $lgaLevel = LGACoordinator::where([['id','=',$userStateID],['state_id', '=', $value], ['is_delete','=', '0']])->get();
+            } elseif(($userType=='ward')) {
+                $ward = WardCoordinator::where([['id','=',$userStateID], ['is_delete','=', '0']])->first();
+                $lgaLevel = LGACoordinator::where([['id','=',$ward->lga_id],['state_id', '=', $ward->state_id], ['is_delete','=', '0']])->get();
+            } elseif(($userType=='cell')) {
+                $cell = CellCoordinator::where([['id','=',$userStateID], ['is_delete','=', '0']])->first();
+                $lgaLevel = LGACoordinator::where([['id','=',$cell->lga_id],['state_id', '=', $cell->state_id], ['is_delete','=', '0']])->get();
+            } else{
                 $lgaLevel = LGACoordinator::where([['state_id', '=', $value], ['is_delete', '=', '0']])->get();
             }
             foreach ($lgaLevel as $key => $state) {
@@ -190,7 +196,10 @@ class WardCoordinatorController extends Controller
             /* getting ward from lga */
             if($userType=='ward'){
                 $wardList = WardCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-            }else{
+            } elseif(($userType=='cell')) {
+                $cell = CellCoordinator::where([['id','=',$userStateID], ['is_delete','=', '0']])->first();
+                $wardList = WardCoordinator::where([['id','=',$cell->ward_id],['state_id', '=', $cell->state_id], ['is_delete','=', '0']])->get();
+            } else{
                 $wardList = WardCoordinator::where([['lga_id', '=', $value], ['is_delete', '=', '0']])->get();
             }
             foreach ($wardList as $key => $ward) {
@@ -201,7 +210,9 @@ class WardCoordinatorController extends Controller
             /* getting cell from ward */
             if($userType=='ward'){
                 $cellList = CellCoordinator::where([['id','=',$userStateID],['is_delete','=', '0']])->get();
-            }else{
+            } elseif(($userType=='cell')) {
+                $cellList = CellCoordinator::where([['id','=',$userStateID], ['is_delete','=', '0']])->get();
+            } else{
                 $cellList = CellCoordinator::where([['ward_id', '=', $value], ['is_delete', '=', '0']])->get();
             }
             foreach ($cellList as $key => $cell) {

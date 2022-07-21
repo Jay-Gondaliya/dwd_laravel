@@ -42,6 +42,7 @@ class BulkImport implements ToModel,WithHeadingRow
                             $add->lname=$row['lname'];
                             $add->gender=$row['gender'];
                             $add->dob=$date->format('Y-m-d');
+                            $add->age=date_diff(date_create($date->format('Y-m-d')), date_create('today'))->y;
                             $add->mobile=$row['mobile'];
                             $add->is_mobile=$row['is_mobile'];
                             $add->email=$row['email'];
@@ -106,6 +107,7 @@ class BulkImport implements ToModel,WithHeadingRow
                 $add->lname=$row['lname'];
                 $add->gender=$row['gender'];
                 $add->dob=$date->format('Y-m-d');
+                $add->age=date_diff(date_create($date->format('Y-m-d')), date_create('today'))->y;
                 $add->mobile=$row['mobile'];
                 $add->is_mobile=$row['is_mobile'];
                 $add->email=$row['email'];
@@ -144,6 +146,7 @@ class BulkImport implements ToModel,WithHeadingRow
                     $add->lname=$row['lname'];
                     $add->gender=$row['gender'];
                     $add->dob=$date->format('Y-m-d');
+                    $add->age=date_diff(date_create($date->format('Y-m-d')), date_create('today'))->y;
                     $add->mobile=$row['mobile'];
                     $add->is_mobile=$row['is_mobile'];
                     $add->email=$row['email'];
@@ -193,6 +196,7 @@ class BulkImport implements ToModel,WithHeadingRow
                         $add->lname=$row['lname'];
                         $add->gender=$row['gender'];
                         $add->dob=$date->format('Y-m-d');
+                        $add->age=date_diff(date_create($date->format('Y-m-d')), date_create('today'))->y;
                         $add->mobile=$row['mobile'];
                         $add->is_mobile=$row['is_mobile'];
                         $add->email=$row['email'];

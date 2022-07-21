@@ -246,18 +246,18 @@
                                                                                                                     <input
                                                                                                                         type="radio"
                                                                                                                         class="custom-control-input"
-                                                                                                                        name="example-radios1"
-                                                                                                                        value="option3"
-                                                                                                                        checked="">
+                                                                                                                        name="ageFind"
+                                                                                                                        value="1"
+                                                                                                                        {{ $searchResult['ageFind'] == "1" ? 'checked' : null }}>
                                                                                                                     <span
                                                                                                                         class="custom-control-label">Below</span>
                                                                                                                 </label>
                                                                                                             </li>
                                                                                                             <li>
                                                                                                                 <input
-                                                                                                                    type="email"
+                                                                                                                    type="text"
                                                                                                                     class="form-control"
-                                                                                                                    id=""
+                                                                                                                    name="below" value="{{ $searchResult['below'] }}"
                                                                                                                     placeholder="">
                                                                                                             </li>
                                                                                                         </ul>
@@ -271,17 +271,18 @@
                                                                                                                     <input
                                                                                                                         type="radio"
                                                                                                                         class="custom-control-input"
-                                                                                                                        name="example-radios1"
-                                                                                                                        value="option4">
+                                                                                                                        name="ageFind"
+                                                                                                                        value="2"
+                                                                                                                        {{ $searchResult['ageFind'] == "2" ? 'checked' : null }}>
                                                                                                                     <span
                                                                                                                         class="custom-control-label">Above</span>
                                                                                                                 </label>
                                                                                                             </li>
                                                                                                             <li>
                                                                                                                 <input
-                                                                                                                    type="email"
+                                                                                                                    type="text"
                                                                                                                     class="form-control"
-                                                                                                                    id=""
+                                                                                                                    name="above" value="{{ $searchResult['above'] }}"
                                                                                                                     placeholder="">
                                                                                                             </li>
                                                                                                         </ul>
@@ -295,17 +296,18 @@
                                                                                                                     <input
                                                                                                                         type="radio"
                                                                                                                         class="custom-control-input"
-                                                                                                                        name="example-radios1"
-                                                                                                                        value="option5">
+                                                                                                                        name="ageFind"
+                                                                                                                        value="3"
+                                                                                                                        {{ $searchResult['ageFind'] == "3" ? 'checked' : null }}>
                                                                                                                     <span
                                                                                                                         class="custom-control-label">Between</span>
                                                                                                                 </label>
                                                                                                             </li>
                                                                                                             <li>
                                                                                                                 <input
-                                                                                                                    type="email"
+                                                                                                                    type="text"
                                                                                                                     class="form-control mb-3"
-                                                                                                                    id=""
+                                                                                                                    name="fromAge" value="{{ $searchResult['fromAge'] }}"
                                                                                                                     placeholder="">
                                                                                                             </li>
                                                                                                             <li>
@@ -314,9 +316,9 @@
                                                                                                             </li>
                                                                                                             <li>
                                                                                                                 <input
-                                                                                                                    type="email"
+                                                                                                                    type="text"
                                                                                                                     class="form-control"
-                                                                                                                    id=""
+                                                                                                                    name="toAge" value="{{ $searchResult['toAge'] }}"
                                                                                                                     placeholder="">
                                                                                                             </li>
                                                                                                         </ul>

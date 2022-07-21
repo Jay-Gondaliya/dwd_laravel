@@ -306,6 +306,40 @@ class AdminController extends Controller
                     });
                 }
 
+                $searchResult['ageFind'] = '';
+                $searchResult['below'] = '';
+                $searchResult['above'] = '';
+                $searchResult['fromAge'] = '';
+                $searchResult['toAge'] = '';
+                if (!empty($request->ageFind)) {
+                    $searchResult['ageFind']    = $request->ageFind;
+                    if($request->ageFind == 1) {
+                        $searchResult['below']    = $request->below;
+                        $voterList = $voterList->where(function ($query) use ($request) {
+                            $query->orWhere('age', '<=', "$request->below");
+                        });
+                    } else if($request->ageFind == 2) {
+                        $searchResult['above']    = $request->above;
+                        $voterList = $voterList->where(function ($query) use ($request) {
+                            $query->orWhere('age', '>=', "$request->above");
+                        });
+                    } else if($request->ageFind == 3) {
+                        $searchResult['fromAge']    = $request->fromAge;
+                        $searchResult['toAge']    = $request->toAge;
+                        $voterList = $voterList->where(function ($query) use ($request) {
+                            $query->orWhereBetween('age', ["$request->fromAge", "$request->toAge"]);
+                        });
+                    }
+                }
+
+                $searchResult['is_mobile'] = '';
+                if (!empty($request->is_mobile)) {
+                    $searchResult['is_mobile']    = $request->is_mobile;
+                    $voterList = $voterList->where(function ($query) use ($request) {
+                        $query->orWhere('is_mobile', '=', $request->is_mobile);
+                    });
+                }
+
                 $searchResult['is_mobile'] = '';
                 if (!empty($request->is_mobile)) {
                     $searchResult['is_mobile']    = $request->is_mobile;
@@ -430,6 +464,24 @@ class AdminController extends Controller
                     $voterListPrint = $voterListPrint->where(function ($query) use ($request) {
                         $query->orWhere('gender', 'LIKE', "%{$request->gender}%");
                     });
+                }
+
+                $searchResult['ageFind'] = '';
+                if (!empty($request->ageFind)) {
+                    $searchResult['ageFind']    = $request->ageFind;
+                    if($request->ageFind == 1) {
+                        $voterListPrint = $voterListPrint->where(function ($query) use ($request) {
+                            $query->orWhere('age', '<=', "$request->below");
+                        });
+                    } else if($request->ageFind == 2) {
+                        $voterListPrint = $voterListPrint->where(function ($query) use ($request) {
+                            $query->orWhere('age', '>=', "$request->above");
+                        });
+                    } else if($request->ageFind == 3) {
+                        $voterListPrint = $voterListPrint->where(function ($query) use ($request) {
+                            $query->orWhereBetween('age', ["$request->fromAge", "$request->toAge"]);
+                        });
+                    }
                 }
 
                 $searchResult['is_mobile'] = '';
@@ -620,6 +672,7 @@ class AdminController extends Controller
         $addCompanyOwner->lname = $request->lname;
         $addCompanyOwner->gender = $request->gender;
         $addCompanyOwner->dob = $request->dob;
+        $addCompanyOwner->age = date_diff(date_create($request->dob), date_create('today'))->y;
         $addCompanyOwner->mobile =$request->mobile;
         $addCompanyOwner->is_mobile = '1';
         $addCompanyOwner->email = $request->email;
@@ -722,6 +775,32 @@ class AdminController extends Controller
                 $voterList = $voterList->where(function ($query) use ($request) {
                     $query->orWhere('voter.gender', 'LIKE', "%{$request->gender}%");
                 });
+            }
+
+            $searchResult['ageFind'] = '';
+            $searchResult['below'] = '';
+            $searchResult['above'] = '';
+            $searchResult['fromAge'] = '';
+            $searchResult['toAge'] = '';
+            if (!empty($request->ageFind)) {
+                $searchResult['ageFind']    = $request->ageFind;
+                if($request->ageFind == 1) {
+                    $searchResult['below']    = $request->below;
+                    $voterList = $voterList->where(function ($query) use ($request) {
+                        $query->orWhere('age', '<=', "$request->below");
+                    });
+                } else if($request->ageFind == 2) {
+                    $searchResult['above']    = $request->above;
+                    $voterList = $voterList->where(function ($query) use ($request) {
+                        $query->orWhere('age', '>=', "$request->above");
+                    });
+                } else if($request->ageFind == 3) {
+                    $searchResult['fromAge']    = $request->fromAge;
+                    $searchResult['toAge']    = $request->toAge;
+                    $voterList = $voterList->where(function ($query) use ($request) {
+                        $query->orWhereBetween('age', ["$request->fromAge", "$request->toAge"]);
+                    });
+                }
             }
 
             $searchResult['is_mobile'] = '';

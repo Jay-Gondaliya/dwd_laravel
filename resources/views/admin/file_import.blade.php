@@ -637,6 +637,9 @@
                 url: "{{ route('store_voter') }}",
                 method: 'POST',
                 data: formData,
+                beforeSend: function() {
+                    $('#createVoterForm')[0].reset();
+                },
                 dataType: "json",
                 contentType: false,
                 processData: false,

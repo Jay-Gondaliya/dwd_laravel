@@ -14,7 +14,7 @@
         <div class="card">
             <form class="mt-5" id="addStateCoordinatorForm">
                 @csrf
-                <input type="hidden" name="id" value="{{ $editStateCoordinator->id }}"/>
+                <input type="hidden" name="id" id="id" value="{{ $editStateCoordinator->id }}"/>
                 <div class="card-body pb-2">
                     <div class="row row-sm">
                     <div class="col-lg-4">
@@ -199,10 +199,12 @@
         return result;
     }
 
-    $('#fname').keyup(function() {
-        var fname = $(this).val();
-        $('#username').val(fname+"_"+makeusername(5));
-    });
+    if($("#id").val() == '') {
+        $('#fname').keyup(function() {
+            var fname = $(this).val();
+            $('#username').val(fname+"_"+makeusername(5));
+        });
+    }
 
     $("#dob").change(function(){
         var date = $(this).val();

@@ -75,9 +75,9 @@ class StateCoordinatorController extends Controller
 
             if(empty($addStateCoordinator)) {
                 $addStateCoordinator = new StateCoordinator;
+                $addStateCoordinator->username = $request->username;
             }
 
-            $addStateCoordinator->username = $request->username;
             $addStateCoordinator->password = md5($request->password);
             $addStateCoordinator->fname = $request->fname;
             $addStateCoordinator->mname = $request->mname;

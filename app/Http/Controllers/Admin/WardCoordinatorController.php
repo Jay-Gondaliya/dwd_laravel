@@ -106,11 +106,11 @@ class WardCoordinatorController extends Controller
 
             if(empty($addWardCoordinator)) {
                 $addWardCoordinator = new WardCoordinator;
+                $addWardCoordinator->username = $request->username;
             }
 
             $addWardCoordinator->state_id = $request->select_state;
             $addWardCoordinator->lga_id = $request->select_lga;
-            $addWardCoordinator->username = $request->username;
             $addWardCoordinator->password = md5($request->password);
             $addWardCoordinator->fname = $request->fname;
             $addWardCoordinator->mname = $request->mname;

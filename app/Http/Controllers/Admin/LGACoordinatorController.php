@@ -101,10 +101,10 @@ class LGACoordinatorController extends Controller
 
             if(empty($addLGACoordinator)) {
                 $addLGACoordinator = new LGACoordinator;
+                $addLGACoordinator->username = $request->username;
             }
 
             $addLGACoordinator->state_id = $request->select_state;
-            $addLGACoordinator->username = $request->username;
             $addLGACoordinator->password = md5($request->password);
             $addLGACoordinator->fname = $request->fname;
             $addLGACoordinator->mname = $request->mname;

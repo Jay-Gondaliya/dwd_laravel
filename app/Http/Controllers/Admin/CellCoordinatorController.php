@@ -111,12 +111,12 @@ class CellCoordinatorController extends Controller
 
             if(empty($addCellCoordinator)) {
                 $addCellCoordinator = new CellCoordinator;
+                $addCellCoordinator->username = $request->username;
             }
 
             $addCellCoordinator->state_id = $request->select_state;
             $addCellCoordinator->lga_id = $request->select_lga;
             $addCellCoordinator->ward_id = $request->select_ward;
-            $addCellCoordinator->username = $request->username;
             $addCellCoordinator->password = md5($request->password);
             $addCellCoordinator->fname = $request->fname;
             $addCellCoordinator->mname = $request->mname;

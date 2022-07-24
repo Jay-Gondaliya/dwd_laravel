@@ -19,12 +19,12 @@
                     <div class="row row-sm">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Select State</label>
+                                <label class="form-label">Select State <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="select_state" id="select_state">
                                     <option value="">Select State</option>
                                     @if(!empty($stateList))
                                         @foreach($stateList as $state)
-                                            <option value="{{ $state->id }}" @if($editCellCoordinator->state_id == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
+                                            <option value="{{ $state->id }}" @if($editCellCoordinator->state_id == $state->id) {{'selected'}} @endif>{{ $state->fname }} {{ $state->lname }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -33,12 +33,12 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Select Local Government</label>
+                                <label class="form-label">Select Local Government <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="select_lga" id="select_lga">
                                     <option value="">Select Local Government</option>
                                     @if(!empty($lgaList) && !empty($editCellCoordinator->id))
                                         @foreach($lgaList as $lga)
-                                            <option value="{{ $lga->id }}" @if($editCellCoordinator->lga_id == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
+                                            <option value="{{ $lga->id }}" @if($editCellCoordinator->lga_id == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}  {{ $lga->lname }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -47,12 +47,12 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Select Ward</label>
+                                <label class="form-label">Select Ward <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="select_ward" id="select_ward">
                                     <option value="">Select Ward</option>
                                     @if(!empty($wardList) && !empty($editCellCoordinator->id))
                                         @foreach($wardList as $ward)
-                                            <option value="{{ $ward->id }}" @if($editCellCoordinator->ward_id == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
+                                            <option value="{{ $ward->id }}" @if($editCellCoordinator->ward_id == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}  {{ $ward->lname }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">First Name</label>
+                                <label for="validationCustom01" class="form-label">First Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" value="{{ $editCellCoordinator->fname }}" required>
                                 <span class="text-danger error" id="cell_fname"></span>
                             </div>
@@ -75,14 +75,18 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">Last Name</label>
+                                <label for="validationCustom01" class="form-label">Last Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" placeholder="Last Name" name="lname" value="{{ $editCellCoordinator->lname }}" required>
                                 <span class="text-danger error" id="cell_lname"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">Username</label>
+                                @if(!empty($editCellCoordinator->id))
+                                    <label for="validationCustom01" class="form-label">Username</label>
+                                @else
+                                    <label for="validationCustom01" class="form-label">Username <span class="text-danger">*</span></label>
+                                @endif
                                 <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editCellCoordinator->username }}" @if(!empty($editCellCoordinator->username)) {{'readonly'}} @endif required/>
                                 <span class="text-danger error" id="cell_username"></span>
                             </div>
@@ -90,7 +94,7 @@
                         <div class="col-lg-4">
                             <div class="row">
                                 <div class="col-md-8 form-group">
-                                    <label for="validationCustom01" class="form-label">Password</label>
+                                    <label for="validationCustom01" class="form-label">Password <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" placeholder="Password" id="password" name="password" required>
                                     <span class="text-danger error" id="cell_password"></span>
                                 </div>
@@ -101,14 +105,14 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Age</label>
+                                <label class="form-label">Age <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="age" id="age" readonly value="{{ $editCellCoordinator->age }}" placeholder="Age">
                                 <span class="text-danger error" id="cell_age"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Gender</label>
+                                <label class="form-label">Gender <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="gender">
                                     <option value="">Select Gender</option>
                                     <option value="male" @if($editCellCoordinator->gender == "male") {{'selected'}}@endif>Male</option>
@@ -120,7 +124,7 @@
                         </div>
                         <div class="col-lg-4">
                         <div class="form-group">
-                        <label class="form-label">Date of Birth</label>
+                        <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
                         <div class="wd-200 mg-b-30">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -135,7 +139,7 @@
                         </div>
                             <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Mobile number</label>
+                                <label class="form-label">Mobile number <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="mobile" value="{{ $editCellCoordinator->mobile }}" placeholder="Mobile Number">
                                 <span class="text-danger error" id="cell_mobile"></span>
                             </div>
@@ -149,7 +153,7 @@
                         </div>
                             <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Email Address</label>
+                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="email" value="{{ $editCellCoordinator->email }}" placeholder="Email Address">
                                 <span class="text-danger error" id="cell_email"></span>
                             </div>
@@ -163,7 +167,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="form-label">Resident Address</label>
+                                <label class="form-label">Resident Address <span class="text-danger">*</span></label>
                                 <textarea class="form-control" rows="4" placeholder="Resident Address" name="address">{{ $editCellCoordinator->address }}</textarea>
                                 <span class="text-danger error" id="cell_address"></span>
                             </div>
@@ -172,8 +176,7 @@
                             <div class="custom-controls-stacked">
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="policy" value="1">
-                                    <span class="custom-control-label">I agree for the company to use these details.</span>
-                                </label>
+                                    <span class="custom-control-label">I agree for the company to use these details.</label>
                                 <span class="text-danger error" id="cell_policy"></span>
                             </div>
                         </div>

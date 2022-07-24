@@ -19,12 +19,12 @@
                     <div class="row row-sm">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Select State</label>
+                                <label class="form-label">Select State <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="select_state" id="select_state">
                                     <option value="">Select State</option>
                                     @if(!empty($stateList))
                                         @foreach($stateList as $state)
-                                            <option value="{{ $state->id }}" @if($editWardCoordinator->state_id == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
+                                            <option value="{{ $state->id }}" @if($editWardCoordinator->state_id == $state->id) {{'selected'}} @endif>{{ $state->fname }} {{ $state->lname }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -33,12 +33,12 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Select Local Government</label>
+                                <label class="form-label">Select Local Government <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="select_lga" id="select_lga">
                                     <option value="">Select Local Government</option>
                                     @if(!empty($lgaList) && !empty($editWardCoordinator->id))
                                         @foreach($lgaList as $lga)
-                                            <option value="{{ $lga->id }}" @if($editWardCoordinator->lga_id == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
+                                            <option value="{{ $lga->id }}" @if($editWardCoordinator->lga_id == $lga->id) {{'selected'}} @endif>{{ $lga->fname }} {{ $lga->lname }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">First Name</label>
+                                <label for="validationCustom01" class="form-label">First Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" value="{{ $editWardCoordinator->fname }}" required>
                                 <span class="text-danger error" id="ward_fname"></span>
                             </div>
@@ -61,14 +61,18 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">Last Name</label>
+                                <label for="validationCustom01" class="form-label">Last Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" placeholder="Last Name" name="lname" value="{{ $editWardCoordinator->lname }}" required>
                                 <span class="text-danger error" id="ward_lname"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">Username</label>
+                                @if(!empty($editStateCoordinator->id))
+                                    <label for="validationCustom01" class="form-label">Username</label>
+                                @else
+                                    <label for="validationCustom01" class="form-label">Username <span class="text-danger">*</span></label>
+                                @endif
                                 <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editWardCoordinator->username }}" @if(!empty($editWardCoordinator->username)) {{'readonly'}} @endif required>
                                 <span class="text-danger error" id="ward_username"></span>
                             </div>
@@ -76,7 +80,7 @@
                         <div class="col-lg-4">
                             <div class="row">
                                 <div class="col-md-8 form-group">
-                                    <label for="validationCustom01" class="form-label">Password</label>
+                                    <label for="validationCustom01" class="form-label">Password <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" placeholder="Password" id="password" name="password" required>
                                     <span class="text-danger error" id="ward_password"></span>
                                 </div>
@@ -87,14 +91,14 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Age</label>
+                                <label class="form-label">Age <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="age" id="age" readonly value="{{ $editWardCoordinator->age }}" placeholder="Age">
                                 <span class="text-danger error" id="ward_age"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Gender</label>
+                                <label class="form-label">Gender <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="gender">
                                     <option value="">Select Gender</option>
                                     <option value="male" @if($editWardCoordinator->gender == "male") {{'selected'}}@endif>Male</option>
@@ -106,7 +110,7 @@
                         </div>
                         <div class="col-lg-4">
                         <div class="form-group">
-                        <label class="form-label">Date of Birth</label>
+                        <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
                         <div class="wd-200 mg-b-30">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -121,7 +125,7 @@
                         </div>
                             <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Mobile number</label>
+                                <label class="form-label">Mobile number <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="mobile" value="{{ $editWardCoordinator->mobile }}" placeholder="Mobile Number">
                                 <span class="text-danger error" id="ward_mobile"></span>
                             </div>
@@ -135,7 +139,7 @@
                         </div>
                             <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Email Address</label>
+                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="email" value="{{ $editWardCoordinator->email }}" placeholder="Email Address">
                                 <span class="text-danger error" id="ward_email"></span>
                             </div>
@@ -149,7 +153,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="form-label">Resident Address</label>
+                                <label class="form-label">Resident Address <span class="text-danger">*</span></label>
                                 <textarea class="form-control" rows="4" placeholder="Resident Address" name="address">{{ $editWardCoordinator->address }}</textarea>
                                 <span class="text-danger error" id="ward_address"></span>
                             </div>
@@ -159,7 +163,6 @@
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="policy" value="1">
                                     <span class="custom-control-label">I agree for the company to use these details.</span>
-                                </label>
                                 <span class="text-danger error" id="ward_policy"></span>
                             </div>
                         </div>

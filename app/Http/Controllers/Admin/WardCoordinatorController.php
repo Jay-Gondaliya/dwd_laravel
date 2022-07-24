@@ -68,7 +68,7 @@ class WardCoordinatorController extends Controller
                 'username'  => 'required',
                 'password' => 'required',
                 'fname'  => 'required',
-                'mname'  => 'required',
+                // 'mname'  => 'required',
                 'lname'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
@@ -85,7 +85,7 @@ class WardCoordinatorController extends Controller
                 'username'  => 'required|unique:ward_coordinator',
                 'password' => 'required',
                 'fname'  => 'required',
-                'mname'  => 'required',
+                // 'mname'  => 'required',
                 'lname'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
@@ -190,7 +190,7 @@ class WardCoordinatorController extends Controller
             }
             foreach ($lgaLevel as $key => $state) {
                 $details[$key]['id']   = $state->id;
-                $details[$key]['name'] = $state->fname;
+                $details[$key]['name'] = $state->fname . ' ' . $state->lname;
             }
         } else if ($from == 'lga') {
             /* getting ward from lga */
@@ -204,7 +204,7 @@ class WardCoordinatorController extends Controller
             }
             foreach ($wardList as $key => $ward) {
                 $details[$key]['id']   = $ward->id;
-                $details[$key]['name'] = $ward->fname;
+                $details[$key]['name'] = $ward->fname . ' ' . $ward->lname;
             }
         } else if ($from == 'ward') {
             /* getting cell from ward */
@@ -217,7 +217,7 @@ class WardCoordinatorController extends Controller
             }
             foreach ($cellList as $key => $cell) {
                 $details[$key]['id']   = $cell->id;
-                $details[$key]['name'] = $cell->fname;
+                $details[$key]['name'] = $cell->fname . ' ' . $cell->lname;
             }
         }
         return response()->json([

@@ -238,7 +238,7 @@
                                                                         <option value="">Select State</option>
                                                                         @if(!empty($stateList))
                                                                         @foreach($stateList as $state)
-                                                                        <option value="{{ $state->id }}" @if($editVoter->state == $state->id) {{'selected'}} @endif>{{ $state->fname }}</option>
+                                                                        <option value="{{ $state->id }}" @if($editVoter->state == $state->id) {{'selected'}} @endif>{{ $state->fname }} {{ $state->lname }}</option>
                                                                         @endforeach
                                                                         @endif
                                                                     </select>
@@ -251,7 +251,7 @@
                                                                         <option value="">Select Local Government</option>
                                                                         @if(!empty($lgaList) && !empty($editVoter->id))
                                                                         @foreach($lgaList as $lga)
-                                                                        <option value="{{ $lga->id }}" @if($editVoter->lga == $lga->id) {{'selected'}} @endif>{{ $lga->fname }}</option>
+                                                                        <option value="{{ $lga->id }}" @if($editVoter->lga == $lga->id) {{'selected'}} @endif>{{ $lga->fname }} {{ $lga->lname }}</option>
                                                                         @endforeach
                                                                         @endif
                                                                     </select>
@@ -264,7 +264,7 @@
                                                                         <option value="">Select Ward</option>
                                                                         @if(!empty($wardList) && !empty($editVoter->id))
                                                                         @foreach($wardList as $ward)
-                                                                        <option value="{{ $ward->id }}" @if($editVoter->ward == $ward->id) {{'selected'}} @endif>{{ $ward->fname }}</option>
+                                                                        <option value="{{ $ward->id }}" @if($editVoter->ward == $ward->id) {{'selected'}} @endif>{{ $ward->fname }} {{ $ward->lname }}</option>
                                                                         @endforeach
                                                                         @endif
                                                                     </select>
@@ -277,7 +277,7 @@
                                                                         <option value="">Select Cell</option>
                                                                         @if(!empty($cellList) && !empty($editVoter->id))
                                                                         @foreach($cellList as $cell)
-                                                                        <option value="{{ $cell->id }}" @if($editVoter->cell == $cell->id) {{'selected'}} @endif>{{ $cell->fname }}</option>
+                                                                        <option value="{{ $cell->id }}" @if($editVoter->cell == $cell->id) {{'selected'}} @endif>{{ $cell->fname }} {{ $cell->lname }}</option>
                                                                         @endforeach
                                                                         @endif
                                                                     </select>

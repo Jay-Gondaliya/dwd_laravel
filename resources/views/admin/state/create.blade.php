@@ -19,7 +19,7 @@
                     <div class="row row-sm">
                     <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">First Name</label>
+                                <label for="validationCustom01" class="form-label">First Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" value="{{ $editStateCoordinator->fname }}" required>
                                 <span class="text-danger error" id="state_fname"></span>
                             </div>
@@ -33,14 +33,18 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">Last Name</label>
+                                <label for="validationCustom01" class="form-label">Last Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" placeholder="Last Name" name="lname" value="{{ $editStateCoordinator->lname }}" required>
                                 <span class="text-danger error" id="state_lname"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="validationCustom01" class="form-label">Username</label>
+                                @if(!empty($editStateCoordinator->id))
+                                    <label for="validationCustom01" class="form-label">Username</label>
+                                @else
+                                    <label for="validationCustom01" class="form-label">Username <span class="text-danger">*</span></label>
+                                @endif
                                 <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ $editStateCoordinator->username }}" @if(!empty($editStateCoordinator->username)) {{'readonly'}} @endif required>
                                 <span class="text-danger error" id="state_username"></span>
                             </div>
@@ -48,7 +52,7 @@
                         <div class="col-lg-4">
                             <div class="row">
                                 <div class="col-md-8 form-group">
-                                    <label for="validationCustom01" class="form-label">Password</label>
+                                    <label for="validationCustom01" class="form-label">Password <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" placeholder="Password" id="password" name="password" required>
                                     <span class="text-danger error" id="state_password"></span>
                                 </div>
@@ -59,14 +63,14 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Age</label>
+                                <label class="form-label">Age <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="age" value="{{ $editStateCoordinator->age }}" id="age" placeholder="Age" readonly/>
                                 <span class="text-danger error" id="state_age"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Gender</label>
+                                <label class="form-label">Gender <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="gender">
                                     <option value="">Select Gender</option>
                                     <option value="male" @if($editStateCoordinator->gender == "male") {{'selected'}}@endif>Male</option>
@@ -78,7 +82,7 @@
                         </div>
                         <div class="col-lg-4">
                         <div class="form-group">
-                        <label class="form-label">Date of Birth</label>
+                        <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
                         <div class="wd-200 mg-b-30">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -93,7 +97,7 @@
                         </div>
                             <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Mobile number</label>
+                                <label class="form-label">Mobile number <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="mobile" value="{{ $editStateCoordinator->mobile }}" placeholder="Mobile Number">
                                 <span class="text-danger error" id="state_mobile"></span>
                             </div>
@@ -107,7 +111,7 @@
                         </div>
                             <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-label">Email Address</label>
+                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" name="email" value="{{ $editStateCoordinator->email }}" placeholder="Email Address">
                                 <span class="text-danger error" id="state_email"></span>
                             </div>
@@ -121,7 +125,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="form-label">Resident Address</label>
+                                <label class="form-label">Resident Address <span class="text-danger">*</span></label>
                                 <textarea class="form-control" rows="4" placeholder="Resident Address" name="address">{{ $editStateCoordinator->address }}</textarea>
                                 <span class="text-danger error" id="state_address"></span>
                             </div>
@@ -131,7 +135,6 @@
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="policy" value="1">
                                     <span class="custom-control-label">I agree for the company to use these details.</span>
-                                </label>
                                 <span class="text-danger error" id="state_policy"></span>
                             </div>
                         </div>

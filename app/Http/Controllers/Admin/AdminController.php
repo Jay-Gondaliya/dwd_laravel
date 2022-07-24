@@ -659,47 +659,93 @@ class AdminController extends Controller
 
     public function voterStore(Request $request)
     {
-        if(!empty($request->voter_id)) {
-            $addCompanyOwner = Voter::where('id', $request->voter_id)->first();
+        if(!empty($request->id)) {
+            $validator = Validator::make($request->all(), [
+                'select_state'  => 'required',
+                'select_lga'  => 'required',
+                'select_ward'  => 'required',
+                'username'  => 'required',
+                'password' => 'required',
+                'fname'  => 'required',
+                // 'mname'  => 'required',
+                'lname'  => 'required',
+                'age' => 'required',
+                'gender'  => 'required',
+                'dob' => 'required',
+                'mobile'  => 'required',
+                'email' => 'required|email',
+                'address'  => 'required',
+                'policy'  => 'required',
+                'is_voter' => 'required',
+                'is_pvc' => 'required',
+            ]);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'fname'  => 'required',
+                'mname'  => 'required',
+                'lname'  => 'required',
+                'gender'  => 'required',
+                'dob'  => 'required',
+                'mobile'  => 'required',
+                'email'  => 'required',
+                'state' => 'required',
+                'lga'  => 'required',
+                'ward'  => 'required',
+                'cell'  => 'required',
+                'address'  => 'required',
+                'fb'  => 'required',
+                'insta'  => 'required',
+                'twitter'  => 'required',
+                'is_voter' => 'required',
+                'is_pvc' => 'required',
+            ]);
         }
 
-        if(empty($addCompanyOwner)) {
-            $addCompanyOwner = new Voter;
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()]);
+        } else {
+            if(!empty($request->voter_id)) {
+                $addCompanyOwner = Voter::where('id', $request->voter_id)->first();
+            }
+
+            if(empty($addCompanyOwner)) {
+                $addCompanyOwner = new Voter;
+            }
+
+            $addCompanyOwner->fname = $request->fname;
+            $addCompanyOwner->mname = $request->mname;
+            $addCompanyOwner->lname = $request->lname;
+            $addCompanyOwner->gender = $request->gender;
+            $addCompanyOwner->dob = $request->dob;
+            $addCompanyOwner->age = date_diff(date_create($request->dob), date_create('today'))->y;
+            $addCompanyOwner->mobile =$request->mobile;
+            $addCompanyOwner->is_mobile = '1';
+            $addCompanyOwner->email = $request->email;
+            $addCompanyOwner->state = $request->state;
+            $addCompanyOwner->lga = $request->lga;
+            $addCompanyOwner->ward = $request->ward;
+            $addCompanyOwner->cell = !empty($request->cell) ? $request->cell : 1;
+            $addCompanyOwner->address = $request->address;
+            $addCompanyOwner->fb = $request->fb;
+            $addCompanyOwner->insta = $request->insta;
+            $addCompanyOwner->twitter = $request->twitter;
+
+            $addCompanyOwner->question_1 = $request->question_1;
+            $addCompanyOwner->question_2 = $request->question_2;
+            $addCompanyOwner->question_3 = $request->question_3;
+            $addCompanyOwner->question_4 = $request->question_4;
+            $addCompanyOwner->question_5 = $request->question_5;
+            $addCompanyOwner->question_6 = $request->question_6;
+            $addCompanyOwner->question_7 = $request->question_7;
+            $addCompanyOwner->question_8 = $request->question_8;
+            $addCompanyOwner->question_9 = $request->question_9;
+
+            $addCompanyOwner->is_voter ='0';
+            $addCompanyOwner->is_pvc = '1';
+            $addCompanyOwner->save();
+
+            return response()->json(['code' => "200"]);
         }
-
-        $addCompanyOwner->fname = $request->fname;
-        $addCompanyOwner->mname = $request->mname;
-        $addCompanyOwner->lname = $request->lname;
-        $addCompanyOwner->gender = $request->gender;
-        $addCompanyOwner->dob = $request->dob;
-        $addCompanyOwner->age = date_diff(date_create($request->dob), date_create('today'))->y;
-        $addCompanyOwner->mobile =$request->mobile;
-        $addCompanyOwner->is_mobile = '1';
-        $addCompanyOwner->email = $request->email;
-        $addCompanyOwner->state = $request->state;
-        $addCompanyOwner->lga = $request->lga;
-        $addCompanyOwner->ward = $request->ward;
-        $addCompanyOwner->cell = !empty($request->cell) ? $request->cell : 1;
-        $addCompanyOwner->address = $request->address;
-        $addCompanyOwner->fb = $request->fb;
-        $addCompanyOwner->insta = $request->insta;
-        $addCompanyOwner->twitter = $request->twitter;
-
-        $addCompanyOwner->question_1 = $request->question_1;
-        $addCompanyOwner->question_2 = $request->question_2;
-        $addCompanyOwner->question_3 = $request->question_3;
-        $addCompanyOwner->question_4 = $request->question_4;
-        $addCompanyOwner->question_5 = $request->question_5;
-        $addCompanyOwner->question_6 = $request->question_6;
-        $addCompanyOwner->question_7 = $request->question_7;
-        $addCompanyOwner->question_8 = $request->question_8;
-        $addCompanyOwner->question_9 = $request->question_9;
-
-        $addCompanyOwner->is_voter ='0';
-        $addCompanyOwner->is_pvc = '1';
-        $addCompanyOwner->save();
-
-        return response()->json(['code' => "200"]);
     }
 
     public function editVoter($id)

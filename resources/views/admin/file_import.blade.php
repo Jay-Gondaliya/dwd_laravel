@@ -146,8 +146,9 @@
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label for="validationCustom01" class="form-label">First Name</label>
+                                                                    <label for="validationCustom01" class="form-label">First Name <span class="text-danger">*</span></label>
                                                                     <input type="text" class="form-control" name="fname" value="{{ $editVoter->fname }}" placeholder="First Name">
+                                                                    <span class="text-danger error" id="voter_fname"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -158,30 +159,30 @@
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Last Name</label>
+                                                                    <label class="form-label">Last Name <span class="text-danger">*</span></label>
                                                                     <input type="text" class="form-control" name="lname" value="{{ $editVoter->lname }}" placeholder="Last Name">
+                                                                    <span class="text-danger error" id="voter_lname"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
-                                                                <label class="form-label">Gender</label>
+                                                                <label class="form-label">Gender <span class="text-danger">*</span></label>
                                                                 <ul class="new_inline_radio">
                                                                     <li>
                                                                         <label class="custom-control custom-radio">
                                                                             <input type="radio" class="custom-control-input" name="gender" value="male" checked="">
                                                                             <span class="custom-control-label">Male</span>
-                                                                        </label>
                                                                     </li>
                                                                     <li>
                                                                         <label class="custom-control custom-radio">
                                                                             <input type="radio" class="custom-control-input" name="gender" value="female">
                                                                             <span class="custom-control-label">Female</span>
-                                                                        </label>
                                                                     </li>
                                                                 </ul>
+                                                                <span class="text-danger error" id="voter_gender"></span>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Date of Birth</label>
+                                                                    <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-prepend">
                                                                             <div class="input-group-text">
@@ -193,6 +194,7 @@
                                                                             </div>
                                                                         </div><input class="form-control fc-datepicker" max="{{ date('Y-m-d') }}" value="{{ $editVoter->dob }}" type="date" name="dob">
                                                                     </div>
+                                                                    <span class="text-danger error" id="voter_dob"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
@@ -206,8 +208,9 @@
 
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Mobile number</label>
+                                                                    <label class="form-label">Mobile number <span class="text-danger">*</span></label>
                                                                     <input type="number" class="form-control" name="mobile" value="{{ $editVoter->mobile }}" placeholder="Mobile number">
+                                                                    <span class="text-danger error" id="voter_mobile"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -219,8 +222,9 @@
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Email Address</label>
+                                                                    <label class="form-label">Email Address <span class="text-danger">*</span></label>
                                                                     <input type="email" class="form-control" name="email" value="{{ $editVoter->email }}" placeholder="Email Address">
+                                                                    <span class="text-danger error" id="voter_email"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
@@ -233,7 +237,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Select State</label>
+                                                                    <label class="form-label">Select State <span class="text-danger">*</span></label>
                                                                     <select class="form-control" name="state" id="select_state">
                                                                         <option value="">Select State</option>
                                                                         @if(!empty($stateList))
@@ -242,11 +246,12 @@
                                                                         @endforeach
                                                                         @endif
                                                                     </select>
+                                                                    <span class="text-danger error" id="voter_state"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Select Local Government</label>
+                                                                    <label class="form-label">Select Local Government <span class="text-danger">*</span></label>
                                                                     <select class="form-control" name="lga" id="select_lga">
                                                                         <option value="">Select Local Government</option>
                                                                         @if(!empty($lgaList) && !empty($editVoter->id))
@@ -255,11 +260,12 @@
                                                                         @endforeach
                                                                         @endif
                                                                     </select>
+                                                                    <span class="text-danger error" id="voter_lga"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Select Ward</label>
+                                                                    <label class="form-label">Select Ward <span class="text-danger">*</span></label>
                                                                     <select class="form-control" name="ward" id="select_ward">
                                                                         <option value="">Select Ward</option>
                                                                         @if(!empty($wardList) && !empty($editVoter->id))
@@ -268,11 +274,12 @@
                                                                         @endforeach
                                                                         @endif
                                                                     </select>
+                                                                    <span class="text-danger error" id="voter_ward"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Select Cell</label>
+                                                                    <label class="form-label">Select Cell <span class="text-danger">*</span></label>
                                                                     <select class="form-control" name="cell" id="select_cell">
                                                                         <option value="">Select Cell</option>
                                                                         @if(!empty($cellList) && !empty($editVoter->id))
@@ -281,12 +288,14 @@
                                                                         @endforeach
                                                                         @endif
                                                                     </select>
+                                                                    <span class="text-danger error" id="voter_cell"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Resident Address</label>
+                                                                    <label class="form-label">Resident Address <span class="text-danger">*</span></label>
                                                                     <textarea class="form-control" name="address" rows="4" placeholder="Resident Address">{{ $editVoter->address }}</textarea>
+                                                                    <span class="text-danger error" id="voter_address"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
@@ -298,20 +307,23 @@
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Facebook</label>
+                                                                    <label class="form-label">Facebook <span class="text-danger">*</span></label>
                                                                     <input type="text" class="form-control" name="fb" value="{{ $editVoter->fb }}" placeholder="Facebook Username">
+                                                                    <span class="text-danger error" id="voter_fb"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Instagram</label>
+                                                                    <label class="form-label">Instagram <span class="text-danger">*</span></label>
                                                                     <input type="text" class="form-control" name="insta" value="{{ $editVoter->insta }}" placeholder="Instagram Username">
+                                                                    <span class="text-danger error" id="voter_insta"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Twitter</label>
+                                                                    <label class="form-label">Twitter <span class="text-danger">*</span></label>
                                                                     <input type="text" class="form-control" name="twitter" value="{{ $editVoter->twitter }}" placeholder="Twitter Username">
+                                                                    <span class="text-danger error" id="voter_twitter"></span>
                                                                 </div>
                                                             </div>
 
@@ -325,25 +337,27 @@
 
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Do you have a permanent voters card?</label>
+                                                                    <label class="form-label">Do you have a permanent voters card? <span class="text-danger">*</span></label>
                                                                     <select class="form-control select2" name="is_voter">
-                                                                        <option>-- Select --</option>
+                                                                        <option value="">-- Select --</option>
                                                                         <option value="1" @if($editVoter->is_voter == "1") {{'selected'}}@endif>Yes</option>
                                                                         <option value="0" @if($editVoter->is_voter == "0") {{'selected'}}@endif>No</option>
                                                                     </select>
+                                                                    <span class="text-danger error" id="voter_is_voter"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Reason for not having a PVC?</label>
+                                                                    <label class="form-label">Reason for not having a PVC? <span class="text-danger">*</span></label>
                                                                     <select class="form-control select2" name="is_pvc">
-                                                                        <option>-- Select --</option>
+                                                                        <option value="">-- Select --</option>
                                                                         <option value="1" @if($editVoter->is_pvc == "1") {{'selected'}}@endif>Not of age</option>
                                                                         <option value="2" @if($editVoter->is_pvc == "2") {{'selected'}}@endif>Not interested</option>
                                                                         <option value="3" @if($editVoter->is_pvc == "3") {{'selected'}}@endif>Lost faith in process</option>
                                                                         <option value="4" @if($editVoter->is_pvc == "4") {{'selected'}}@endif>Not enough education/information</option>
                                                                         <option value="5" @if($editVoter->is_pvc == "5") {{'selected'}}@endif>Sickness</option>
                                                                     </select>
+                                                                    <span class="text-danger error" id="voter_is_pvc"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
@@ -651,7 +665,10 @@
                             window.location.href = "{{ route('voters-analysis') }}";
                         }, 3000);
                     } else {
-                        $("#login_error").text(response.message);
+                        $(".error").html('');
+                        $.each(response.error, function(key, value) {
+                            $("#voter_" + key).html(value);
+                        });
                     }
                 },
             });

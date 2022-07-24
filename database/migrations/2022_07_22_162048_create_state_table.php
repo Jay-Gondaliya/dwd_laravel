@@ -13,7 +13,7 @@ class CreateStateTable extends Migration
      */
     public function up()
     {
-        Schema::create('state', function (Blueprint $table) {
+        Schema::create('state_co', function (Blueprint $table) {
             $table->id();
             $table->string('fname', 100)->nullable();
             $table->string('mname', 100)->nullable();
@@ -41,6 +41,6 @@ class CreateStateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('state');
+        Schema::dropIfExists('state_co');
     }
 }

@@ -147,7 +147,7 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label for="validationCustom01" class="form-label">First Name <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" name="fname" value="{{ $editVoter->fname }}" placeholder="First Name">
+                                                                    <input type="text" class="form-control" id="fname" name="fname" value="{{ $editVoter->fname }}" placeholder="First Name">
                                                                     <span class="text-danger error" id="voter_fname"></span>
                                                                 </div>
                                                             </div>
@@ -160,7 +160,7 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Last Name <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" name="lname" value="{{ $editVoter->lname }}" placeholder="Last Name">
+                                                                    <input type="text" class="form-control" id="lname" name="lname" value="{{ $editVoter->lname }}" placeholder="Last Name">
                                                                     <span class="text-danger error" id="voter_lname"></span>
                                                                 </div>
                                                             </div>
@@ -169,12 +169,12 @@
                                                                 <ul class="new_inline_radio">
                                                                     <li>
                                                                         <label class="custom-control custom-radio">
-                                                                            <input type="radio" class="custom-control-input" name="gender" value="male" checked="">
+                                                                            <input type="radio" class="custom-control-input gender" name="gender" value="male" checked="">
                                                                             <span class="custom-control-label">Male</span>
                                                                     </li>
                                                                     <li>
                                                                         <label class="custom-control custom-radio">
-                                                                            <input type="radio" class="custom-control-input" name="gender" value="female">
+                                                                            <input type="radio" class="custom-control-input gender" name="gender" value="female">
                                                                             <span class="custom-control-label">Female</span>
                                                                     </li>
                                                                 </ul>
@@ -184,7 +184,7 @@
                                                                 <div class="form-group">
                                                                     <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
                                                                     <div class="input-group">
-                                                                        <div class="input-group-prepend">
+                                                                        <!-- <div class="input-group-prepend">
                                                                             <div class="input-group-text">
                                                                                 <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18">
                                                                                 <path d="M0 0h24v24H0V0z" fill="none" />
@@ -192,13 +192,14 @@
                                                                                 <path d="M4 5.01h16V8H4z" opacity=".3" />
                                                                                 </svg>
                                                                             </div>
-                                                                        </div><input class="form-control fc-datepicker" max="{{ date('Y-m-d') }}" value="{{ $editVoter->dob }}" type="date" name="dob">
+                                                                        </div> -->
+                                                                        <input class="form-control" max="{{ date('Y-m-d') }}" value="{{ $editVoter->dob }}" type="date" id="birth_day" name="dob">
                                                                     </div>
                                                                     <span class="text-danger error" id="voter_dob"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
-                                                                <a class="btn btn-primary btnNext">Save and Next</a>
+                                                                <a class="btn btn-primary btnNext" data-id="1">Save and Next</a>
                                                             </div>
                                                         </div>
 
@@ -209,7 +210,7 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Mobile number <span class="text-danger">*</span></label>
-                                                                    <input type="number" class="form-control" name="mobile" value="{{ $editVoter->mobile }}" placeholder="Mobile number">
+                                                                    <input type="number" class="form-control" name="mobile" id="mobile" value="{{ $editVoter->mobile }}" placeholder="Mobile number">
                                                                     <span class="text-danger error" id="voter_mobile"></span>
                                                                 </div>
                                                             </div>
@@ -223,12 +224,12 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Email Address <span class="text-danger">*</span></label>
-                                                                    <input type="email" class="form-control" name="email" value="{{ $editVoter->email }}" placeholder="Email Address">
+                                                                    <input type="email" class="form-control" name="email" id="email" value="{{ $editVoter->email }}" placeholder="Email Address">
                                                                     <span class="text-danger error" id="voter_email"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
-                                                                <a class="btn btn-primary btnNext">Save and Next</a>
+                                                                <a class="btn btn-primary btnNext" data-id="2">Save and Next</a>
                                                             </div>
                                                         </div>
 
@@ -279,7 +280,7 @@
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Select Cell <span class="text-danger">*</span></label>
+                                                                    <label class="form-label">Select Cell</label>
                                                                     <select class="form-control" name="cell" id="select_cell">
                                                                         <option value="">Select Cell</option>
                                                                         @if(!empty($cellList) && !empty($editVoter->id))
@@ -294,12 +295,12 @@
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Resident Address <span class="text-danger">*</span></label>
-                                                                    <textarea class="form-control" name="address" rows="4" placeholder="Resident Address">{{ $editVoter->address }}</textarea>
+                                                                    <textarea class="form-control" name="address" id="address" rows="4" placeholder="Resident Address">{{ $editVoter->address }}</textarea>
                                                                     <span class="text-danger error" id="voter_address"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
-                                                                <a class="btn btn-primary btnNext">Save and Next</a>
+                                                                <a class="btn btn-primary btnNext" data-id="3">Save and Next</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -308,14 +309,14 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Facebook <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" name="fb" value="{{ $editVoter->fb }}" placeholder="Facebook Username">
+                                                                    <input type="text" class="form-control" name="fb" id="fb" value="{{ $editVoter->fb }}" placeholder="Facebook Username">
                                                                     <span class="text-danger error" id="voter_fb"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Instagram <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" name="insta" value="{{ $editVoter->insta }}" placeholder="Instagram Username">
+                                                                    <input type="text" class="form-control" name="insta" id="insta" value="{{ $editVoter->insta }}" placeholder="Instagram Username">
                                                                     <span class="text-danger error" id="voter_insta"></span>
                                                                 </div>
                                                             </div>
@@ -328,7 +329,7 @@
                                                             </div>
 
                                                             <div class="col-12 col-sm-12" id="btnNext">
-                                                                <a class="btn btn-primary btnNext">Save and Next</a>
+                                                                <a class="btn btn-primary btnNext" data-id="4">Save and Next</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -338,7 +339,7 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Do you have a permanent voters card? <span class="text-danger">*</span></label>
-                                                                    <select class="form-control select2" name="is_voter">
+                                                                    <select class="form-control select2" name="is_voter" id="is_voter">
                                                                         <option value="">-- Select --</option>
                                                                         <option value="1" @if($editVoter->is_voter == "1") {{'selected'}}@endif>Yes</option>
                                                                         <option value="0" @if($editVoter->is_voter == "0") {{'selected'}}@endif>No</option>
@@ -349,7 +350,7 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Reason for not having a PVC? <span class="text-danger">*</span></label>
-                                                                    <select class="form-control select2" name="is_pvc">
+                                                                    <select class="form-control select2" name="is_pvc" id="is_pvc">
                                                                         <option value="">-- Select --</option>
                                                                         <option value="1" @if($editVoter->is_pvc == "1") {{'selected'}}@endif>Not of age</option>
                                                                         <option value="2" @if($editVoter->is_pvc == "2") {{'selected'}}@endif>Not interested</option>
@@ -361,7 +362,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-12" id="btnNext">
-                                                                <a class="btn btn-primary btnNext">Save and Next</a>
+                                                                <a class="btn btn-primary btnNext" data-id="5">Save and Next</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -605,10 +606,295 @@
     <script>
         $(document).ready(function(){
             $('.btnNext').click(function() {
+                var status = '';
+                if($(this).data("id") == 1) {
+                    if($("#fname").val() == '') {
+                        $("#voter_fname").text("The fname field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_fname").text("");
+                        status = 'solve';
+                    }
+                    if($("#lname").val() == '') {
+                        $("#voter_lname").text("The lname field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_lname").text("");
+                        status = 'solve';
+                    }
+                    // if($(".gender").val() == '') {
+                    //     $("#voter_gender").text("Select Gender is required!");
+                    //     status = 'error';
+                    // } else {
+                    //     $("#voter_gender").text("");
+                    //     status = 'solve';
+                    // }
+                    // if($("#birth_day").val() == '') {
+                    //     $("#voter_dob").text("Select Date Of Birth!");
+                    //     status = 'error';
+                    // } else {
+                    //     $("#voter_dob").text("");
+                    //     status = 'solve';
+                    // }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 2) {
+                    if($("#mobile").val() == '') {
+                        $("#voter_mobile").text("The mobile field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_mobile").text("");
+                        status = 'solve';
+                    }
+                    if($("#email").val() == '') {
+                        $("#voter_email").text("The email address field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_email").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 3) {
+                    if($("#select_state").val() == '') {
+                        $("#voter_state").text("The select state field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_state").text("");
+                        status = 'solve';
+                    }
+                    if($("#select_lga").val() == '') {
+                        $("#voter_lga").text("The select lga field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_lga").text("");
+                        status = 'solve';
+                    }
+                    if($("#select_ward").val() == '') {
+                        $("#voter_ward").text("The select ward field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_ward").text("");
+                        status = 'solve';
+                    }
+                    // if($("#select_cell").val() == '') {
+                    //     $("#voter_cell").text("Select Cell Name is required!");
+                    //     status = 'error';
+                    // } else {
+                    //     $("#voter_cell").text("");
+                    //     status = 'solve';
+                    // }
+                    if($("#address").val() == '') {
+                        $("#voter_address").text("The address field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_address").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 4) {
+                    status = 'error';
+                    if($("#fb").val() == '') {
+                        $("#voter_fb").text("The facebook field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_fb").text("");
+                        status = 'solve';
+                    }
+                    if($("#insta").val() == '') {
+                        $("#voter_insta").text("The instagram field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_insta").text("");
+                        status = 'solve';
+                    }
+                    if($("#twitter").val() == '') {
+                        $("#voter_twitter").text("The twitter field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_twitter").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 5) {
+                    if($("#is_voter").val() == '') {
+                        $("#voter_is_voter").text("Select Voter Card is required!");
+                        status = 'error';
+                    } else {
+                        $("#voter_is_voter").text("");
+                        status = 'solve';
+                    }
+                    if($("#is_pvc").val() == '') {
+                        $("#voter_is_pvc").text("Select PVC Reason is required!");
+                        status = 'error';
+                    } else {
+                        $("#voter_is_pvc").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
                 $('.panel-tabs .active').parent().next('li').find('a').trigger('click');
             });
 
             $('.btnPrevious').click(function() {
+                var status = '';
+                if($(this).data("id") == 1) {
+                    if($("#fname").val() == '') {
+                        $("#voter_fname").text("The fname field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_fname").text("");
+                        status = 'solve';
+                    }
+                    if($("#lname").val() == '') {
+                        $("#voter_lname").text("The lname field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_lname").text("");
+                        status = 'solve';
+                    }
+                    // if($(".gender").val() == '') {
+                    //     $("#voter_gender").text("Select Gender is required!");
+                    //     status = 'error';
+                    // } else {
+                    //     $("#voter_gender").text("");
+                    //     status = 'solve';
+                    // }
+                    // if($("#birth_day").val() == '') {
+                    //     $("#voter_dob").text("Select Date Of Birth!");
+                    //     status = 'error';
+                    // } else {
+                    //     $("#voter_dob").text("");
+                    //     status = 'solve';
+                    // }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 2) {
+                    if($("#mobile").val() == '') {
+                        $("#voter_mobile").text("The mobile field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_mobile").text("");
+                        status = 'solve';
+                    }
+                    if($("#email").val() == '') {
+                        $("#voter_email").text("The email address field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_email").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 3) {
+                    if($("#select_state").val() == '') {
+                        $("#voter_state").text("The select state field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_state").text("");
+                        status = 'solve';
+                    }
+                    if($("#select_lga").val() == '') {
+                        $("#voter_lga").text("The select lga field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_lga").text("");
+                        status = 'solve';
+                    }
+                    if($("#select_ward").val() == '') {
+                        $("#voter_ward").text("The select ward field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_ward").text("");
+                        status = 'solve';
+                    }
+                    // if($("#select_cell").val() == '') {
+                    //     $("#voter_cell").text("Select Cell Name is required!");
+                    //     status = 'error';
+                    // } else {
+                    //     $("#voter_cell").text("");
+                    //     status = 'solve';
+                    // }
+                    if($("#address").val() == '') {
+                        $("#voter_address").text("The address field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_address").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 4) {
+                    if($("#fb").val() == '') {
+                        $("#voter_fb").text("The facebook field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_fb").text("");
+                        status = 'solve';
+                    }
+                    if($("#insta").val() == '') {
+                        $("#voter_insta").text("The instagram field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_insta").text("");
+                        status = 'solve';
+                    }
+                    if($("#twitter").val() == '') {
+                        $("#voter_twitter").text("The twitter field is required.");
+                        status = 'error';
+                    } else {
+                        $("#voter_twitter").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
+
+                if($(this).data("id") == 5) {
+                    if($("#is_voter").val() == '') {
+                        $("#voter_is_voter").text("Select Voter Card is required!");
+                        status = 'error';
+                    } else {
+                        $("#voter_is_voter").text("");
+                        status = 'solve';
+                    }
+                    if($("#is_pvc").val() == '') {
+                        $("#voter_is_pvc").text("Select PVC Reason is required!");
+                        status = 'error';
+                    } else {
+                        $("#voter_is_pvc").text("");
+                        status = 'solve';
+                    }
+                    if(status == "error") {
+                        return false;
+                    }
+                }
                 $('.panel-tabs .active').parent().prev('li').find('a').trigger('click');
             });
         });

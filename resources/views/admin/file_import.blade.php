@@ -323,7 +323,7 @@
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Twitter <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" name="twitter" value="{{ $editVoter->twitter }}" placeholder="Twitter Username">
+                                                                    <input type="text" class="form-control" name="twitter" id="twitter" value="{{ $editVoter->twitter }}" placeholder="Twitter Username">
                                                                     <span class="text-danger error" id="voter_twitter"></span>
                                                                 </div>
                                                             </div>
@@ -606,146 +606,143 @@
     <script>
         $(document).ready(function(){
             $('.btnNext').click(function() {
-                var status = '';
+                var fname = lname = birth_day = '';
                 if($(this).data("id") == 1) {
                     if($("#fname").val() == '') {
                         $("#voter_fname").text("The fname field is required.");
-                        status = 'error';
+                        fname = 'error';
                     } else {
                         $("#voter_fname").text("");
-                        status = 'solve';
+                        fname = 'solve';
                     }
                     if($("#lname").val() == '') {
                         $("#voter_lname").text("The lname field is required.");
-                        status = 'error';
+                        lname = 'error';
                     } else {
                         $("#voter_lname").text("");
-                        status = 'solve';
+                        lname = 'solve';
                     }
-                    // if($(".gender").val() == '') {
-                    //     $("#voter_gender").text("Select Gender is required!");
-                    //     status = 'error';
-                    // } else {
-                    //     $("#voter_gender").text("");
-                    //     status = 'solve';
-                    // }
-                    // if($("#birth_day").val() == '') {
-                    //     $("#voter_dob").text("Select Date Of Birth!");
-                    //     status = 'error';
-                    // } else {
-                    //     $("#voter_dob").text("");
-                    //     status = 'solve';
-                    // }
-                    if(status == "error") {
+                    if($("#birth_day").val() == '') {
+                        $("#voter_dob").text("Select Date Of Birth!");
+                        birth_day = 'error';
+                    } else {
+                        $("#voter_dob").text("");
+                        birth_day = 'solve';
+                    }
+                    if((fname == "error") || (lname == "error") || (birth_day == "error")) {
                         return false;
                     }
                 }
 
+                var voter_mobile = voter_email = '';
                 if($(this).data("id") == 2) {
                     if($("#mobile").val() == '') {
                         $("#voter_mobile").text("The mobile field is required.");
-                        status = 'error';
+                        voter_mobile = 'error';
                     } else {
                         $("#voter_mobile").text("");
-                        status = 'solve';
+                        voter_mobile = 'solve';
                     }
                     if($("#email").val() == '') {
                         $("#voter_email").text("The email address field is required.");
-                        status = 'error';
+                        voter_email = 'error';
                     } else {
                         $("#voter_email").text("");
-                        status = 'solve';
+                        voter_email = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_mobile == "error") || (voter_email == "error")) {
                         return false;
                     }
                 }
 
+                var voter_state = voter_lga = voter_ward = address = '';
                 if($(this).data("id") == 3) {
                     if($("#select_state").val() == '') {
                         $("#voter_state").text("The select state field is required.");
-                        status = 'error';
+                        voter_state = 'error';
                     } else {
                         $("#voter_state").text("");
-                        status = 'solve';
+                        voter_state = 'solve';
                     }
                     if($("#select_lga").val() == '') {
                         $("#voter_lga").text("The select lga field is required.");
-                        status = 'error';
+                        voter_lga = 'error';
                     } else {
                         $("#voter_lga").text("");
-                        status = 'solve';
+                        voter_lga = 'solve';
                     }
                     if($("#select_ward").val() == '') {
                         $("#voter_ward").text("The select ward field is required.");
-                        status = 'error';
+                        voter_ward = 'error';
                     } else {
                         $("#voter_ward").text("");
-                        status = 'solve';
+                        voter_ward = 'solve';
                     }
                     // if($("#select_cell").val() == '') {
                     //     $("#voter_cell").text("Select Cell Name is required!");
-                    //     status = 'error';
+                    //     status3 = 'error';
                     // } else {
                     //     $("#voter_cell").text("");
-                    //     status = 'solve';
+                    //     status3 = 'solve';
                     // }
                     if($("#address").val() == '') {
                         $("#voter_address").text("The address field is required.");
-                        status = 'error';
+                        address = 'error';
                     } else {
                         $("#voter_address").text("");
-                        status = 'solve';
+                        address = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_state == "error") || (voter_lga == "error") || (voter_ward == "error") || (address == "error")) {
                         return false;
                     }
                 }
 
+                var voter_fb = voter_insta = voter_twitter = '';
                 if($(this).data("id") == 4) {
-                    status = 'error';
+                    status4 = 'error';
                     if($("#fb").val() == '') {
                         $("#voter_fb").text("The facebook field is required.");
-                        status = 'error';
+                        voter_fb = 'error';
                     } else {
                         $("#voter_fb").text("");
-                        status = 'solve';
+                        voter_fb = 'solve';
                     }
                     if($("#insta").val() == '') {
                         $("#voter_insta").text("The instagram field is required.");
-                        status = 'error';
+                        voter_insta = 'error';
                     } else {
                         $("#voter_insta").text("");
-                        status = 'solve';
+                        voter_insta = 'solve';
                     }
                     if($("#twitter").val() == '') {
                         $("#voter_twitter").text("The twitter field is required.");
-                        status = 'error';
+                        voter_twitter = 'error';
                     } else {
                         $("#voter_twitter").text("");
-                        status = 'solve';
+                        voter_twitter = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_fb == "error") || (voter_insta == "error") || (voter_twitter == "error")) {
                         return false;
                     }
                 }
 
+                var voter_is_voter = voter_is_pvc = '';
                 if($(this).data("id") == 5) {
                     if($("#is_voter").val() == '') {
                         $("#voter_is_voter").text("Select Voter Card is required!");
-                        status = 'error';
+                        voter_is_voter = 'error';
                     } else {
                         $("#voter_is_voter").text("");
-                        status = 'solve';
+                        voter_is_voter = 'solve';
                     }
                     if($("#is_pvc").val() == '') {
                         $("#voter_is_pvc").text("Select PVC Reason is required!");
-                        status = 'error';
+                        voter_is_pvc = 'error';
                     } else {
                         $("#voter_is_pvc").text("");
-                        status = 'solve';
+                        voter_is_pvc = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_is_voter == "error") || (voter_is_pvc == "error")) {
                         return false;
                     }
                 }
@@ -753,145 +750,143 @@
             });
 
             $('.btnPrevious').click(function() {
-                var status = '';
+                var fname = lname = birth_day = '';
                 if($(this).data("id") == 1) {
                     if($("#fname").val() == '') {
                         $("#voter_fname").text("The fname field is required.");
-                        status = 'error';
+                        fname = 'error';
                     } else {
                         $("#voter_fname").text("");
-                        status = 'solve';
+                        fname = 'solve';
                     }
                     if($("#lname").val() == '') {
                         $("#voter_lname").text("The lname field is required.");
-                        status = 'error';
+                        lname = 'error';
                     } else {
                         $("#voter_lname").text("");
-                        status = 'solve';
+                        lname = 'solve';
                     }
-                    // if($(".gender").val() == '') {
-                    //     $("#voter_gender").text("Select Gender is required!");
-                    //     status = 'error';
-                    // } else {
-                    //     $("#voter_gender").text("");
-                    //     status = 'solve';
-                    // }
-                    // if($("#birth_day").val() == '') {
-                    //     $("#voter_dob").text("Select Date Of Birth!");
-                    //     status = 'error';
-                    // } else {
-                    //     $("#voter_dob").text("");
-                    //     status = 'solve';
-                    // }
-                    if(status == "error") {
+                    if($("#birth_day").val() == '') {
+                        $("#voter_dob").text("Select Date Of Birth!");
+                        birth_day = 'error';
+                    } else {
+                        $("#voter_dob").text("");
+                        birth_day = 'solve';
+                    }
+                    if((fname == "error") || (lname == "error") || (birth_day == "error")) {
                         return false;
                     }
                 }
 
+                var voter_mobile = voter_email = '';
                 if($(this).data("id") == 2) {
                     if($("#mobile").val() == '') {
                         $("#voter_mobile").text("The mobile field is required.");
-                        status = 'error';
+                        voter_mobile = 'error';
                     } else {
                         $("#voter_mobile").text("");
-                        status = 'solve';
+                        voter_mobile = 'solve';
                     }
                     if($("#email").val() == '') {
                         $("#voter_email").text("The email address field is required.");
-                        status = 'error';
+                        voter_email = 'error';
                     } else {
                         $("#voter_email").text("");
-                        status = 'solve';
+                        voter_email = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_mobile == "error") || (voter_email == "error")) {
                         return false;
                     }
                 }
 
+                var voter_state = voter_lga = voter_ward = address = '';
                 if($(this).data("id") == 3) {
                     if($("#select_state").val() == '') {
                         $("#voter_state").text("The select state field is required.");
-                        status = 'error';
+                        voter_state = 'error';
                     } else {
                         $("#voter_state").text("");
-                        status = 'solve';
+                        voter_state = 'solve';
                     }
                     if($("#select_lga").val() == '') {
                         $("#voter_lga").text("The select lga field is required.");
-                        status = 'error';
+                        voter_lga = 'error';
                     } else {
                         $("#voter_lga").text("");
-                        status = 'solve';
+                        voter_lga = 'solve';
                     }
                     if($("#select_ward").val() == '') {
                         $("#voter_ward").text("The select ward field is required.");
-                        status = 'error';
+                        voter_ward = 'error';
                     } else {
                         $("#voter_ward").text("");
-                        status = 'solve';
+                        voter_ward = 'solve';
                     }
                     // if($("#select_cell").val() == '') {
                     //     $("#voter_cell").text("Select Cell Name is required!");
-                    //     status = 'error';
+                    //     status3 = 'error';
                     // } else {
                     //     $("#voter_cell").text("");
-                    //     status = 'solve';
+                    //     status3 = 'solve';
                     // }
                     if($("#address").val() == '') {
                         $("#voter_address").text("The address field is required.");
-                        status = 'error';
+                        address = 'error';
                     } else {
                         $("#voter_address").text("");
-                        status = 'solve';
+                        address = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_state == "error") || (voter_lga == "error") || (voter_ward == "error") || (address == "error")) {
                         return false;
                     }
                 }
 
+                var voter_fb = voter_insta = voter_twitter = '';
                 if($(this).data("id") == 4) {
+                    status4 = 'error';
                     if($("#fb").val() == '') {
                         $("#voter_fb").text("The facebook field is required.");
-                        status = 'error';
+                        voter_fb = 'error';
                     } else {
                         $("#voter_fb").text("");
-                        status = 'solve';
+                        voter_fb = 'solve';
                     }
                     if($("#insta").val() == '') {
                         $("#voter_insta").text("The instagram field is required.");
-                        status = 'error';
+                        voter_insta = 'error';
                     } else {
                         $("#voter_insta").text("");
-                        status = 'solve';
+                        voter_insta = 'solve';
                     }
                     if($("#twitter").val() == '') {
                         $("#voter_twitter").text("The twitter field is required.");
-                        status = 'error';
+                        voter_twitter = 'error';
                     } else {
                         $("#voter_twitter").text("");
-                        status = 'solve';
+                        voter_twitter = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_fb == "error") || (voter_insta == "error") || (voter_twitter == "error")) {
                         return false;
                     }
                 }
 
+                var voter_is_voter = voter_is_pvc = '';
                 if($(this).data("id") == 5) {
                     if($("#is_voter").val() == '') {
                         $("#voter_is_voter").text("Select Voter Card is required!");
-                        status = 'error';
+                        voter_is_voter = 'error';
                     } else {
                         $("#voter_is_voter").text("");
-                        status = 'solve';
+                        voter_is_voter = 'solve';
                     }
                     if($("#is_pvc").val() == '') {
                         $("#voter_is_pvc").text("Select PVC Reason is required!");
-                        status = 'error';
+                        voter_is_pvc = 'error';
                     } else {
                         $("#voter_is_pvc").text("");
-                        status = 'solve';
+                        voter_is_pvc = 'solve';
                     }
-                    if(status == "error") {
+                    if((voter_is_voter == "error") || (voter_is_pvc == "error")) {
                         return false;
                     }
                 }

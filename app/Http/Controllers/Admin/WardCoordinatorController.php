@@ -67,9 +67,9 @@ class WardCoordinatorController extends Controller
                 'select_lga'  => 'required',
                 'username'  => 'required',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -84,9 +84,9 @@ class WardCoordinatorController extends Controller
                 'select_lga'  => 'required',
                 'username'  => 'required|unique:ward_coordinator',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -112,9 +112,9 @@ class WardCoordinatorController extends Controller
             $addWardCoordinator->state_id = $request->select_state;
             $addWardCoordinator->lga_id = $request->select_lga;
             $addWardCoordinator->password = md5($request->password);
-            $addWardCoordinator->fname = $request->fname;
+            $addWardCoordinator->fname = $request->first_name;
             $addWardCoordinator->mname = $request->mname;
-            $addWardCoordinator->lname = $request->lname;
+            $addWardCoordinator->lname = $request->last_name;
             $addWardCoordinator->age = $request->age;
             $addWardCoordinator->gender = $request->gender;
             $addWardCoordinator->dob = $request->dob;

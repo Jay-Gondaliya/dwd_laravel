@@ -693,11 +693,11 @@ class AdminController extends Controller
                 'ward'  => 'required',
                 'cell'  => 'required',
                 'address'  => 'required',
-                'fb'  => 'required',
-                'insta'  => 'required',
-                'twitter'  => 'required',
-                'is_voter' => 'required',
-                'is_pvc' => 'required',
+                // 'fb'  => 'required',
+                // 'insta'  => 'required',
+                // 'twitter'  => 'required',
+                // 'is_voter' => 'required',
+                // 'is_pvc' => 'required',
             ]);
         }
 

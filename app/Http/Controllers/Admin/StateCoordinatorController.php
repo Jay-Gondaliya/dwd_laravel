@@ -38,9 +38,9 @@ class StateCoordinatorController extends Controller
             $validator = Validator::make($request->all(), [
                 'username'  => 'required',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -53,9 +53,9 @@ class StateCoordinatorController extends Controller
             $validator = Validator::make($request->all(), [
                 'username'  => 'required|unique:state_co',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -79,9 +79,9 @@ class StateCoordinatorController extends Controller
             }
 
             $addStateCoordinator->password = md5($request->password);
-            $addStateCoordinator->fname = $request->fname;
+            $addStateCoordinator->fname = $request->first_name;
             $addStateCoordinator->mname = $request->mname;
-            $addStateCoordinator->lname = $request->lname;
+            $addStateCoordinator->lname = $request->last_name;
             $addStateCoordinator->age = $request->age;
             $addStateCoordinator->gender = $request->gender;
             $addStateCoordinator->dob = $request->dob;

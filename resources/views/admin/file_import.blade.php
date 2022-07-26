@@ -308,21 +308,21 @@
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Facebook <span class="text-danger">*</span></label>
+                                                                    <label class="form-label">Facebook</label>
                                                                     <input type="text" class="form-control" name="fb" id="fb" value="{{ $editVoter->fb }}" placeholder="Facebook Username">
                                                                     <span class="text-danger error" id="voter_fb"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Instagram <span class="text-danger">*</span></label>
+                                                                    <label class="form-label">Instagram</label>
                                                                     <input type="text" class="form-control" name="insta" id="insta" value="{{ $editVoter->insta }}" placeholder="Instagram Username">
                                                                     <span class="text-danger error" id="voter_insta"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Twitter <span class="text-danger">*</span></label>
+                                                                    <label class="form-label">Twitter</label>
                                                                     <input type="text" class="form-control" name="twitter" id="twitter" value="{{ $editVoter->twitter }}" placeholder="Twitter Username">
                                                                     <span class="text-danger error" id="voter_twitter"></span>
                                                                 </div>
@@ -338,7 +338,7 @@
 
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Do you have a permanent voters card? <span class="text-danger">*</span></label>
+                                                                    <label class="form-label">Do you have a permanent voters card?</label>
                                                                     <select class="form-control select2" name="is_voter" id="is_voter">
                                                                         <option value="">-- Select --</option>
                                                                         <option value="1" @if($editVoter->is_voter == "1") {{'selected'}}@endif>Yes</option>
@@ -349,7 +349,7 @@
                                                             </div>
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Reason for not having a PVC? <span class="text-danger">*</span></label>
+                                                                    <label class="form-label">Reason for not having a PVC?</label>
                                                                     <select class="form-control select2" name="is_pvc" id="is_pvc">
                                                                         <option value="">-- Select --</option>
                                                                         <option value="1" @if($editVoter->is_pvc == "1") {{'selected'}}@endif>Not of age</option>
@@ -609,14 +609,14 @@
                 var fname = lname = birth_day = '';
                 if($(this).data("id") == 1) {
                     if($("#fname").val() == '') {
-                        $("#voter_fname").text("The fname field is required.");
+                        $("#voter_fname").text("The first name field is required.");
                         fname = 'error';
                     } else {
                         $("#voter_fname").text("");
                         fname = 'solve';
                     }
                     if($("#lname").val() == '') {
-                        $("#voter_lname").text("The lname field is required.");
+                        $("#voter_lname").text("The last name field is required.");
                         lname = 'error';
                     } else {
                         $("#voter_lname").text("");
@@ -697,55 +697,55 @@
                     }
                 }
 
-                var voter_fb = voter_insta = voter_twitter = '';
-                if($(this).data("id") == 4) {
-                    status4 = 'error';
-                    if($("#fb").val() == '') {
-                        $("#voter_fb").text("The facebook field is required.");
-                        voter_fb = 'error';
-                    } else {
-                        $("#voter_fb").text("");
-                        voter_fb = 'solve';
-                    }
-                    if($("#insta").val() == '') {
-                        $("#voter_insta").text("The instagram field is required.");
-                        voter_insta = 'error';
-                    } else {
-                        $("#voter_insta").text("");
-                        voter_insta = 'solve';
-                    }
-                    if($("#twitter").val() == '') {
-                        $("#voter_twitter").text("The twitter field is required.");
-                        voter_twitter = 'error';
-                    } else {
-                        $("#voter_twitter").text("");
-                        voter_twitter = 'solve';
-                    }
-                    if((voter_fb == "error") || (voter_insta == "error") || (voter_twitter == "error")) {
-                        return false;
-                    }
-                }
+                // var voter_fb = voter_insta = voter_twitter = '';
+                // if($(this).data("id") == 4) {
+                //     status4 = 'error';
+                //     if($("#fb").val() == '') {
+                //         $("#voter_fb").text("The facebook field is required.");
+                //         voter_fb = 'error';
+                //     } else {
+                //         $("#voter_fb").text("");
+                //         voter_fb = 'solve';
+                //     }
+                //     if($("#insta").val() == '') {
+                //         $("#voter_insta").text("The instagram field is required.");
+                //         voter_insta = 'error';
+                //     } else {
+                //         $("#voter_insta").text("");
+                //         voter_insta = 'solve';
+                //     }
+                //     if($("#twitter").val() == '') {
+                //         $("#voter_twitter").text("The twitter field is required.");
+                //         voter_twitter = 'error';
+                //     } else {
+                //         $("#voter_twitter").text("");
+                //         voter_twitter = 'solve';
+                //     }
+                //     if((voter_fb == "error") || (voter_insta == "error") || (voter_twitter == "error")) {
+                //         return false;
+                //     }
+                // }
 
-                var voter_is_voter = voter_is_pvc = '';
-                if($(this).data("id") == 5) {
-                    if($("#is_voter").val() == '') {
-                        $("#voter_is_voter").text("Select Voter Card is required!");
-                        voter_is_voter = 'error';
-                    } else {
-                        $("#voter_is_voter").text("");
-                        voter_is_voter = 'solve';
-                    }
-                    if($("#is_pvc").val() == '') {
-                        $("#voter_is_pvc").text("Select PVC Reason is required!");
-                        voter_is_pvc = 'error';
-                    } else {
-                        $("#voter_is_pvc").text("");
-                        voter_is_pvc = 'solve';
-                    }
-                    if((voter_is_voter == "error") || (voter_is_pvc == "error")) {
-                        return false;
-                    }
-                }
+                // var voter_is_voter = voter_is_pvc = '';
+                // if($(this).data("id") == 5) {
+                //     if($("#is_voter").val() == '') {
+                //         $("#voter_is_voter").text("Select Voter Card is required!");
+                //         voter_is_voter = 'error';
+                //     } else {
+                //         $("#voter_is_voter").text("");
+                //         voter_is_voter = 'solve';
+                //     }
+                //     if($("#is_pvc").val() == '') {
+                //         $("#voter_is_pvc").text("Select PVC Reason is required!");
+                //         voter_is_pvc = 'error';
+                //     } else {
+                //         $("#voter_is_pvc").text("");
+                //         voter_is_pvc = 'solve';
+                //     }
+                //     if((voter_is_voter == "error") || (voter_is_pvc == "error")) {
+                //         return false;
+                //     }
+                // }
                 $('.panel-tabs .active').parent().next('li').find('a').trigger('click');
             });
 
@@ -753,14 +753,14 @@
                 var fname = lname = birth_day = '';
                 if($(this).data("id") == 1) {
                     if($("#fname").val() == '') {
-                        $("#voter_fname").text("The fname field is required.");
+                        $("#voter_fname").text("The first name field is required.");
                         fname = 'error';
                     } else {
                         $("#voter_fname").text("");
                         fname = 'solve';
                     }
                     if($("#lname").val() == '') {
-                        $("#voter_lname").text("The lname field is required.");
+                        $("#voter_lname").text("The last name field is required.");
                         lname = 'error';
                     } else {
                         $("#voter_lname").text("");
@@ -841,55 +841,55 @@
                     }
                 }
 
-                var voter_fb = voter_insta = voter_twitter = '';
-                if($(this).data("id") == 4) {
-                    status4 = 'error';
-                    if($("#fb").val() == '') {
-                        $("#voter_fb").text("The facebook field is required.");
-                        voter_fb = 'error';
-                    } else {
-                        $("#voter_fb").text("");
-                        voter_fb = 'solve';
-                    }
-                    if($("#insta").val() == '') {
-                        $("#voter_insta").text("The instagram field is required.");
-                        voter_insta = 'error';
-                    } else {
-                        $("#voter_insta").text("");
-                        voter_insta = 'solve';
-                    }
-                    if($("#twitter").val() == '') {
-                        $("#voter_twitter").text("The twitter field is required.");
-                        voter_twitter = 'error';
-                    } else {
-                        $("#voter_twitter").text("");
-                        voter_twitter = 'solve';
-                    }
-                    if((voter_fb == "error") || (voter_insta == "error") || (voter_twitter == "error")) {
-                        return false;
-                    }
-                }
+                // var voter_fb = voter_insta = voter_twitter = '';
+                // if($(this).data("id") == 4) {
+                //     status4 = 'error';
+                //     if($("#fb").val() == '') {
+                //         $("#voter_fb").text("The facebook field is required.");
+                //         voter_fb = 'error';
+                //     } else {
+                //         $("#voter_fb").text("");
+                //         voter_fb = 'solve';
+                //     }
+                //     if($("#insta").val() == '') {
+                //         $("#voter_insta").text("The instagram field is required.");
+                //         voter_insta = 'error';
+                //     } else {
+                //         $("#voter_insta").text("");
+                //         voter_insta = 'solve';
+                //     }
+                //     if($("#twitter").val() == '') {
+                //         $("#voter_twitter").text("The twitter field is required.");
+                //         voter_twitter = 'error';
+                //     } else {
+                //         $("#voter_twitter").text("");
+                //         voter_twitter = 'solve';
+                //     }
+                //     if((voter_fb == "error") || (voter_insta == "error") || (voter_twitter == "error")) {
+                //         return false;
+                //     }
+                // }
 
-                var voter_is_voter = voter_is_pvc = '';
-                if($(this).data("id") == 5) {
-                    if($("#is_voter").val() == '') {
-                        $("#voter_is_voter").text("Select Voter Card is required!");
-                        voter_is_voter = 'error';
-                    } else {
-                        $("#voter_is_voter").text("");
-                        voter_is_voter = 'solve';
-                    }
-                    if($("#is_pvc").val() == '') {
-                        $("#voter_is_pvc").text("Select PVC Reason is required!");
-                        voter_is_pvc = 'error';
-                    } else {
-                        $("#voter_is_pvc").text("");
-                        voter_is_pvc = 'solve';
-                    }
-                    if((voter_is_voter == "error") || (voter_is_pvc == "error")) {
-                        return false;
-                    }
-                }
+                // var voter_is_voter = voter_is_pvc = '';
+                // if($(this).data("id") == 5) {
+                //     if($("#is_voter").val() == '') {
+                //         $("#voter_is_voter").text("Select Voter Card is required!");
+                //         voter_is_voter = 'error';
+                //     } else {
+                //         $("#voter_is_voter").text("");
+                //         voter_is_voter = 'solve';
+                //     }
+                //     if($("#is_pvc").val() == '') {
+                //         $("#voter_is_pvc").text("Select PVC Reason is required!");
+                //         voter_is_pvc = 'error';
+                //     } else {
+                //         $("#voter_is_pvc").text("");
+                //         voter_is_pvc = 'solve';
+                //     }
+                //     if((voter_is_voter == "error") || (voter_is_pvc == "error")) {
+                //         return false;
+                //     }
+                // }
                 $('.panel-tabs .active').parent().prev('li').find('a').trigger('click');
             });
         });

@@ -63,9 +63,9 @@ class LGACoordinatorController extends Controller
                 'select_state'  => 'required',
                 'username'  => 'required',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -79,9 +79,9 @@ class LGACoordinatorController extends Controller
                 'select_state'  => 'required',
                 'username'  => 'required|unique:lga_coordinator',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -106,9 +106,9 @@ class LGACoordinatorController extends Controller
 
             $addLGACoordinator->state_id = $request->select_state;
             $addLGACoordinator->password = md5($request->password);
-            $addLGACoordinator->fname = $request->fname;
+            $addLGACoordinator->fname = $request->first_name;
             $addLGACoordinator->mname = $request->mname;
-            $addLGACoordinator->lname = $request->lname;
+            $addLGACoordinator->lname = $request->last_name;
             $addLGACoordinator->age = $request->age;
             $addLGACoordinator->gender = $request->gender;
             $addLGACoordinator->dob = $request->dob;

@@ -71,9 +71,9 @@ class CellCoordinatorController extends Controller
                 'select_ward'  => 'required',
                 'username'  => 'required',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -89,9 +89,9 @@ class CellCoordinatorController extends Controller
                 'select_ward'  => 'required',
                 'username'  => 'required|unique:cell_coordinator',
                 'password' => 'required',
-                'fname'  => 'required',
+                'first_name'  => 'required',
                 // 'mname'  => 'required',
-                'lname'  => 'required',
+                'last_name'  => 'required',
                 'age' => 'required',
                 'gender'  => 'required',
                 'dob' => 'required',
@@ -118,9 +118,9 @@ class CellCoordinatorController extends Controller
             $addCellCoordinator->lga_id = $request->select_lga;
             $addCellCoordinator->ward_id = $request->select_ward;
             $addCellCoordinator->password = md5($request->password);
-            $addCellCoordinator->fname = $request->fname;
+            $addCellCoordinator->fname = $request->first_name;
             $addCellCoordinator->mname = $request->mname;
-            $addCellCoordinator->lname = $request->lname;
+            $addCellCoordinator->lname = $request->last_name;
             $addCellCoordinator->age = $request->age;
             $addCellCoordinator->gender = $request->gender;
             $addCellCoordinator->dob = $request->dob;

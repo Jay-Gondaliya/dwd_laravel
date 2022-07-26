@@ -62,8 +62,8 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="validationCustom01" class="form-label">First Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" value="{{ $editCellCoordinator->fname }}" required>
-                                <span class="text-danger error" id="cell_fname"></span>
+                                <input type="text" class="form-control" placeholder="First Name" name="first_name" id="fname" value="{{ $editCellCoordinator->fname }}" required>
+                                <span class="text-danger error" id="cell_first_name"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -76,8 +76,8 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="validationCustom01" class="form-label">Last Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Last Name" name="lname" value="{{ $editCellCoordinator->lname }}" required>
-                                <span class="text-danger error" id="cell_lname"></span>
+                                <input type="text" class="form-control" placeholder="Last Name" name="last_name" value="{{ $editCellCoordinator->lname }}" required>
+                                <span class="text-danger error" id="cell_last_name"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">
